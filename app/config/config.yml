@@ -59,7 +59,15 @@ doctrine_phpcr:
         username: admin
         password: admin
     odm:
+        auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+        locales:
+            en:
+                - en
+                - de
+            de:
+                - de
+                - en
 
 # Swiftmailer Configuration
 swiftmailer:

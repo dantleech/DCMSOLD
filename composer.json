@@ -5,24 +5,25 @@
         "psr-0": { "": "src/" }
     },
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "2.2.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "dantleech/dcms-routing-bundle": "dev-master",
         "doctrine/doctrine-bundle": "1.0.*",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.1.*",
-        "symfony/monolog-bundle": "2.1.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/phpcr-bundle": "1.0.*",
+        "doctrine/phpcr-odm": "dev-master",
+        "jackalope/jackalope-doctrine-dbal": "dev-master",
+        "jms/di-extra-bundle": "1.2.*",
+        "jms/security-extra-bundle": "1.3.*",
+        "php": ">=5.3.3",
         "sensio/distribution-bundle": "2.2.*",
         "sensio/framework-extra-bundle": "2.2.*",
         "sensio/generator-bundle": "2.2.*",
-        "jms/security-extra-bundle": "1.3.*",
-        "jms/di-extra-bundle": "1.2.*",
-        "jackalope/jackalope-doctrine-dbal": "dev-master",
-        "doctrine/phpcr-bundle": "1.0.*",
-        "doctrine/phpcr-odm": "dev-master",
-        "dantleech/dcms-routing-bundle": "dev-master"
+        "symfony-cmf/routing": "1.0.x-dev",
+        "symfony/assetic-bundle": "2.1.*",
+        "symfony/monolog-bundle": "2.1.*",
+        "symfony/swiftmailer-bundle": "2.1.*",
+        "symfony/symfony": "2.2.*",
+        "twig/extensions": "1.0.*"
     },
     "scripts": {
         "post-install-cmd": [

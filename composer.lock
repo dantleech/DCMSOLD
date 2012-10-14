@@ -1,6 +1,39 @@
 {
-    "hash": "6f0cd88e7a3895f9791ed2e6ab91c1c4",
+    "hash": "c2dcf7cf915ceadbe95af9e5b775a70d",
     "packages": [
+        {
+            "name": "dantleech/dcms-routing-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:dantleech/DCMSRoutingBundle",
+                "reference": "768144663ddb94f97dd1947fc1e55683e59b42cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/dantleech/DCMSRoutingBundle/zipball/768144663ddb94f97dd1947fc1e55683e59b42cb",
+                "reference": "768144663ddb94f97dd1947fc1e55683e59b42cb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "doctrine/orm": ">=2.2.3,<2.4-dev",
+                "doctrine/doctrine-bundle": "1.0.*",
+                "symfony/symfony": ">=2.1.0"
+            },
+            "time": "1350223983",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "DCMS\\Bundle\\RoutingBundle": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Routing bundle for DCMS project"
+        },
         {
             "name": "doctrine/common",
             "version": "2.3.x-dev",
@@ -18,7 +51,6 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1348120518",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -67,6 +99,48 @@
                 "eventmanager",
                 "annotations",
                 "persistence"
+            ],
+            "time": "1348120518"
+        },
+        {
+            "name": "doctrine/data-fixtures",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/data-fixtures.git",
+                "reference": "v1.0.0-ALPHA3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/doctrine/data-fixtures/zipball/v1.0.0-ALPHA3",
+                "reference": "v1.0.0-ALPHA3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "time": "1348136794",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\DataFixtures": "lib/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com",
+                    "homepage": "http://www.jwage.com/"
+                }
+            ],
+            "description": "Data Fixtures for all Doctrine Object Managers",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database"
             ]
         },
         {
@@ -75,19 +149,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal",
-                "reference": "fdc866a37959e43620e4f7ec519dc7dd8e30fc5b"
+                "reference": "219d96a1592e9e23087eb6861b4f8233d06c6463"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/dbal/zipball/fdc866a37959e43620e4f7ec519dc7dd8e30fc5b",
-                "reference": "fdc866a37959e43620e4f7ec519dc7dd8e30fc5b",
+                "url": "https://github.com/doctrine/dbal/zipball/219d96a1592e9e23087eb6861b4f8233d06c6463",
+                "reference": "219d96a1592e9e23087eb6861b4f8233d06c6463",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
                 "doctrine/common": "2.3.*"
             },
-            "time": "1348120597",
+            "time": "1349518912",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -111,7 +185,8 @@
                 },
                 {
                     "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
+                    "email": "guilhermeblanco@gmail.com",
+                    "homepage": "http://www.instaclick.com"
                 },
                 {
                     "name": "Roman Borschel",
@@ -138,12 +213,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/doctrine/DoctrineBundle.git",
-                "reference": "db818ceec46d05fed4f944b957f82a4ab5197e27"
+                "reference": "a3b99ec049b7c488c70b8776a67c594e6ddf54cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/DoctrineBundle/zipball/db818ceec46d05fed4f944b957f82a4ab5197e27",
-                "reference": "db818ceec46d05fed4f944b957f82a4ab5197e27",
+                "url": "https://github.com/doctrine/DoctrineBundle/zipball/a3b99ec049b7c488c70b8776a67c594e6ddf54cd",
+                "reference": "a3b99ec049b7c488c70b8776a67c594e6ddf54cd",
                 "shasum": ""
             },
             "require": {
@@ -160,7 +235,7 @@
             "suggest": {
                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle."
             },
-            "time": "1348828243",
+            "time": "1350120716",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -200,17 +275,70 @@
             ]
         },
         {
+            "name": "doctrine/doctrine-fixtures-bundle",
+            "version": "dev-master",
+            "target-dir": "Doctrine/Bundle/FixturesBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
+                "reference": "1e2c7af26f9f7ac9110d47cee8133d700fb99ae1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/doctrine/DoctrineFixturesBundle/zipball/1e2c7af26f9f7ac9110d47cee8133d700fb99ae1",
+                "reference": "1e2c7af26f9f7ac9110d47cee8133d700fb99ae1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "doctrine/data-fixtures": "*",
+                "doctrine/doctrine-bundle": "1.0.*",
+                "symfony/doctrine-bridge": ">=2.1.0,<2.3-dev"
+            },
+            "time": "1349789605",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Bundle\\FixturesBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Doctrine Project",
+                    "homepage": "http://www.doctrine-project.org"
+                }
+            ],
+            "description": "Symfony DoctrineFixturesBundle",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "persistence",
+                "Fixture"
+            ]
+        },
+        {
             "name": "doctrine/orm",
             "version": "2.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "git://github.com/doctrine/doctrine2.git",
-                "reference": "ea2b28857830720460a345c80c6e7d3f6adae93a"
+                "reference": "6bad0109599348c5216df35f62b80a20ba16c507"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/doctrine2/zipball/ea2b28857830720460a345c80c6e7d3f6adae93a",
-                "reference": "ea2b28857830720460a345c80c6e7d3f6adae93a",
+                "url": "https://github.com/doctrine/doctrine2/zipball/6bad0109599348c5216df35f62b80a20ba16c507",
+                "reference": "6bad0109599348c5216df35f62b80a20ba16c507",
                 "shasum": ""
             },
             "require": {
@@ -222,7 +350,7 @@
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
             },
-            "time": "1348121015",
+            "time": "1350071385",
             "bin": [
                 "bin/doctrine",
                 "bin/doctrine.php"
@@ -250,7 +378,8 @@
                 },
                 {
                     "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
+                    "email": "guilhermeblanco@gmail.com",
+                    "homepage": "http://www.instaclick.com"
                 },
                 {
                     "name": "Roman Borschel",
@@ -269,25 +398,270 @@
             ]
         },
         {
+            "name": "doctrine/phpcr-bundle",
+            "version": "dev-master",
+            "target-dir": "Doctrine/Bundle/PHPCRBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrinePHPCRBundle",
+                "reference": "92afa41bc4445c246358609f80424c985955035c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/doctrine/DoctrinePHPCRBundle/zipball/92afa41bc4445c246358609f80424c985955035c",
+                "reference": "92afa41bc4445c246358609f80424c985955035c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "phpcr/phpcr-implementation": "2.1.*",
+                "phpcr/phpcr-utils": ">=1.0-beta3",
+                "symfony/framework-bundle": ">=2.1,<2.3-dev",
+                "symfony/doctrine-bridge": ">=2.1,<2.3-dev"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "when using jackalope-doctrine-dbal",
+                "doctrine/data-fixtures": "if you want to use the fixture loading",
+                "doctrine/phpcr-odm": "if you want to use the odm as well. require version 1.0.*"
+            },
+            "time": "1350167037",
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Bundle\\PHPCRBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Lukas Kahwe Smith",
+                    "email": "smith@pooteeweet.org"
+                }
+            ],
+            "description": "Symfony DoctrinePHPCRBundle",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database",
+                "persistence",
+                "phpcr",
+                "odm"
+            ]
+        },
+        {
+            "name": "doctrine/phpcr-odm",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/phpcr-odm",
+                "reference": "4840bb54b86d98253555325036c83de76ca20fd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/doctrine/phpcr-odm/zipball/4840bb54b86d98253555325036c83de76ca20fd7",
+                "reference": "4840bb54b86d98253555325036c83de76ca20fd7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "phpcr/phpcr-implementation": ">=2.1.0-beta3,<2.2.0-dev",
+                "phpcr/phpcr-utils": ">=1.0-beta3",
+                "doctrine/common": ">=2.3-dev,<2.4-dev"
+            },
+            "require-dev": {
+                "symfony/yaml": ">=2.0.0,<2.3.0-dev"
+            },
+            "suggest": {
+                "jackalope/jackalope-doctrine-dbal": "dev-master",
+                "jackalope/jackalope-jackrabbit": "1.0.*",
+                "midgard/phpcr": ">=1.3",
+                "symfony/yaml": ">=2.0.0,<2.3.0-dev"
+            },
+            "time": "1350166997",
+            "bin": [
+                "bin/phpcr",
+                "bin/phpcr.php"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\ODM\\PHPCR": "lib/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Lukas Kahwe Smith",
+                    "email": "smith@pooteeweet.org"
+                },
+                {
+                    "name": "David Buchmann",
+                    "email": "david@liip.ch"
+                }
+            ],
+            "description": "Object-Document-Mapper for PHPCR",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database",
+                "phpcr",
+                "odm"
+            ]
+        },
+        {
+            "name": "jackalope/jackalope",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jackalope/jackalope",
+                "reference": "0c97951fa34d65c5c501d8e17e3eba2432a85643"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/jackalope/jackalope/zipball/0c97951fa34d65c5c501d8e17e3eba2432a85643",
+                "reference": "0c97951fa34d65c5c501d8e17e3eba2432a85643",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "ext-libxml": "*",
+                "jackalope/jackalope-transport": "1.0.*",
+                "phpcr/phpcr-utils": ">=1.0-beta3",
+                "phpcr/phpcr": ">=2.1.0-beta5"
+            },
+            "provide": {
+                "phpcr/phpcr-implementation": "2.1.0-beta4"
+            },
+            "time": "1349905078",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Jackalope\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jackalope Community",
+                    "homepage": "https://github.com/jackalope/jackalope/contributors"
+                }
+            ],
+            "description": "Jackalope PHPCR library",
+            "homepage": "http://jackalope.github.com",
+            "keywords": [
+                "phpcr implementation"
+            ]
+        },
+        {
+            "name": "jackalope/jackalope-doctrine-dbal",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jackalope/jackalope-doctrine-dbal",
+                "reference": "dc256459f5f514c4127a8b941ed20727ea60279d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/jackalope/jackalope-doctrine-dbal/zipball/dc256459f5f514c4127a8b941ed20727ea60279d",
+                "reference": "dc256459f5f514c4127a8b941ed20727ea60279d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "doctrine/dbal": ">=2.2.0,<2.4",
+                "jackalope/jackalope": "1.0.*",
+                "phpcr/phpcr": ">=2.1.0-beta6"
+            },
+            "provide": {
+                "jackalope/jackalope-transport": "1.0.0-alpha1"
+            },
+            "require-dev": {
+                "phpcr/phpcr-api-tests": "dev-master"
+            },
+            "suggest": {
+                "phpcr/phpcr-api-tests": "dev-master"
+            },
+            "time": "1349707265",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Jackalope\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jackalope Community",
+                    "homepage": "https://github.com/jackalope/jackalope-jackrabbit/contributors"
+                }
+            ],
+            "description": "Jackalope Transport library",
+            "homepage": "http://jackalope.github.com",
+            "keywords": [
+                "transport implementation",
+                "doctrine-dbal"
+            ]
+        },
+        {
             "name": "jms/aop-bundle",
             "version": "dev-master",
             "target-dir": "JMS/AopBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSAopBundle",
-                "reference": "03d725fde78abea8e1e1ed6af5f1c86c6b9446e1"
+                "reference": "fb03e55ca39937f506b8b5b6782fd319caaf0aff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/schmittjoh/JMSAopBundle/zipball/03d725fde78abea8e1e1ed6af5f1c86c6b9446e1",
-                "reference": "03d725fde78abea8e1e1ed6af5f1c86c6b9446e1",
+                "url": "https://github.com/schmittjoh/JMSAopBundle/zipball/fb03e55ca39937f506b8b5b6782fd319caaf0aff",
+                "reference": "fb03e55ca39937f506b8b5b6782fd319caaf0aff",
                 "shasum": ""
             },
             "require": {
                 "symfony/framework-bundle": "2.*",
                 "jms/cg": "1.0.0"
             },
-            "time": "1348045406",
+            "time": "1349084102",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -365,12 +739,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSDiExtraBundle",
-                "reference": "4cfdb1fe6e380578dd459e71c060f655a94e28d7"
+                "reference": "1ca32bce0b3e10c3b673213913355c5bc58b9dd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/schmittjoh/JMSDiExtraBundle/zipball/4cfdb1fe6e380578dd459e71c060f655a94e28d7",
-                "reference": "4cfdb1fe6e380578dd459e71c060f655a94e28d7",
+                "url": "https://github.com/schmittjoh/JMSDiExtraBundle/zipball/1ca32bce0b3e10c3b673213913355c5bc58b9dd5",
+                "reference": "1ca32bce0b3e10c3b673213913355c5bc58b9dd5",
                 "shasum": ""
             },
             "require": {
@@ -393,7 +767,7 @@
                 "doctrine/doctrine-bundle": "*",
                 "doctrine/orm": "*"
             },
-            "time": "1348217858",
+            "time": "1350226042",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -413,7 +787,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -475,12 +849,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle",
-                "reference": "daa4e93edc6e89ce809a76edc0866dcb3feb3306"
+                "reference": "8d08281b09d33247203ab5428439d2812a68105c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle/zipball/daa4e93edc6e89ce809a76edc0866dcb3feb3306",
-                "reference": "daa4e93edc6e89ce809a76edc0866dcb3feb3306",
+                "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle/zipball/8d08281b09d33247203ab5428439d2812a68105c",
+                "reference": "8d08281b09d33247203ab5428439d2812a68105c",
                 "shasum": ""
             },
             "require": {
@@ -504,7 +878,7 @@
                 "symfony/form": "*",
                 "symfony/validator": "*"
             },
-            "time": "1348046640",
+            "time": "1350225976",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -544,12 +918,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/kriswallsmith/assetic.git",
-                "reference": "a6baab9b4c4361aca51bf90ee47c1586dff3cb0c"
+                "reference": "e22c5e07e672bb0cf43127e97e9368b53abf4aa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/kriswallsmith/assetic/zipball/a6baab9b4c4361aca51bf90ee47c1586dff3cb0c",
-                "reference": "a6baab9b4c4361aca51bf90ee47c1586dff3cb0c",
+                "url": "https://github.com/kriswallsmith/assetic/zipball/e22c5e07e672bb0cf43127e97e9368b53abf4aa8",
+                "reference": "e22c5e07e672bb0cf43127e97e9368b53abf4aa8",
                 "shasum": ""
             },
             "require": {
@@ -570,7 +944,7 @@
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin"
             },
-            "time": "1347622188",
+            "time": "1349004759",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -610,12 +984,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog",
-                "reference": "09b3a80cfaf3e323e348a5e817afeee98d5e6b48"
+                "reference": "4b11ac001200e8fa70820a573fe886c80139b9e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Seldaek/monolog/zipball/09b3a80cfaf3e323e348a5e817afeee98d5e6b48",
-                "reference": "09b3a80cfaf3e323e348a5e817afeee98d5e6b48",
+                "url": "https://github.com/Seldaek/monolog/zipball/4b11ac001200e8fa70820a573fe886c80139b9e1",
+                "reference": "4b11ac001200e8fa70820a573fe886c80139b9e1",
                 "shasum": ""
             },
             "require": {
@@ -629,7 +1003,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server"
             },
-            "time": "1347983448",
+            "time": "1350121319",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -661,6 +1035,121 @@
             ]
         },
         {
+            "name": "phpcr/phpcr",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpcr/phpcr",
+                "reference": "2.1.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/phpcr/phpcr/zipball/2.1.0-beta6",
+                "reference": "2.1.0-beta6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "1348510647",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "PHPCR": "src"
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Lukas Kahwe Smith",
+                    "email": "smith@pooteeweet.org"
+                },
+                {
+                    "name": "David Buchmann",
+                    "email": "david@liip.ch"
+                },
+                {
+                    "name": "Karsten Dambekalns",
+                    "email": "karsten@typo3.org"
+                }
+            ],
+            "description": "PHP Content Repository interfaces",
+            "homepage": "http://phpcr.github.com",
+            "keywords": [
+                "phpcr",
+                "contentrepository"
+            ]
+        },
+        {
+            "name": "phpcr/phpcr-utils",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpcr/phpcr-utils",
+                "reference": "6a6314bacda1bcd7890e3137853eb61316197103"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/phpcr/phpcr-utils/zipball/6a6314bacda1bcd7890e3137853eb61316197103",
+                "reference": "6a6314bacda1bcd7890e3137853eb61316197103",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "phpcr/phpcr": ">=2.1.0-beta5",
+                "symfony/console": ">=2.0.0,<2.3.0-dev"
+            },
+            "time": "1350166966",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "PHPCR\\Util": "src"
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Lukas Kahwe Smith",
+                    "email": "smith@pooteeweet.org"
+                },
+                {
+                    "name": "David Buchmann",
+                    "email": "david@liip.ch"
+                },
+                {
+                    "name": "Daniel Barsotti",
+                    "email": "daniel.barsotti@liip.ch"
+                },
+                {
+                    "name": "Nacho Martín",
+                    "email": "nitram.ohcan@gmail.com"
+                }
+            ],
+            "description": "PHP Content Repository implementation independant utilities",
+            "homepage": "http://phpcr.github.com",
+            "keywords": [
+                "phpcr",
+                "contentrepository",
+                "cli"
+            ]
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "dev-master",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -678,7 +1167,6 @@
             "require": {
                 "symfony/framework-bundle": "2.2.*"
             },
-            "time": "1347635342",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -704,7 +1192,8 @@
             "keywords": [
                 "distribution",
                 "configuration"
-            ]
+            ],
+            "time": "1347635342"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -713,19 +1202,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioFrameworkExtraBundle",
-                "reference": "03e32da3fd1bb37e4c6f3c77f1b4cb8a3a78e0a8"
+                "reference": "022903ff98f041ea22ec50f2b4744aeae8a72f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/zipball/03e32da3fd1bb37e4c6f3c77f1b4cb8a3a78e0a8",
-                "reference": "03e32da3fd1bb37e4c6f3c77f1b4cb8a3a78e0a8",
+                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/zipball/022903ff98f041ea22ec50f2b4744aeae8a72f4d",
+                "reference": "022903ff98f041ea22ec50f2b4744aeae8a72f4d",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": ">=2.1,<2.4-dev",
                 "symfony/framework-bundle": "2.2.*"
             },
-            "time": "1347340790",
+            "time": "1349354881",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -780,7 +1269,6 @@
             "suggest": {
                 "doctrine/doctrine-bundle": "to generate entities and their crud controller"
             },
-            "time": "1348070473",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -802,7 +1290,8 @@
                     "email": "fabien@symfony.com"
                 }
             ],
-            "description": "This bundle generates code for you"
+            "description": "This bundle generates code for you",
+            "time": "1348070473"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -810,18 +1299,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/swiftmailer/swiftmailer.git",
-                "reference": "1a987b45ea8dcbbe9680499800c67fc97a2d07f6"
+                "reference": "22731e907f5ca288c9bfde6b54f3611ace0a6c39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/swiftmailer/swiftmailer/zipball/1a987b45ea8dcbbe9680499800c67fc97a2d07f6",
-                "reference": "1a987b45ea8dcbbe9680499800c67fc97a2d07f6",
+                "url": "https://github.com/swiftmailer/swiftmailer/zipball/22731e907f5ca288c9bfde6b54f3611ace0a6c39",
+                "reference": "22731e907f5ca288c9bfde6b54f3611ace0a6c39",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1348747908",
+            "time": "1349196829",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -860,12 +1349,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle",
-                "reference": "5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2"
+                "reference": "7d7393fc9d01f77a3da254735303d696181048c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/AsseticBundle/zipball/5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2",
-                "reference": "5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2",
+                "url": "https://github.com/symfony/AsseticBundle/zipball/7d7393fc9d01f77a3da254735303d696181048c1",
+                "reference": "7d7393fc9d01f77a3da254735303d696181048c1",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +1374,7 @@
             "suggest": {
                 "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
             },
-            "time": "1348938560",
+            "time": "1350218039",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -942,7 +1431,6 @@
                 "symfony/yaml": ">=2.1.0,<2.3-dev",
                 "symfony/config": ">=2.1.0,<2.3-dev"
             },
-            "time": "1348137624",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -969,7 +1457,8 @@
                 }
             ],
             "description": "Symfony MonologBundle",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "1348137624"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -978,12 +1467,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/SwiftmailerBundle",
-                "reference": "e055faf5d7279f3c01ffd58f1548e0fc524b71d1"
+                "reference": "231d05f51c3dddd0d45500ec7d22a5315a0ce84f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/SwiftmailerBundle/zipball/e055faf5d7279f3c01ffd58f1548e0fc524b71d1",
-                "reference": "e055faf5d7279f3c01ffd58f1548e0fc524b71d1",
+                "url": "https://github.com/symfony/SwiftmailerBundle/zipball/231d05f51c3dddd0d45500ec7d22a5315a0ce84f",
+                "reference": "231d05f51c3dddd0d45500ec7d22a5315a0ce84f",
                 "shasum": ""
             },
             "require": {
@@ -997,7 +1486,7 @@
                 "symfony/config": ">=2.1.0,<2.3-dev",
                 "symfony/yaml": ">=2.1.0,<2.3-dev"
             },
-            "time": "1348137776",
+            "time": "1350120593",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1032,12 +1521,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "dda2f7cdb3ca084b3a13d28b61f8b54fdeb3f543"
+                "reference": "0fc0fb3b9ca37981fdd3b9ac1621a08c4498a8df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/zipball/dda2f7cdb3ca084b3a13d28b61f8b54fdeb3f543",
-                "reference": "dda2f7cdb3ca084b3a13d28b61f8b54fdeb3f543",
+                "url": "https://github.com/symfony/symfony/zipball/0fc0fb3b9ca37981fdd3b9ac1621a08c4498a8df",
+                "reference": "0fc0fb3b9ca37981fdd3b9ac1621a08c4498a8df",
                 "shasum": ""
             },
             "require": {
@@ -1089,7 +1578,7 @@
             "suggest": {
                 "doctrine/data-fixtures": "1.0.*"
             },
-            "time": "1348937500",
+            "time": "1350207404",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1131,18 +1620,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig-extensions",
-                "reference": "f904575642b1213db69b4a98f08397e722ba1cae"
+                "reference": "dcdff02fbac1282e6b8f4d0558cc7e9580105688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig-extensions/zipball/f904575642b1213db69b4a98f08397e722ba1cae",
-                "reference": "f904575642b1213db69b4a98f08397e722ba1cae",
+                "url": "https://github.com/fabpot/Twig-extensions/zipball/dcdff02fbac1282e6b8f4d0558cc7e9580105688",
+                "reference": "dcdff02fbac1282e6b8f4d0558cc7e9580105688",
                 "shasum": ""
             },
             "require": {
                 "twig/twig": "1.*"
             },
-            "time": "1346770278",
+            "time": "1349889206",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1178,18 +1667,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "120cde3fa54c31047edf1cd003752ca119dec9a8"
+                "reference": "82334f876f06b76b28d60ef547ff0ccee8bc1de8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/zipball/120cde3fa54c31047edf1cd003752ca119dec9a8",
-                "reference": "120cde3fa54c31047edf1cd003752ca119dec9a8",
+                "url": "https://github.com/fabpot/Twig/zipball/82334f876f06b76b28d60ef547ff0ccee8bc1de8",
+                "reference": "82334f876f06b76b28d60ef547ff0ccee8bc1de8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1348936415",
+            "time": "1350154884",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1222,14 +1711,15 @@
             ]
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "doctrine/doctrine-fixtures-bundle": 20,
+        "jackalope/jackalope-doctrine-dbal": 20,
+        "doctrine/phpcr-odm": 20,
+        "dantleech/dcms-routing-bundle": 20
+    }
 }

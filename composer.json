@@ -9,6 +9,7 @@
         "symfony/symfony": "2.2.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.0.*",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
         "twig/extensions": "1.0.*",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.*",
@@ -17,7 +18,11 @@
         "sensio/framework-extra-bundle": "2.2.*",
         "sensio/generator-bundle": "2.2.*",
         "jms/security-extra-bundle": "1.3.*",
-        "jms/di-extra-bundle": "1.2.*"
+        "jms/di-extra-bundle": "1.2.*",
+        "jackalope/jackalope-doctrine-dbal": "dev-master",
+        "doctrine/phpcr-bundle": "1.0.*",
+        "doctrine/phpcr-odm": "dev-master",
+        "dantleech/dcms-routing-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -41,4 +46,4 @@
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
     }
-}
+    }

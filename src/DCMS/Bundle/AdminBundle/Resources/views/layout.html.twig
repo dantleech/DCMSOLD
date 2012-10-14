@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bundles/dcmsadmin/stylesheets/screen.css') }}"/>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body class="two-col">
+        <div id="container">
+            <div id="header">
+                <h1 class="span-4">DCMS</h1>
+                <nav id="level-1" class="span-8">
+                    <a href="http://www.dantleech.com">Pages</a>
+                    <a href="#">Content</a>
+                    <a href="#">Appearance</a>
+                </nav>
+            </div>
+            <div id="sidebar">
+                <h2>P*</h2>
+                <div id="browser">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li>
+                            <a href="#">Pages</a>
+                            <ul>
+                                <li><a href="#">Foo</a></li>
+                                <li><a href="#">Bar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="content">
+                <h2>{% block page_title %}Page Title{% endblock %}</h2>
+                <section>
+                    {% block page_content %}{% endblock %}
+                </section>
+            </div>
+        </div>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

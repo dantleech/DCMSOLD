@@ -1,0 +1,23 @@
+#header {
+    background-color: #000;
+    padding: 5px;
+    @include background(linear-gradient(#000, #000, #111, #444));
+
+    h1 {
+        color: #fff;
+        font-size: 24px;
+        float: left;
+        width: span(3);
+    }
+
+    nav {
+        a {
+            padding: 5px;
+            display: block;
+            float: left;
+            color: #eee;
+            text-decoration: none;
+            border-style: solid;
+        }
+    }
+}

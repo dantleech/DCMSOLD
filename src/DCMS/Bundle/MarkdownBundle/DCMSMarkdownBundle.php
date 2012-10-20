@@ -2,14 +2,15 @@
 
 namespace DCMS\Bundle\MarkdownBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use DCMS\Bundle\CoreBundle\Module\ModuleManager;
+use DCMS\Bundle\CoreBundle\Module\ModuleBundle;
 
-class DCMSMarkdownBundle extends Bundle
+class DCMSMarkdownBundle extends ModuleBundle
 {
-    public function initModule(ModuleManager $mm)
+    protected function setupModule(ModuleManager $mm)
     {
         $m = $mm->createModule('markdown');
-        $m->createEndpointDefinition('markdown', 'DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint')
+        $m->createEndpointDefinition('DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint')
             ->setIcon('bundles/dcmsmarkdown/images/icon/markdown.png');
     }
 }

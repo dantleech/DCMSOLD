@@ -45,4 +45,9 @@ class ModuleDefinition
             }
         }
     }
+    
+    public function getEndpointDefinitions()
+    {
+        return $this->epds;
+    }
 }

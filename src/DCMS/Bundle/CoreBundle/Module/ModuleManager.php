@@ -12,6 +12,7 @@ class ModuleManager
     {
         $module = new ModuleDefinition($name);
         $this->registerModule($module);
+
         return $module;
     }
 

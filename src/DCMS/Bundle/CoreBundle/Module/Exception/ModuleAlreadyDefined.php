@@ -9,5 +9,7 @@ class ModuleAlreadyDefined extends \Exception
     {
         $message = sprintf('Module "%s" has already been defined', $module->GetName());
         return parent::__construct($message);
+
+        $this->php
     }
 }

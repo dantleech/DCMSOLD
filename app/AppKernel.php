@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new DCMS\Bundle\AdminBundle\DCMSAdminBundle(),
             new DCMS\Bundle\MarkdownBundle\DCMSMarkdownBundle(),
             new DCMS\Bundle\RoutingBundle\DCMSRoutingBundle(),
+            new DCMS\Bundle\CoreBundle\DCMSCoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

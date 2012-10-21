@@ -1,10 +1,14 @@
+{% if node.id %}
 <li>
     {% set epDef = mm.endpointDefinition(node) %}
     {% if epDef %}
         <img src="{{ asset(mm.endpointDefinition(node).icon) }}"/>
         <span>{{ node.nodeName }}</span>
+    {% else %}
+        <span>{{ node.id }}</span>
     {% endif %}
 </li>
+{% endif %}
 {% if node.children %}
     <ul class="tree">
         {% for child in node.children %}

@@ -24,6 +24,11 @@ class EndpointDefinition
         $this->title = $title;
     }
 
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
     public function getDocumentFQN()
     {
         return $this->documentFqn;

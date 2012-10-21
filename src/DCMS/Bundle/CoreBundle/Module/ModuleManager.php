@@ -35,10 +35,10 @@ class ModuleManager
         return $this->modules;
     }
 
-    public function getEndpointDefinition($documentFqn)
+    public function getEndpointDefinition($document)
     {
         foreach ($this->modules as $module) {
-            if ($epd = $module->getEndpointDefinition($documentFqn)) {
+            if ($epd = $module->getEndpointDefinition($document)) {
                 return $epd;
             }
         }

@@ -12,10 +12,12 @@
             <div id="header">
                 <h1 class="span-4"><img src="{{ asset('bundles/dcmsadmin/images/dcms.png') }}" /></h1>
                 <nav id="level-1" class="span-8">
-                    <a href="{{ path('dcms_admin_endpoint_index') }}">Pages</a>
-                    <a href="#">Content</a>
-                    <a href="#">Appearance</a>
+                    {{ knp_menu_render('DCMSAdminBundle:MainBuilder:build') }}
                 </nav>
+            </div>
+            <div style="clear: both"></div>
+            <div class="page_info">
+                <h2>{% for node in knp_menu_get('DCMSAdminBundle:MainBuilder:build', {}).breadcrumbsArray %}{{ node.label }}{% endfor %}</h2>
             </div>
             {% block main %}
             {% endblock %}

@@ -37,10 +37,10 @@ class ModuleDefinition
         return $this->name;
     }
 
-    public function getEndpointDefinition($documentFqn)
+    public function getEndpointDefinition($document)
     {
         foreach ($this->epds as $epd) {
-            if ($epd->getDocumentFQN() == $documentFqn) {
+            if ($epd->getDocumentFQN() == get_class($document)) {
                 return $epd;
             }
         }

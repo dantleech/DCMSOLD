@@ -1,3 +1,5 @@
+@import "compass";
+
 // This import applies a global reset to any page that imports this stylesheet.
 @import "blueprint/reset";
 
@@ -6,11 +8,7 @@
 
 // Import all the default blueprint modules so that we can access their mixins.
 @import "blueprint";
-
-// Combine the partials into a single screen stylesheet.
-@import "partials/page";
-@import "partials/form";
-@import "partials/two_col";
+@import "blueprint/grid";
 
 // dans stuff
 @import "main.scss"

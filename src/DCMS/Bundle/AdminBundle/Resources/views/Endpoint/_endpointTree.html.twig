@@ -1,0 +1,14 @@
+<li>
+    {% set epDef = mm.endpointDefinition(node) %}
+    {% if epDef %}
+        <img src="{{ asset(mm.endpointDefinition(node).icon) }}"/>
+        <span>{{ node.nodeName }}</span>
+    {% endif %}
+</li>
+{% if node.children %}
+    <ul class="tree">
+        {% for child in node.children %}
+            {% include "DCMSAdminBundle:Endpoint:_endpointTree.html.twig" with {'node': child} %}
+        {% endfor %}
+    </ul>
+{% endif %}

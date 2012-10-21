@@ -11,6 +11,6 @@ class DCMSMarkdownBundle extends ModuleBundle
     {
         $m = $mm->createModule('markdown');
         $m->createEndpointDefinition('DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint')
-            ->setIcon('bundles/dcmsmarkdown/images/icon/markdown.png');
+            ->setIcon('bundles/dcmsmarkdown/images/markdown-16.png');
     }
 }

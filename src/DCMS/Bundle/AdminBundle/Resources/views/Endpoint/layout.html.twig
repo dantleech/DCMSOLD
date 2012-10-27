@@ -3,7 +3,11 @@
     P*
 {% endblock %}
 {% block main %}
+    <div id="dcms_admin_endpoint_tree_column">
     {% render "DCMSAdminBundle:Endpoint:_tree" %}
+    </div>
+    <div id="dcms_admin_endpoint_content">
     {% block endpoint_edit %}
     {% endblock %}
+    </div>
 {% endblock %}

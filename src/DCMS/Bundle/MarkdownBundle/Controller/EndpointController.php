@@ -11,10 +11,11 @@ class EndpointController extends Controller
     /**
      * @Template()
      */
-    public function editAction($endpoint)
+    public function editAction($endpoint, $form)
     {
         return array(
             'endpoint' => $endpoint,
+            'form' => $form,
         );
     }
 }

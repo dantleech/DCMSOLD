@@ -4,8 +4,24 @@
         <script type="text/javascript" src="{{ asset(javascript) }}"></script>
     {% endfor %}
 {% endblock %}
+{% block stylesheets %}
+    {% for stylesheet in epDef.stylesheetDependencies('edit') %}
+        <link rel="stylesheet" href="{{ asset(stylesheet) }}" />
+    {% endfor %}
+{% endblock %}
+
 {% block endpoint_edit %}
-    {% render epDef.controller('edit') with {
-        'endpoint': endpoint
-    } %}
+    <form action="#" method="POST">
+        {{ form_errors(form) }}
+        <div>
+            {{ form_errors(form.path) }}
+            {{ form_widget(form.path) }}
+        </div>
+        {% render epDef.controller('edit') with {
+            'endpoint': endpoint,
+            'form': form,
+        } %}
+        {{ form_rest(form) }}
+        <input type="submit"/>
+    </form>
 {% endblock %}

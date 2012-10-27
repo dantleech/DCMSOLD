@@ -5,6 +5,7 @@ namespace DCMS\Bundle\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 class EndpointController extends Controller
 {
@@ -56,14 +57,29 @@ class EndpointController extends Controller
      * )
      * @Template()
      */
-    public function editAction($endpointId)
+    public function editAction(Request $request)
     {
+        $endpointId = $request->get('endpointId');
         $ep = $this->getRepo()->find($endpointId);
         $epDef = $this->getMM()->getEndpointDefinition($ep);
+        $formType = $epDef->getFormType('edit');
+        $form = $this->createForm(new $formType, $ep);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+                $this->getDm()->persist($ep);
+                $this->getDm()->flush();
+                return $this->redirect($this->generateUrl('dcms_admin_endpoint_edit', array(
+                    'endpointId' => $ep->getId(),
+                )));
+            }
+        }
 
         return array(
             'epDef' => $epDef,
             'endpoint' => $ep,
+            'form' => $form->createView(),
         );
     }
 }

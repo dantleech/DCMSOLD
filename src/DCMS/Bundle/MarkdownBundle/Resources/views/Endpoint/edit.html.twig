@@ -1,17 +1,13 @@
-<h1>{{ endpoint.id }}</h1>
-<div id="epiceditor" style="float: right; width: 710px; height: 400px;">
+<div class="wmd-panel">
+<div id="wmd-button-bar"></div>
+{{ form_widget(form.content, {'id': 'wmd-input', 'attr': {'class': 'wmd-input'}}) }}
+<div id="wmd-preview" class="wmd-panel wmd-preview"></div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var opts = {
-            container: 'epiceditor',
-            basePath: '{{ asset('bundles/dcmsmarkdown/js/epic-editor/epiceditor') }}',
-            file: {
-                name: '{{ endpoint.id }}',
-                defaultContent: '{{ endpoint.content|escape('js') }}'
-            }
-        }
-        var editor = new EpicEditor(opts).load();
+        var converter1 = Markdown.getSanitizingConverter();
+        var editor1 = new Markdown.Editor(converter1);
+        editor1.run();
     });
 </script>

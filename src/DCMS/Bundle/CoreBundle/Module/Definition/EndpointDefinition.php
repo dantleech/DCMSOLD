@@ -13,7 +13,9 @@ class EndpointDefinition
     );
 
     protected $controllers = array();
+    protected $formTypes = array();
     protected $javascriptDependencies = array();
+    protected $stylesheetDependencies = array();
 
     public function __construct($documentFqn)
     {
@@ -61,5 +63,27 @@ class EndpointDefinition
     public function getJavascriptDependencies($type)
     {
         return $this->javascriptDependencies[$type];
+    }
+
+    public function getStylesheetDependencies($type)
+    {
+        return $this->stylesheetdependencies[$type];
+    }
+    
+    public function setStylesheetDependencies($stylesheetdependencies)
+    {
+        $this->stylesheetdependencies = $stylesheetdependencies;
+        return $this;
+    }
+
+    public function getFormType($type)
+    {
+        return $this->formTypes[$type];
+    }
+    
+    public function setFormTypes($formTypes)
+    {
+        $this->formTypes = $formTypes;
+        return $this;
     }
 }

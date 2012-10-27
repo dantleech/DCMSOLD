@@ -1,0 +1,9 @@
+{% extends "DCMSAdminBundle::layout.html.twig" %}
+{% block title %}
+    P*
+{% endblock %}
+{% block main %}
+    {% render "DCMSAdminBundle:Endpoint:_tree" %}
+    {% block endpoint_edit %}
+    {% endblock %}
+{% endblock %}

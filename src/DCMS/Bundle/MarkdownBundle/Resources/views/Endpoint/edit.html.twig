@@ -1,0 +1,17 @@
+<h1>{{ endpoint.id }}</h1>
+<div id="epiceditor" style="float: right; width: 710px; height: 400px;">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var opts = {
+            container: 'epiceditor',
+            basePath: '{{ asset('bundles/dcmsmarkdown/js/epic-editor/epiceditor') }}',
+            file: {
+                name: '{{ endpoint.id }}',
+                defaultContent: '{{ endpoint.content|escape('js') }}'
+            }
+        }
+        var editor = new EpicEditor(opts).load();
+    });
+</script>

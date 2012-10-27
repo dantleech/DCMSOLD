@@ -11,6 +11,14 @@ class DCMSMarkdownBundle extends ModuleBundle
     {
         $m = $mm->createModule('markdown');
         $m->createEndpointDefinition('DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint')
+            ->setControllers(array(
+                'edit' => 'DCMSMarkdownBundle:Endpoint:edit',
+            ))
+            ->setJavascriptDependencies(array(
+                'edit' => array(
+                    'bundles/dcmsmarkdown/js/epic-editor/epiceditor/js/epiceditor.js',
+                ),
+            ))
             ->setIcon('bundles/dcmsmarkdown/images/markdown-16.png');
     }
 }

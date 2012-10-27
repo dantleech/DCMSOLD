@@ -1,13 +1,4 @@
-{% extends "DCMSAdminBundle::layout.html.twig" %}
-{% block title %}
-    <h2>P*</h2>
-{% endblock %}
-{% block main %}
-    <div class="tree_wrapper">
-        <div id="browser">
-            <ul class="tree">
-                {% include "DCMSAdminBundle:Endpoint:_endpointTree.html.twig" with {'node': root} %}
-            </ul>
-        </div>
-    </div>
+{% extends "DCMSAdminBundle:Endpoint:layout.html.twig" %}
+{% block endpoint_edit %}
+    Select something ! (and tidy this message up)
 {% endblock %}

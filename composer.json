@@ -19,6 +19,7 @@
         "sensio/distribution-bundle": "2.2.*",
         "sensio/framework-extra-bundle": "2.2.*",
         "sensio/generator-bundle": "2.2.*",
+        "sonata-project/jquery-bundle": "1.8.x-dev",
         "symfony-cmf/routing": "1.0.x-dev",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
@@ -26,7 +27,10 @@
         "symfony/symfony": "2.2.*",
         "twig/extensions": "1.0.*"
     },
+
+
     "scripts": {
+
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",

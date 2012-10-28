@@ -13,9 +13,15 @@ class EndpointDefinition
     );
 
     protected $controllers = array();
-    protected $formTypes = array();
-    protected $javascriptDependencies = array();
-    protected $stylesheetDependencies = array();
+    protected $formTypes = array(
+        'edit' => 'DCMS\Bundle\RoutingBundle\Form\BaseEndpointType',
+    );
+    protected $javascriptDependencies = array(
+        'edit' => array(),
+    );
+    protected $stylesheetDependencies = array(
+        'edit' => array(),
+    );
 
     public function __construct($documentFqn)
     {
@@ -67,12 +73,12 @@ class EndpointDefinition
 
     public function getStylesheetDependencies($type)
     {
-        return $this->stylesheetdependencies[$type];
+        return $this->stylesheetDependencies[$type];
     }
     
-    public function setStylesheetDependencies($stylesheetdependencies)
+    public function setStylesheetDependencies($stylesheetDependencies)
     {
-        $this->stylesheetdependencies = $stylesheetdependencies;
+        $this->stylesheetDependencies = $stylesheetDependencies;
         return $this;
     }
 

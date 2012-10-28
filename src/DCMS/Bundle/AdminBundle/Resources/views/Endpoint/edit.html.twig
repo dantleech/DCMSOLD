@@ -1,5 +1,6 @@
 {% extends "DCMSAdminBundle:Endpoint:layout.html.twig" %}
 {% block javascripts %}
+    {{ parent() }}
     {% for javascript in epDef.javascriptDependencies('edit') %}
         <script type="text/javascript" src="{{ asset(javascript) }}"></script>
     {% endfor %}

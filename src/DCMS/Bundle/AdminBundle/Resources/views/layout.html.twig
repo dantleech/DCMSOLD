@@ -6,7 +6,8 @@
         <link rel="stylesheet" href="{{ asset('bundles/dcmsadmin/stylesheets/screen.css') }}"/>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <script type="text/javascript" src="{{ asset('bundles/dcmsadmin/js/jquery-1.8.2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sonatajquery/jquery-1.8.0.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sonatajquery/jquery-ui-1.8.23.js') }}"></script>
     </head>
     <body class="two-col">
         <div id="container">
@@ -24,6 +25,7 @@
             {% endblock %}
         </div>
 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
     </body>
 </html>

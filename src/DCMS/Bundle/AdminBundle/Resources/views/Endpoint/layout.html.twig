@@ -2,6 +2,25 @@
 {% block title %}
     P*
 {% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/dcmsadmin/js/jquery.mjs.nestedSortable.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#browser .tree').nestedSortable({
+                handle: 'a',
+                items: 'li',
+                toleranceElement: '> a',
+                listType: 'ul',
+                stop: function () {
+                    console.log($(this).nestedSortable('toArray'));
+                }
+            });
+
+        });
+    </script>
+{% endblock %}
+
 {% block main %}
     <div id="dcms_admin_endpoint_tree_column">
     {% render "DCMSAdminBundle:Endpoint:_tree" %}
@@ -10,4 +29,5 @@
     {% block endpoint_edit %}
     {% endblock %}
     </div>
+
 {% endblock %}

@@ -1,5 +1,9 @@
 {% if node.id %}
+{% if node.uuid is defined %}
+<li id="endpoint_{{ node.uuid }}">
+{% else %}
 <li>
+{% endif %}
     {% set epDef = mm.endpointDefinition(node) %}
     {% if epDef %}
         <a href="{{ path('dcms_admin_endpoint_edit', {
@@ -9,7 +13,7 @@
             {{ node.nodeName }}
         </a>
     {% else %}
-        <span>{{ node.id }}</span>
+        <a>{{ node.id }}</a>
     {% endif %}
     {% if node.children|length > 1 %}
         <ul style="clear: both" class="tree">

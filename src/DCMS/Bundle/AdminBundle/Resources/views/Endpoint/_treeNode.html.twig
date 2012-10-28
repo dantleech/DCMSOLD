@@ -1,6 +1,6 @@
 {% if node.id %}
 {% if node.uuid is defined %}
-<li id="endpoint_{{ node.uuid }}">
+<li uuid="{{ node.uuid }}">
 {% else %}
 <li>
 {% endif %}

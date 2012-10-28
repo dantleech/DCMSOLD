@@ -12,6 +12,8 @@
                 items: 'li',
                 toleranceElement: '> a',
                 listType: 'ul',
+                attribute: 'uuid',
+                expression: /()([a-zA-Z0-9-]+)/,
                 stop: function () {
                     console.log($(this).nestedSortable('toArray'));
                 }

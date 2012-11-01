@@ -16,7 +16,6 @@
                 attribute: 'uuid',
                 expression: /()([a-zA-Z0-9-]+)/,
                 start: function (ui, event) {
-                    $('#endpoint_tree_controls').css('display', 'block');
                     return true;
                 },
                 stop: function (event, ui) {
@@ -25,10 +24,8 @@
                     var prev = epLi.prev();
                     var parent = epLi.parents('li.endpoint');
 
-                    if (parent == undefined) {
-                        parent = '';
-                    } else {
-                        parent = parent.attr('uuid');
+                    if (parent) {
+                        parent = parent[0];
                     }
 
                     if (next != undefined) {
@@ -39,33 +36,27 @@
                         prev = prev.attr('uuid');
                     }
 
-                    treeCommands.push({
+                    var command = ({
                         'source': epLi.attr('uuid'),
                         'prev': prev,
                         'next': next,
                         'parent': parent
                     });
-                }
-            });
-            $('#endpoint_tree_controls_cancel').bind('click', function () {
-                $('#browser .tree').nestedSortable('cancel');
-                $('#endpoint_tree_controls').css('display', 'none');
-                return false;
-            });
 
-            $('#endpoint_tree_controls_save').bind('click', function () {
-                $.ajax({
-                    type: 'post',
-                    url: '{{ path('dcms_admin_endpoint_updatetree') }}',
-                    data: {
-                        commands: treeCommands,
-                    },
-                    success: function (resp) {
-                        treeCommands = new Array();
-                        $('#endpoint_tree_controls').css('display', 'none');
-                        alert('Updated!');
-                    },
-                });
+                    $('#browser_tree').mask('Updating');
+
+                    $.ajax({
+                        type: 'post',
+                        url: '{{ path('dcms_admin_endpoint_updatetree') }}',
+                        data: {
+                          'command': command,
+                        },
+                        success: function (resp) {
+                            $('#browser_tree').unmask();
+                            treeCommands = new Array();
+                        },
+                    });
+                }
             });
         });
     </script>

@@ -83,29 +83,42 @@ class EndpointController extends Controller
     }
 
     /**
-     * @Route("/endpoint/tree/update")
+     * @Route("/endpoint/tree/update", defaults={"_format"="json"})
      * @Method("POST")
      */
     public function updateTreeAction(Request $request)
     {
-        $commands = $request->get('commands');
+        $command = $request->get('command', array());
 
-        foreach ($commands as $command) {
+        $sourceEp = $this->getDm()->find(null, $command['source']);
 
-            if (!$sourceEp = $this->getRepo()->find($command['source'])) {
-                throw new \Exception('Could not find source node, uuid: '.$command['parent']);
-            }
+        if (isset($command['parent'])) {
+            $parentEp = $this->getDm()->find(null, $command['parent']);
+            $sourceEp->setParent($parentEp);
+        }
 
-            if (isset($command['parent'])) {
-                if (!$parentEp = $this->getRepo()->find($command['parent'])) {
-                    throw new \Exception('Could not find parent node, uuid: '.$command['parent']);
-                }
+        if (isset($command['next']) && $nextUuid = $command['next']) {
+            $nextEp = $this->getDm()->find(null, $nextUuid);
+            $this->getDm()->reorder(
+                $sourceEp->getParent(), 
+                $sourceEp->getNodeName(), 
+                $nextEp->getNodeName(), 
+                true
+            );
+        }
 
-                $sourceEp->setParent($parentEp);
-            }
+        if (isset($command['prev']) && $prevUuid = $command['prev']) {
+            $prevEp = $this->getDm()->find(null, $prevUuid);
+            $this->getDm()->reorder(
+                $sourceEp->getParent(), 
+                $sourceEp->getNodeName(), 
+                $prevEp->getNodeName(), 
+                false
+            );
         }
 
         $this->getDm()->flush();
+
         return $this->get('dcms_core.response_helper')->createJsonResponse(true);
     }
 }

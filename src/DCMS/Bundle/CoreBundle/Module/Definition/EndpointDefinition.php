@@ -37,6 +37,7 @@ class EndpointDefinition
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     public function getIcon()
@@ -91,5 +92,10 @@ class EndpointDefinition
     {
         $this->formTypes = $formTypes;
         return $this;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
     }
 }

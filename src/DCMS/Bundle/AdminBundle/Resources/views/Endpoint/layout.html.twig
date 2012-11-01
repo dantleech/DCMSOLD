@@ -7,29 +7,79 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#browser .tree').nestedSortable({
+            var treeCommands = new Array();
+            $('#browser_tree').nestedSortable({
                 handle: 'a',
                 items: 'li',
                 toleranceElement: '> a',
                 listType: 'ul',
                 attribute: 'uuid',
                 expression: /()([a-zA-Z0-9-]+)/,
-                stop: function () {
-                    console.log($(this).nestedSortable('toArray'));
+                start: function (ui, event) {
+                    $('#endpoint_tree_controls').css('display', 'block');
+                    return true;
+                },
+                stop: function (event, ui) {
+                    var epLi = ui.item;
+                    var next = epLi.next();
+                    var prev = epLi.prev();
+                    var parent = epLi.parents('li.endpoint');
+
+                    if (parent == undefined) {
+                        parent = '';
+                    } else {
+                        parent = parent.attr('uuid');
+                    }
+
+                    if (next != undefined) {
+                        next = next.attr('uuid');
+                    }
+
+                    if (prev != undefined) {
+                        prev = prev.attr('uuid');
+                    }
+
+                    treeCommands.push({
+                        'source': epLi.attr('uuid'),
+                        'prev': prev,
+                        'next': next,
+                        'parent': parent
+                    });
                 }
             });
+            $('#endpoint_tree_controls_cancel').bind('click', function () {
+                $('#browser .tree').nestedSortable('cancel');
+                $('#endpoint_tree_controls').css('display', 'none');
+                return false;
+            });
 
+            $('#endpoint_tree_controls_save').bind('click', function () {
+                $.ajax({
+                    type: 'post',
+                    url: '{{ path('dcms_admin_endpoint_updatetree') }}',
+                    data: {
+                        commands: treeCommands,
+                    },
+                    success: function (resp) {
+                        treeCommands = new Array();
+                        $('#endpoint_tree_controls').css('display', 'none');
+                        alert('Updated!');
+                    },
+                });
+            });
         });
     </script>
 {% endblock %}
 
 {% block main %}
-    <div id="dcms_admin_endpoint_tree_column">
-    {% render "DCMSAdminBundle:Endpoint:_tree" %}
-    </div>
-    <div id="dcms_admin_endpoint_content">
-    {% block endpoint_edit %}
-    {% endblock %}
+    <div class="row">
+        <div class="three columns">
+        {% render "DCMSAdminBundle:Endpoint:_tree" %}
+        </div>
+        <div class="nine columns">
+        {% block endpoint_edit %}
+        {% endblock %}
+        </div>
     </div>
 
 {% endblock %}

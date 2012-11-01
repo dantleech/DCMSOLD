@@ -4,8 +4,10 @@ namespace DCMS\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use DCMS\Bundle\AdminBundle\Helper\TreeHelper;
 
 class EndpointController extends Controller
 {
@@ -51,16 +53,13 @@ class EndpointController extends Controller
     }
 
     /**
-     * @Route(
-     *  "/endpoint/edit/{endpointId}",
-     *  requirements={"endpointId"=".+"}
-     * )
+     * @Route("/endpoint/edit/{endpoint_uuid}")
      * @Template()
      */
     public function editAction(Request $request)
     {
-        $endpointId = $request->get('endpointId');
-        $ep = $this->getRepo()->find($endpointId);
+        $endpointUuid = $request->get('endpoint_uuid');
+        $ep = $this->getRepo()->find($endpointUuid);
         $epDef = $this->getMM()->getEndpointDefinition($ep);
         $formType = $epDef->getFormType('edit');
         $form = $this->createForm(new $formType, $ep);
@@ -81,5 +80,32 @@ class EndpointController extends Controller
             'endpoint' => $ep,
             'form' => $form->createView(),
         );
+    }
+
+    /**
+     * @Route("/endpoint/tree/update")
+     * @Method("POST")
+     */
+    public function updateTreeAction(Request $request)
+    {
+        $commands = $request->get('commands');
+
+        foreach ($commands as $command) {
+
+            if (!$sourceEp = $this->getRepo()->find($command['source'])) {
+                throw new \Exception('Could not find source node, uuid: '.$command['parent']);
+            }
+
+            if (isset($command['parent'])) {
+                if (!$parentEp = $this->getRepo()->find($command['parent'])) {
+                    throw new \Exception('Could not find parent node, uuid: '.$command['parent']);
+                }
+
+                $sourceEp->setParent($parentEp);
+            }
+        }
+
+        $this->getDm()->flush();
+        return $this->get('dcms_core.response_helper')->createJsonResponse(true);
     }
 }

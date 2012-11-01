@@ -1,3 +1,8 @@
+dcms_menu:
+    resource: "@DCMSMenuBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 dcms_core:
     resource: "@DCMSCoreBundle/Controller/"
     type:     annotation

@@ -11,6 +11,7 @@ class DCMSMarkdownBundle extends ModuleBundle
     {
         $m = $mm->createModule('markdown');
         $m->createEndpointDefinition('DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint')
+            ->setTitle('Markdown')
             ->setControllers(array(
                 'edit' => 'DCMSMarkdownBundle:Endpoint:edit',
             ))

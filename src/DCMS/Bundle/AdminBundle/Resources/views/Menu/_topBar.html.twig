@@ -1,0 +1,9 @@
+{% extends "knp_menu.html.twig" %}
+{% block list %}
+{% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
+    <ul>
+        <li class="name"><h1><a href="{{ path('dcms_admin_default_index') }}">DCMS</a></h1></li>
+        {{ block('children') }}
+    </ul>
+{% endif %}
+{% endblock %}

@@ -6,9 +6,11 @@
 
     <parameters>
         <parameter key="dcms_core.module_manager.class">DCMS\Bundle\CoreBundle\Module\ModuleManager</parameter>
+        <parameter key="dcms_core.response_helper.class">DCMS\Bundle\CoreBundle\Helper\ResponseHelper</parameter>
     </parameters>
 
     <services>
         <service id="dcms_core.module_manager" class="%dcms_core.module_manager.class%"/>
+        <service id="dcms_core.response_helper" class="%dcms_core.response_helper.class%"/>
     </services>
 </container>

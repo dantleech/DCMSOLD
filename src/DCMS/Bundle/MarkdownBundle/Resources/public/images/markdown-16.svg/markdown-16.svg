@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="markdown-16.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,14 +26,14 @@
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
      inkscape:cx="141.20231"
-     inkscape:cy="770.97726"
+     inkscape:cy="796.30281"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="973"
-     inkscape:window-height="681"
-     inkscape:window-x="23"
-     inkscape:window-y="31"
+     inkscape:window-width="1022"
+     inkscape:window-height="709"
+     inkscape:window-x="0"
+     inkscape:window-y="19"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
@@ -53,33 +53,120 @@
      id="layer1">
     <path
        style="color:#000000;fill:#ececec;fill-opacity:1;fill-rule:nonzero;stroke:#999999;stroke-width:1.01691377;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="M 117.6875 253.46875 C 113.5616 253.46875 110.25 253.50616 110.25 253.5625 L 110.25 275.46875 C 110.25 275.52509 113.5616 275.5625 117.6875 275.5625 C 121.8134 275.5625 125.125 275.52509 125.125 275.46875 L 125.125 259.15625 L 122.8125 255.15625 L 121.84375 253.5 C 120.62268 253.48805 119.31102 253.46875 117.6875 253.46875 z "
-       id="rect2995" />
+       d="m 87.635462,247.91291 c -4.1259,0 -7.4375,0.0374 -7.4375,0.0937 l 0,21.90625 c 0,0.0563 3.3116,0.0937 7.4375,0.0937 4.1259,0 7.4375,-0.0374 7.4375,-0.0937 l 0,-16.3125 -2.3125,-4 -0.96875,-1.65625 c -1.22107,-0.012 -2.53273,-0.0313 -4.15625,-0.0313 z"
+       id="rect2995"
+       inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="111.42857"
-       y="267.40552"
+       x="81.376534"
+       y="261.84967"
        id="text2985"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2987"
-         x="111.42857"
-         y="267.40552">M</tspan><tspan
+         x="81.376534"
+         y="261.84967">M</tspan><tspan
          sodipodi:role="line"
-         x="111.42857"
-         y="284.90552"
+         x="81.376534"
+         y="279.34967"
          id="tspan2989" /></text>
     <text
        xml:space="preserve"
        style="font-size:14.80686092px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="111.28381"
-       y="275.92126"
+       x="81.231773"
+       y="270.36542"
        id="text2991"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2993"
-         x="111.28381"
-         y="275.92126">=</tspan></text>
+         x="81.231773"
+         y="270.36542">=</tspan></text>
+    <g
+       id="g3732"
+       transform="matrix(0.90099453,0,0,0.90099453,-59.804221,47.987671)"
+       inkscape:export-filename="/home/daniel/www/DCMS/src/DCMS/Bundle/MenuBundle/Resources/public/images/menu-16.png"
+       inkscape:export-xdpi="89.480003"
+       inkscape:export-ydpi="89.480003">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3727"
+         d="m 159.09902,258.63483 0,16.16244 3.03046,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3729"
+         d="m 159.09902,264.69574 4.04061,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <rect
+       style="color:#000000;fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#552200;stroke-width:0.73184556;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3719"
+       width="10.349858"
+       height="5.1749291"
+       x="81.183197"
+       y="275.92587"
+       rx="8.778718"
+       ry="0.074422389"
+       inkscape:export-filename="/home/daniel/www/DCMS/src/DCMS/Bundle/MenuBundle/Resources/public/images/menu-16.png"
+       inkscape:export-xdpi="89.480003"
+       inkscape:export-ydpi="89.480003" />
+    <rect
+       ry="0.074422389"
+       rx="8.778718"
+       y="284.11716"
+       x="86.18895"
+       height="5.1749291"
+       width="10.349858"
+       id="rect3723"
+       style="color:#000000;fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#552200;stroke-width:0.73184556;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/daniel/www/DCMS/src/DCMS/Bundle/MenuBundle/Resources/public/images/menu-16.png"
+       inkscape:export-xdpi="89.480003"
+       inkscape:export-ydpi="89.480003" />
+    <rect
+       style="color:#000000;fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#552200;stroke-width:0.73184556;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3725"
+       width="10.349858"
+       height="5.1749291"
+       x="86.188965"
+       y="292.0809"
+       rx="8.778718"
+       ry="0.074422389"
+       inkscape:export-filename="/home/daniel/www/DCMS/src/DCMS/Bundle/MenuBundle/Resources/public/images/menu-16.png"
+       inkscape:export-xdpi="89.480003"
+       inkscape:export-ydpi="89.480003" />
+    <text
+       xml:space="preserve"
+       style="font-size:21.21392822px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="78.336433"
+       y="231.37538"
+       id="text3755"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3757"
+         x="78.336433"
+         y="231.37538">Endpoint Icons</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="112.37947"
+       y="262.42291"
+       id="text3759"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3761"
+         x="112.37947"
+         y="262.42291">Markdown</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="112.63201"
+       y="291.71732"
+       id="text3763"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3765"
+         x="112.63201"
+         y="291.71732">Menu</tspan></text>
   </g>
 </svg>

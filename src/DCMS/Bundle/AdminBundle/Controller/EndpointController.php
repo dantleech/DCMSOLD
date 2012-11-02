@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use DCMS\Bundle\AdminBundle\Helper\TreeHelper;
+use DCMS\Bundle\RoutingBundle\Form\EndpointCreateType;
+use DCMS\Bundle\RoutingBundle\Document\Endpoint;
 
 class EndpointController extends Controller
 {
@@ -120,5 +122,41 @@ class EndpointController extends Controller
         $this->getDm()->flush();
 
         return $this->get('dcms_core.response_helper')->createJsonResponse(true);
+    }
+
+    /**
+     * @Route("/endpoint/create")
+     * @Template()
+     */
+    public function createAction(Request $request)
+    {
+        $form = $this->createForm(new EndpointCreateType(
+            $this->getMM()
+        ));
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $epClass = $data->type;
+                $parent = $this->getDm()->find(null, '/');
+
+                $ep = new $epClass;
+                $ep->setNodeName($data->path);
+                $ep->setParent($parent);
+                $ep->setPath($data->path);
+                $this->getDm()->persist($ep);
+                $this->getDm()->flush();
+                $this->getDm()->refresh($ep);
+
+                return $this->render('DCMSAdminBundle:Endpoint:createOK.html.twig', array(
+                    'ep' => $ep,
+                ));
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
+        );
     }
 }

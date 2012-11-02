@@ -43,4 +43,20 @@ class ModuleManager
             }
         }
     }
+
+    public function getEndpointsForSelect()
+    {
+        $epsForSelect = array();
+
+        foreach ($this->modules as $module) {
+            if (!isset($epsForSelect[$module->getName()])) {
+                $epsForSelect[$module->getName()] = array();
+            }
+            foreach ($module->getEndpointDefinitions() as $epDef) {
+                $epsForSelect[$module->getName()][$epDef->getDocumentFQN()] = $epDef->getTitle();
+            }
+        }
+
+        return $epsForSelect;
+    }
 }

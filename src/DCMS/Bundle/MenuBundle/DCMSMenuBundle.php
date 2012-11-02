@@ -11,6 +11,7 @@ class DCMSMenuBundle extends ModuleBundle
     {
         $m = $mm->createModule('menu');
         $m->createEndpointDefinition('DCMS\Bundle\MenuBundle\Document\MenuEndpoint')
+            ->setTitle('Menu')
             ->setControllers(array(
                 'edit' => 'DCMSMenuBundle:Endpoint:edit',
             ))

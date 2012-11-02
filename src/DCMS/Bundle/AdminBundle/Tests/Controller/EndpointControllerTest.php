@@ -2,6 +2,7 @@
 
 namespace DCMS\Bundle\AdminBundle\Tests\Controller;
 use DCMS\Bundle\CoreBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class EndpointControllerTest extends WebTestCase
 {
@@ -91,12 +92,33 @@ class EndpointControllerTest extends WebTestCase
         $this->assertEquals('ep3', $keys[1]);
     }
 
-
-    protected function debugResp($response)
+    public function testCreate_get()
     {
-        $cont = $response->getContent();
-        $arr = json_decode($cont);
-        var_dump($arr);
-        die();
+        $client = $this->makeClient();
+        $client->request('get', $this->getUrl('dcms_admin_endpoint_create'));
+        $resp = $client->getResponse();
+        $this->assertResponseOK($resp);
+    }
+
+    public function testCreate_post()
+    {
+        $client = $this->makeClient();
+        $client->request('post', $this->getUrl('dcms_admin_endpoint_create'), array(
+            'endpoint' => array(
+                'type' => 'DCMS\Bundle\RoutingBundle\Document\Endpoint',
+                'path' => '/hello',
+            ),
+        ));
+        $resp = $client->getResponse();
+        $this->assertEquals('300', $resp->getStatusCode());
+    }
+
+    protected function assertResponseOK(Response $response)
+    {
+        $status = $response->getStatusCode();
+        if ($status != 200) {
+            die(strip_tags($response->getContent()));
+        }
+        $this->assertEquals(200, $status);
     }
 }

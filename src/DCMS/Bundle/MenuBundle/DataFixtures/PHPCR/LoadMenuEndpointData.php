@@ -20,8 +20,8 @@ class LoadMenuEndpointData implements FixtureInterface
 
         $e = new MenuEndpoint;
         $e->setParent($rt);
-        $e->setNodeName('Menu 2');
-        $e->setPath('/menu-2');
+        $e->setNodeName('Menu 3');
+        $e->setPath('/menu-3');
         $manager->persist($e);
 
         $manager->flush();

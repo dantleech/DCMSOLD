@@ -58,6 +58,47 @@
                     });
                 }
             });
+
+            $('#create_endpoint_button').bind('click', function() {
+                $.ajax({
+                    type: 'get',
+                    url: '{{ path('dcms_admin_endpoint_create') }}',
+                    success: function (resp, status, xhr) {
+                        $('#endpoint_create_form').html(resp);
+                        init_create_ep_form();
+                    },
+                    error: function (resp) {
+                        console.log(resp);
+                    },
+                });
+                $('#endpoint_create_form').reveal();
+            });
+
+            function init_create_ep_form() {
+                $('#create_ep_submit_button').bind('click', function () {
+                    $('#endpoint_create_form').mask('{% trans %}Updating{% endtrans %}');
+                    var data = $('#endpoint_create_form form').serialize();
+
+                    $.ajax({
+                        type: 'post',
+                        url: '{{ path('dcms_admin_endpoint_create') }}',
+                        data: data,
+                        success: function (resp, status, xhr) {
+                            $('#endpoint_create_form').html(resp);
+                            init_create_ep_form();
+                            $('#endpoint_create_form').unmask();
+                        },
+                        error: function (resp, message, xhr) {
+                            $('#endpoint_create_form').html(resp.responseText);
+                            $('#endpoint_create_form').unmask();
+                        },
+                    });
+
+                    return false;
+                });
+            }
+
+            init_create_ep_form();
         });
     </script>
 {% endblock %}
@@ -65,12 +106,16 @@
 {% block main %}
     <div class="row">
         <div class="three columns">
-        {% render "DCMSAdminBundle:Endpoint:_tree" %}
+            <div class="action-bar">
+                <button id="create_endpoint_button" class="button">Create</button>
+            </div>
+            {% render "DCMSAdminBundle:Endpoint:_tree" %}
         </div>
         <div class="nine columns">
         {% block endpoint_edit %}
         {% endblock %}
         </div>
     </div>
-
+    <div class="reveal-modal" id="endpoint_create_form">
+    </div>
 {% endblock %}

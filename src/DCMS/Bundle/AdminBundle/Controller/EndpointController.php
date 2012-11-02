@@ -31,6 +31,12 @@ class EndpointController extends Controller
         return $dm;
     }
 
+    protected function getNotifier()
+    {
+        $notifier = $this->get('dcms_core.notification_helper');
+        return $notifier;
+    }
+
     /**
      * @Template()
      */
@@ -71,8 +77,12 @@ class EndpointController extends Controller
             if ($form->isValid()) {
                 $this->getDm()->persist($ep);
                 $this->getDm()->flush();
+                $this->getNotifier()->info('Endpoint "%s" updated', array(
+                    $ep->getNodeName()
+                ));
+
                 return $this->redirect($this->generateUrl('dcms_admin_endpoint_edit', array(
-                    'endpointId' => $ep->getId(),
+                    'endpoint_uuid' => $ep->getUuid(),
                 )));
             }
         }
@@ -148,6 +158,10 @@ class EndpointController extends Controller
                 $this->getDm()->persist($ep);
                 $this->getDm()->flush();
                 $this->getDm()->refresh($ep);
+
+                $this->getNotifier()->info('Endpoint "%s" created', array(
+                    $ep->getNodeName()
+                ));
 
                 return $this->render('DCMSAdminBundle:Endpoint:createOK.html.twig', array(
                     'ep' => $ep,

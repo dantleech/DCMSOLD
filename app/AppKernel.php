@@ -28,6 +28,10 @@ class AppKernel extends Kernel
             new DCMS\Bundle\MarkdownBundle\DCMSMarkdownBundle(),
             new DCMS\Bundle\RoutingBundle\DCMSRoutingBundle(),
             new DCMS\Bundle\CoreBundle\DCMSCoreBundle(),
+            new DCMS\Bundle\MenuBundle\DCMSMenuBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new ManyMules\ManyMulesFoundationBundle\ManyMulesFoundationBundle(),
+            new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
 
         );
 

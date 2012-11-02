@@ -12,3 +12,9 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+liip_functional_test: ~
+
+doctrine_phpcr:
+    session:
+        workspace: test

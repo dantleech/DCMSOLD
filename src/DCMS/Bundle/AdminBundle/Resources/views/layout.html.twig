@@ -13,9 +13,21 @@
         <script type="text/javascript" src="{{ asset('bundles/sonatajquery/jquery-ui-1.8.23.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/manymulesfoundation/js/jquery.foundation.reveal.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/dcmsadmin/js/jquery.loadmask.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/dcmsadmin/js/form2js.js') }}"></script>
     </head>
     <body>
+                    {% for info in dcms_notification_helper.infos %}
+                        <div class="alert-box success">
+                            {{ info }}
+                            <a href="" class="close">&times;</a>
+                        </div>
+                    {% endfor %}
+                    {% for error in dcms_notification_helper.errors %}
+                        <div class="alert-box alert">
+                            {{ error }}
+                            <a href="" class="close">&times;</a>
+                        </div>
+                    {% endfor %}
+
         <header class="row">
             <div class="twelve columns">
                 <h1><!-- <img src="{{ asset('bundles/dcmsadmin/images/dcms.png') }}" />!--></h1>

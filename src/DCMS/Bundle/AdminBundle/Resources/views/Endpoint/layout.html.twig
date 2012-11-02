@@ -16,7 +16,6 @@
                 attribute: 'uuid',
                 expression: /()([a-zA-Z0-9-]+)/,
                 start: function (ui, event) {
-                    return true;
                 },
                 stop: function (event, ui) {
                     var epLi = ui.item;
@@ -25,7 +24,9 @@
                     var parent = epLi.parents('li.endpoint');
 
                     if (parent) {
-                        parent = parent[0];
+                        parent = parent.attr('uuid');
+                    } else {
+                        parent = '';
                     }
 
                     if (next != undefined) {
@@ -36,14 +37,14 @@
                         prev = prev.attr('uuid');
                     }
 
-                    var command = ({
+                    var command = {
                         'source': epLi.attr('uuid'),
                         'prev': prev,
                         'next': next,
                         'parent': parent
-                    });
+                    };
 
-                    $('#browser_tree').mask('Updating');
+//                    $('#browser_tree').mask('Updating');
 
                     $.ajax({
                         type: 'post',
@@ -52,7 +53,7 @@
                           'command': command,
                         },
                         success: function (resp) {
-                            $('#browser_tree').unmask();
+ //                           $('#browser_tree').unmask();
                             treeCommands = new Array();
                         },
                     });

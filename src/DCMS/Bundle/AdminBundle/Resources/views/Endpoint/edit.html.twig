@@ -24,8 +24,12 @@
         </div>
         {{ form_errors(form) }}
         <div>
+            {{ form_errors(form.nodeName) }}
+            {{ form_widget(form.nodeName, {'attr': {'class': 'large'}}) }}
+        </div>
+        <div>
             {{ form_errors(form.path) }}
-            {{ form_widget(form.path, {'attr': {'class': 'large'}}) }}
+            {{ form_widget(form.path) }}
         </div>
         {% render epDef.controller('edit') with {
             'endpoint': ep,

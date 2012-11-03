@@ -6,4 +6,5 @@ class EndpointCreateModel
 {
     public $type;
     public $path;
+    public $nodeName;
 }

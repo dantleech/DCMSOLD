@@ -161,7 +161,7 @@ class EndpointController extends Controller
                 $parent = $this->getDm()->find(null, '/');
 
                 $ep = new $epClass;
-                $ep->setNodeName($data->path);
+                $ep->setNodeName($data->nodeName);
                 $ep->setParent($parent);
                 $ep->setPath($data->path);
                 $this->getDm()->persist($ep);

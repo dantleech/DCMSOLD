@@ -1,6 +1,8 @@
 <h3>Create Endpoint</h3>
 <form>
     {{ form_errors(form) }}
+    {{ form_errors(form.nodeName) }}
+    {{ form_widget(form.nodeName, {'attr': {'placeholder': 'Title', 'class': 'large'}}) }}
     {{ form_errors(form.path) }}
     {{ form_widget(form.path, {'attr': {'placeholder': 'Path'}}) }}
     {{ form_errors(form.type) }}

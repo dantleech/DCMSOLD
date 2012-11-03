@@ -37,6 +37,13 @@ class EndpointController extends Controller
         return $notifier;
     }
 
+    protected function getEndpoint()
+    {
+        $endpointUuid = $this->get('request')->get('endpoint_uuid');
+        $ep = $this->getRepo()->find($endpointUuid);
+        return $ep;
+    }
+
     /**
      * @Template()
      */
@@ -66,8 +73,7 @@ class EndpointController extends Controller
      */
     public function editAction(Request $request)
     {
-        $endpointUuid = $request->get('endpoint_uuid');
-        $ep = $this->getRepo()->find($endpointUuid);
+        $ep = $this->getEndpoint();
         $epDef = $this->getMM()->getEndpointDefinition($ep);
         $formType = $epDef->getFormType('edit');
         $form = $this->createForm(new $formType, $ep);
@@ -89,7 +95,7 @@ class EndpointController extends Controller
 
         return array(
             'epDef' => $epDef,
-            'endpoint' => $ep,
+            'ep' => $ep,
             'form' => $form->createView(),
         );
     }
@@ -106,8 +112,11 @@ class EndpointController extends Controller
 
         if (isset($command['parent'])) {
             $parentEp = $this->getDm()->find(null, $command['parent']);
-            $sourceEp->setParent($parentEp);
+        } else {
+            $parentEp = $this->getDm()->find(null, '/');
         }
+
+        $sourceEp->setParent($parentEp);
 
         if (isset($command['next']) && $nextUuid = $command['next']) {
             $nextEp = $this->getDm()->find(null, $nextUuid);
@@ -172,5 +181,27 @@ class EndpointController extends Controller
         return array(
             'form' => $form->createView(),
         );
+    }
+
+    /**
+     * @Route("/endpoint/{endpoint_uuid}/delete")
+     */
+    public function deleteAction()
+    {
+        $ep = $this->getEndpoint();
+        try {
+            $this->getDm()->remove($ep);
+            $this->getDm()->flush();
+            $this->getNotifier()->info('Endpoint "%s" deleted', array(
+                $ep->getId(),
+            )); 
+            return $this->redirect($this->generateUrl('dcms_admin_endpoint_index', array(
+            )));
+        } catch (\Exception $e) {
+            $this->getNotifier()->error($e->getMessage());
+            return $this->redirect($this->generateUrl('dcms_admin_endpoint_edit', array(
+                'endpoint_uuid' => $ep->getUuid(),
+            )));
+        }
     }
 }

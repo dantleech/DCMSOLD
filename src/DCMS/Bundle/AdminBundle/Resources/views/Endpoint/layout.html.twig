@@ -44,7 +44,7 @@
                         'parent': parent
                     };
 
-//                    $('#browser_tree').mask('Updating');
+                    $('#browser_tree').mask('Updating');
 
                     $.ajax({
                         type: 'post',
@@ -53,7 +53,7 @@
                           'command': command,
                         },
                         success: function (resp) {
- //                           $('#browser_tree').unmask();
+                            $('#browser_tree').unmask();
                             treeCommands = new Array();
                         },
                     });
@@ -73,6 +73,10 @@
                     },
                 });
                 $('#endpoint_create_form').reveal();
+            });
+
+            $('#delete_endpoint_button').bind('click', function () {
+                return $.confirm('{% trans %}Are you sure?{% endtrans %}');
             });
 
             function init_create_ep_form() {

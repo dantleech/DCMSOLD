@@ -12,13 +12,14 @@
 {% endblock %}
 
 {% block endpoint_edit %}
-    <form action="{{ path('dcms_admin_endpoint_edit', {'endpoint_uuid': endpoint.uuid }) }}" method="POST">
+    <form action="{{ path('dcms_admin_endpoint_edit', {'endpoint_uuid': ep.uuid }) }}" method="POST">
         <div class="row">
-        <div class="ten columns">
+        <div class="six columns">
             <h3 class="subheader">{{ epDef.title }} </h3>
         </div>
-        <div class="two columns action-bar text-right">
+        <div class="six columns text-right">
             <input type="submit" value="Update" class="button"/>
+            <a id="delete_endpoint_button" href="{{ path('dcms_admin_endpoint_delete', {'endpoint_uuid': ep.uuid}) }}" class="button alert">Delete</a>
         </div>
         </div>
         {{ form_errors(form) }}
@@ -27,7 +28,7 @@
             {{ form_widget(form.path, {'attr': {'class': 'large'}}) }}
         </div>
         {% render epDef.controller('edit') with {
-            'endpoint': endpoint,
+            'endpoint': ep,
             'form': form,
         } %}
         {{ form_rest(form) }}

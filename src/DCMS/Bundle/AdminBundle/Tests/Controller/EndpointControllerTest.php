@@ -12,7 +12,7 @@ class EndpointControllerTest extends WebTestCase
             'DCMS\Bundle\AdminBundle\Tests\Fixtures\ODM\LoadEndpointData',
         ), null, 'doctrine_phpcr');
 
-        $this->repo = $this->getDm()->getRepository('DCMS\Bundle\RoutingBundle\Document\Endpoint');
+        $this->repo = $this->getDm()->getRepository('DCMS\Bundle\CoreBundle\Document\Endpoint');
         $this->ep1 = $this->repo->find('/ep1');
         $this->ep2 = $this->repo->find('/ep2');
         $this->ep3 = $this->repo->find('/ep3');
@@ -105,7 +105,7 @@ class EndpointControllerTest extends WebTestCase
         $client = $this->makeClient();
         $client->request('post', $this->getUrl('dcms_admin_endpoint_create'), array(
             'endpoint' => array(
-                'type' => 'DCMS\Bundle\RoutingBundle\Document\Endpoint',
+                'type' => 'DCMS\Bundle\CoreBundle\Document\Endpoint',
                 'path' => '/hello',
             ),
         ));

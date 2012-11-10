@@ -5,7 +5,7 @@ namespace DCMS\Bundle\AdminBundle\Tests\Fixtures\ODM;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DCMS\Bundle\RoutingBundle\Document\Endpoint;
+use DCMS\Bundle\CoreBundle\Document\Endpoint;
 
 
 class LoadEndpointData implements FixtureInterface

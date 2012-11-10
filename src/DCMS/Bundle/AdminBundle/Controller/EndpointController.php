@@ -8,8 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use DCMS\Bundle\AdminBundle\Helper\TreeHelper;
-use DCMS\Bundle\RoutingBundle\Form\EndpointCreateType;
-use DCMS\Bundle\RoutingBundle\Document\Endpoint;
+use DCMS\Bundle\CoreBundle\Form\EndpointCreateType;
+use DCMS\Bundle\CoreBundle\Document\Endpoint;
 
 class EndpointController extends Controller
 {

@@ -44,17 +44,25 @@ class ModuleManager
         }
     }
 
+    public function getEndpointDefinitions()
+    {
+        $eps = array();
+
+        foreach ($this->modules as $module) {
+            foreach ($module->getEndpointDefinitions() as $ep) {
+                $eps[] = $ep;
+            }
+        }
+
+        return $eps;
+    }
+
     public function getEndpointsForSelect()
     {
         $epsForSelect = array();
 
-        foreach ($this->modules as $module) {
-            if (!isset($epsForSelect[$module->getName()])) {
-                $epsForSelect[$module->getName()] = array();
-            }
-            foreach ($module->getEndpointDefinitions() as $epDef) {
-                $epsForSelect[$module->getName()][$epDef->getDocumentFQN()] = $epDef->getTitle();
-            }
+        foreach ($this->getEndpointDefinitions() as $epDef) {
+            $epsForSelect[$module->getName()][$epDef->getContentFQN()] = $epDef->getTitle();
         }
 
         return $epsForSelect;

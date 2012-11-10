@@ -2,7 +2,7 @@
 
 namespace DCMS\Bundle\MenuBundle\Document;
 
-use DCMS\Bundle\RoutingBundle\Document\Endpoint;
+use DCMS\Bundle\CoreBundle\Document\Endpoint;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 

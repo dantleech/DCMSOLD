@@ -26,7 +26,7 @@ class ModuleListCommand extends ContainerAwareCommand
             $output->writeln('<info>Module:</info> '.$module->getName());
             $epds = $module->getEndpointDefinitions();
             foreach ($epds as  $epd) {
-                $output->writeln('  <comment>EPD for:</comment> '.$epd->getDocumentFQN());
+                $output->writeln('  <comment>EPD for:</comment> '.$epd->getContentFQN());
             }
         }
     }

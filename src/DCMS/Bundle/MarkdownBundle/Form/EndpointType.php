@@ -3,7 +3,7 @@
 namespace DCMS\Bundle\MarkdownBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use DCMS\Bundle\RoutingBundle\Form\BaseEndpointType;
+use DCMS\Bundle\CoreBundle\Form\BaseEndpointType;
 
 class EndpointType extends BaseEndpointType
 {

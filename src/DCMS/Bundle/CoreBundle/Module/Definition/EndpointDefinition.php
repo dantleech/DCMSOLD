@@ -4,28 +4,33 @@ namespace DCMS\Bundle\CoreBundle\Module\Definition;
 
 class EndpointDefinition
 {
-    protected $documentFqn;
+    protected $contentFQN;
     protected $icon;
     protected $title;
 
     protected $validTypes = array(
         'edit', // edit page for endpoint editor
+        'render',
     );
 
-    protected $controllers = array();
-    protected $formTypes = array(
-        'edit' => 'DCMS\Bundle\RoutingBundle\Form\BaseEndpointType',
+    protected $controllers = array(
     );
+
+    protected $formTypes = array(
+        'edit' => 'DCMS\Bundle\CoreBundle\Form\BaseEndpointType',
+    );
+
     protected $javascriptDependencies = array(
         'edit' => array(),
     );
+
     protected $stylesheetDependencies = array(
         'edit' => array(),
     );
 
-    public function __construct($documentFqn)
+    public function __construct($contentFQN)
     {
-        $this->documentFqn = $documentFqn;
+        $this->contentFQN = $contentFQN;
     }
 
     public function setIcon($icon)
@@ -45,9 +50,9 @@ class EndpointDefinition
         return $this->icon;
     }
 
-    public function getDocumentFQN()
+    public function getContentFQN()
     {
-        return $this->documentFqn;
+        return $this->contentFQN;
     }
 
     public function setControllers(array $controllers)

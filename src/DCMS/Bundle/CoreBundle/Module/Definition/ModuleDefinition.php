@@ -17,17 +17,17 @@ class ModuleDefinition
 
     public function addEndpointDefinition(EndpointDefinition $epd)
     {
-        if (array_key_exists($epd->getDocumentFQN(), $this->epds)) {
+        if (array_key_exists($epd->getContentFQN(), $this->epds)) {
             throw new EndpointAlreadyDefinedException($epd);
         }
-        $this->epds[$epd->getDocumentFQN()] = $epd;
+        $this->epds[$epd->getContentFQN()] = $epd;
 
         return $this;
     }
 
-    public function createEndpointDefinition($documentFqn)
+    public function createEndpointDefinition($contentFQN)
     {
-        $epd = new EndpointDefinition($documentFqn);
+        $epd = new EndpointDefinition($contentFQN);
         $this->addEndpointDefinition($epd);
         return $epd;
     }
@@ -40,7 +40,7 @@ class ModuleDefinition
     public function getEndpointDefinition($document)
     {
         foreach ($this->epds as $epd) {
-            if ($epd->getDocumentFQN() == get_class($document)) {
+            if ($epd->getContentFQN() == get_class($document)) {
                 return $epd;
             }
         }

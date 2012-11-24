@@ -15,7 +15,7 @@ class EndpointController extends Controller
 {
     protected function getRepo()
     {
-        $repo = $this->get('dcms_routing.repository.endpoint');
+        $repo = $this->get('dcms_core.repository.endpoint');
         return $repo;
     }
 

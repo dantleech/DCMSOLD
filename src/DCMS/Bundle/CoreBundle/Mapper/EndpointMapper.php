@@ -1,11 +1,11 @@
 <?php
 
-namespace DCMS\Bundle\CoreBundle\Tests\Mapper;
+namespace DCMS\Bundle\CoreBundle\Mapper;
 
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
-use Symfony\Cmf\Component\Core\Mapper\ControllerMapperInterface;
-use Symfony\Component\Core\Route;
-use Symfony\Cmf\Component\Core\RouteObjectInterface;
+use Symfony\Cmf\Component\Routing\Mapper\ControllerMapperInterface;
+use Symfony\Component\Routing\Route;
+use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 
 class EndpointMapper implements ControllerMapperInterface
 {

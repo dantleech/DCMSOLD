@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="dcms_core.repository.endpoint"
+                factory-service="doctrine_phpcr.odm.document_manager"
+                factory-method="getRepository"
+                class="DCMS\Bundle\CoreBundle\Document\Endpoint" >
+            <argument>DCMS\Bundle\CoreBundle\Document\Endpoint</argument>
+        </service>
+
+        <service id="dcms_core.routing_mapper.endpoint" class="DCMS\Bundle\CoreBundle\Mapper\EndpointMapper">
+            <argument type="service" id="dcms_core.module_manager"/>
+            <tag name="dynamic_router_controller_mapper"/>
+        </service>
+
+    </services>
+
+
+</container>
+

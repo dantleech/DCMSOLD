@@ -14,6 +14,7 @@ class DCMSMarkdownBundle extends ModuleBundle
             ->setTitle('Markdown')
             ->setControllers(array(
                 'edit' => 'DCMSMarkdownBundle:Endpoint:edit',
+                'render' => 'DCMSMarkdownBundle:Endpoint:render',
             ))
             ->setFormTypes(array(
                 'edit' => 'DCMS\Bundle\MarkdownBundle\Form\EndpointType',

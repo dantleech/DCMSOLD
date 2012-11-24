@@ -1,5 +1,5 @@
 {
-    "hash": "13f1f2ba0c8c475fbc38dd71ea300bba",
+    "hash": "efcf12b9716e3a1a16070f528c230e6d",
     "packages": [
         {
             "name": "dantleech/dcms-routing-bundle",
@@ -1099,6 +1099,191 @@
             ]
         },
         {
+            "name": "liip/functional-test-bundle",
+            "version": "dev-master",
+            "target-dir": "Liip/FunctionalTestBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/liip/LiipFunctionalTestBundle.git",
+                "reference": "b5945e08017d120de50502dc78e2da164b0226ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/liip/LiipFunctionalTestBundle/zipball/b5945e08017d120de50502dc78e2da164b0226ca",
+                "reference": "b5945e08017d120de50502dc78e2da164b0226ca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0,<2.3-dev"
+            },
+            "time": "1351021334",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Liip\\FunctionalTestBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Liip AG",
+                    "homepage": "http://www.liip.ch/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/liip/LiipFunctionalTestBundle/contributors"
+                }
+            ],
+            "description": "This bundles provides additional functional test-cases for Symfony2 applications",
+            "keywords": [
+                "Symfony2"
+            ]
+        },
+        {
+            "name": "manymules/foundation-bundle",
+            "version": "dev-master",
+            "target-dir": "ManyMules/ManyMulesFoundationBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ManyMules/ManyMulesFoundationBundle",
+                "reference": "3.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ManyMules/ManyMulesFoundationBundle/zipball/3.1.1",
+                "reference": "3.1.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "2.*",
+                "manymules/jquery-bundle": "*",
+                "manymules/modernizr-bundle": "*"
+            },
+            "time": "1348126563",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "ManyMules\\ManyMulesFoundationBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernd Matzner",
+                    "email": "bernd@manymules.com",
+                    "homepage": "http://manymules.com"
+                }
+            ],
+            "description": "ZURB Foundation Bundle for Symfony2",
+            "homepage": "http://foundation.zurb.com/",
+            "keywords": [
+                "javascript",
+                "manymules",
+                "responsive"
+            ]
+        },
+        {
+            "name": "manymules/jquery-bundle",
+            "version": "dev-master",
+            "target-dir": "ManyMules/ManyMulesJQueryBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ManyMules/ManyMulesJQueryBundle",
+                "reference": "1.8.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ManyMules/ManyMulesJQueryBundle/zipball/1.8.2",
+                "reference": "1.8.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "2.*"
+            },
+            "time": "1348473509",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "ManyMules\\ManyMulesJQueryBundle": ""
+                }
+            },
+            "license": [
+                "MIT",
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Bernd Matzner",
+                    "email": "bernd@manymules.com",
+                    "homepage": "http://manymules.com"
+                }
+            ],
+            "description": "jQuery Bundle for Symfony2",
+            "homepage": "http://jquery.com/",
+            "keywords": [
+                "jquery",
+                "javascript",
+                "manymules"
+            ]
+        },
+        {
+            "name": "manymules/modernizr-bundle",
+            "version": "dev-master",
+            "target-dir": "ManyMules/ManyMulesModernizrBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ManyMules/ManyMulesModernizrBundle",
+                "reference": "2.6.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ManyMules/ManyMulesModernizrBundle/zipball/2.6.2",
+                "reference": "2.6.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "2.*"
+            },
+            "time": "1351603425",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "ManyMules\\ManyMulesModernizrBundle": ""
+                }
+            },
+            "license": [
+                "MIT",
+                "BSD-3"
+            ],
+            "authors": [
+                {
+                    "name": "Bernd Matzner",
+                    "email": "bernd@manymules.com",
+                    "homepage": "http://manymules.com"
+                }
+            ],
+            "description": "Modernizr Bundle for Symfony2",
+            "homepage": "http://modernizr.com/",
+            "keywords": [
+                "javascript",
+                "HTML5",
+                "manymules",
+                "detection"
+            ]
+        },
+        {
             "name": "monolog/monolog",
             "version": "dev-master",
             "source": {
@@ -1414,6 +1599,113 @@
             "time": "1348070473"
         },
         {
+            "name": "simonjodet/markdown",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simonjodet/dflydev-markdown",
+                "reference": "195e47d13e7b2333d5bc632ada96079c5cacc34a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/simonjodet/dflydev-markdown/archive/195e47d13e7b2333d5bc632ada96079c5cacc34a.zip",
+                "reference": "195e47d13e7b2333d5bc632ada96079c5cacc34a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "time": "1346067300",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "dflydev\\markdown": "src"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dragonfly Development Inc.",
+                    "email": "info@dflydev.com",
+                    "homepage": "http://dflydev.com"
+                },
+                {
+                    "name": "Beau Simensen",
+                    "email": "beau@dflydev.com",
+                    "homepage": "http://beausimensen.com"
+                },
+                {
+                    "name": "Michel Fortin",
+                    "homepage": "http://michelf.com"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "http://daringfireball.net"
+                }
+            ],
+            "description": "PHP Markdown & Extra",
+            "homepage": "http://github.com/dflydev/dflydev-markdown",
+            "keywords": [
+                "markdown"
+            ]
+        },
+        {
+            "name": "sonata-project/jquery-bundle",
+            "version": "1.8.x-dev",
+            "target-dir": "Sonata/jQueryBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/sonata-project/SonatajQueryBundle.git",
+                "reference": "5f87a761302e6c78304e071416f75d41eb1fb3c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/sonata-project/SonatajQueryBundle/zipball/5f87a761302e6c78304e071416f75d41eb1fb3c2",
+                "reference": "5f87a761302e6c78304e071416f75d41eb1fb3c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "2.*"
+            },
+            "time": "1346283282",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Sonata\\jQueryBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "http://sonata-project.org"
+                },
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonatajQueryBundle/contributors"
+                }
+            ],
+            "description": "Symfony SonatajQueryBundle",
+            "homepage": "http://sonata-project.org/bundles/jquery",
+            "keywords": [
+                "jquery",
+                "sonata"
+            ]
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "dev-master",
             "source": {
@@ -1469,12 +1761,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/Routing",
-                "reference": "6a5d78d0a613a26652035aa1fae86678a50c23cc"
+                "reference": "928d2e377a374075de6000917bf82fff796c5ea4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony-cmf/Routing/zipball/6a5d78d0a613a26652035aa1fae86678a50c23cc",
-                "reference": "6a5d78d0a613a26652035aa1fae86678a50c23cc",
+                "url": "https://github.com/symfony-cmf/Routing/archive/928d2e377a374075de6000917bf82fff796c5ea4.zip",
+                "reference": "928d2e377a374075de6000917bf82fff796c5ea4",
                 "shasum": ""
             },
             "require": {
@@ -1482,7 +1774,7 @@
                 "symfony/routing": ">=2.1,<2.3-dev",
                 "symfony/http-kernel": ">=2.1,<2.3-dev"
             },
-            "time": "1350166448",
+            "time": "1352370041",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1505,6 +1797,72 @@
                 }
             ],
             "description": "Extends the Symfony2 routing component for dynamic routes and chaining several routers",
+            "homepage": "http://cmf.symfony.com",
+            "keywords": [
+                "database",
+                "routing"
+            ]
+        },
+        {
+            "name": "symfony-cmf/routing-extra-bundle",
+            "version": "dev-master",
+            "target-dir": "Symfony/Cmf/Bundle/RoutingExtraBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/symfony-cmf/RoutingExtraBundle.git",
+                "reference": "aaaa0d759dac46561db49b2e290e536b7abeda13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/symfony-cmf/RoutingExtraBundle/archive/aaaa0d759dac46561db49b2e290e536b7abeda13.zip",
+                "reference": "aaaa0d759dac46561db49b2e290e536b7abeda13",
+                "shasum": ""
+            },
+            "require": {
+                "symfony-cmf/routing": "1.0.*",
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": ">=2.1,<2.3-dev",
+                "symfony/monolog-bundle": ">=2.1,<2.3-dev"
+            },
+            "require-dev": {
+                "doctrine/phpcr-odm": "1.0.*",
+                "doctrine/phpcr-bundle": "1.0.*",
+                "jackalope/jackalope-doctrine-dbal": "1.0.*",
+                "doctrine/doctrine-bundle": "1.0.*",
+                "symfony/class-loader": ">=2.1,<2.3-dev",
+                "symfony/yaml": ">=2.1,<2.3-dev",
+                "symfony/form": ">=2.1,<2.3-dev",
+                "symfony/finder": ">=2.1,<2.3-dev"
+            },
+            "suggest": {
+                "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents",
+                "doctrine/phpcr-bundle": "To enable support for the PHPCR ODM documents",
+                "symfony-cmf/content-bundle": "To optionally use the configured value for 'content_basepath' from the CoreBundle",
+                "sonata-project/doctrine-phpcr-admin-bundle": "To provide an admin interface for the PHPCR ODM documents"
+            },
+            "time": "1351276204",
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Cmf\\Bundle\\RoutingExtraBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony CMF Community",
+                    "homepage": "https://github.com/symfony-cmf/RoutingExtraBundle/contributors"
+                }
+            ],
+            "description": "Symfony RoutingExtraBundle",
             "homepage": "http://cmf.symfony.com",
             "keywords": [
                 "database",
@@ -1891,6 +2249,11 @@
         "doctrine/phpcr-odm": 20,
         "jackalope/jackalope-doctrine-dbal": 20,
         "knplabs/knp-menu-bundle": 20,
-        "symfony-cmf/routing": 20
+        "liip/functional-test-bundle": 20,
+        "manymules/foundation-bundle": 20,
+        "sonata-project/jquery-bundle": 20,
+        "simonjodet/markdown": 20,
+        "symfony-cmf/routing": 20,
+        "symfony-cmf/routing-extra-bundle": 20
     }
 }

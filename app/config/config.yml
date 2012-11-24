@@ -76,3 +76,12 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+symfony_cmf_routing_extra:
+    dynamic:
+        enabled: true
+        route_repository_service_id: dcms_core.repository.endpoint
+    chain:
+        routers_by_id: 
+            router.default: 0
+            symfony_cmf_routing_extra.dynamic_router: 100

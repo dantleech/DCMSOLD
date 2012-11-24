@@ -6,6 +6,7 @@ use Symfony\Component\Routing\RouteCollection;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use PHPCR\Query\QOM\QueryObjectModelConstantsInterface as Constants;
 use Doctrine\ODM\PHPCR\DocumentRepository;
+use Symfony\Component\Routing\Route;
 
 class EndpointRepository extends DocumentRepository implements RouteRepositoryInterface
 
@@ -24,7 +25,10 @@ class EndpointRepository extends DocumentRepository implements RouteRepositoryIn
         $eps = $this->dm->getDocumentsByQuery($q);
         $collection = new RouteCollection();
         foreach ($eps as $ep) {
-            $collection->add('dcms_endpoint_'.uniqid(), $ep);
+            $route = new Route($ep->getPath(), array(
+                'endpoint' => $ep,
+            ));
+            $collection->add('dcms_endpoint_'.uniqid(), $route);
         }
 
         return $collection;

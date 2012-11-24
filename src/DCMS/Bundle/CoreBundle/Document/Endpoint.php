@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Route;
 /**
  * @PHPCR\Document(nodeType="dcms:endpoint",referenceable=true, repositoryClass="DCMS\Bundle\CoreBundle\Repository\EndpointRepository")
  */
-class Endpoint extends Route
+class Endpoint
 {
     /** 
      * @PHPCR\Id
@@ -137,17 +137,5 @@ class Endpoint extends Route
     public function setUuid($uuid)
     {
         $this->uuid = $uuid;
-    }
-
-    public function getPattern()
-    {
-        return $this->path;
-    }
-
-    public function compile()
-    {
-        $this->setOptions(array());
-        $this->setDefaults(array());
-        return parent::compile();
     }
 }

@@ -1,16 +1,24 @@
 <?php
 
-namespace DCMS\Bundle\AdminBundle\DataFixtures\PHPCR;
+namespace DCMS\Bundle\MarkdownBundle\DataFixtures\PHPCR;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint;
 
-class LoadEndpointData implements FixtureInterface
+class LoadEndpointData implements FixtureInterface, DependentFixtureInterface
 {
+    public function getDependencies()
+    {
+        return array(
+            'DCMS\Bundle\CoreBundle\DataFixtures\PHPCR\LoadSiteData',
+        );
+    }
+
     public function load(ObjectManager $manager)
     {
-        $rt = $manager->find(null, '/');
+        $rt = $manager->find(null, '/sites/dantleech/endpoints');
 
         $e = new MarkdownEndpoint;
         $e->setParent($rt);

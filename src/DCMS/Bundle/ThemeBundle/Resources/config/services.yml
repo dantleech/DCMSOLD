@@ -1,0 +1,7 @@
+parameters:
+#    dcms_theme.example.class: DCMS\Bundle\ThemeBundle\Example
+
+services:
+#    dcms_theme.example:
+#        class: %dcms_theme.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

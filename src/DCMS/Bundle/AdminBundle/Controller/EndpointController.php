@@ -44,13 +44,19 @@ class EndpointController extends Controller
         return $ep;
     }
 
+    protected function getEPRoot()
+    {
+        $root = $this->getDm()->find(null, '/sites/dantleech/endpoints');
+        return $root;
+    }
+
     /**
      * @Template()
      */
     public function _treeAction()
     {
-        $root = $this->getDm()->find(null, '/');
         $mm = $this->getMM();
+        $root = $this->getEPRoot();
 
         return array(
             'mm' => $mm,
@@ -113,7 +119,7 @@ class EndpointController extends Controller
         if (isset($command['parent'])) {
             $parentEp = $this->getDm()->find(null, $command['parent']);
         } else {
-            $parentEp = $this->getDm()->find(null, '/');
+            $parentEp = $this->getEPRoot();
         }
 
         $sourceEp->setParent($parentEp);

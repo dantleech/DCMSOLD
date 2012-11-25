@@ -51,11 +51,6 @@ class Endpoint
      */
     protected $parameters;
 
-    public function __construct()
-    {
-        $this->addOptions(array());
-    }
-
     public function getId()
     {
         return $this->id;

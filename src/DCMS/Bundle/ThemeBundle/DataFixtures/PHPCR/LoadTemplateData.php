@@ -1,11 +1,11 @@
 <?php
 
-namespace DCMS\Bundle\AdminBundle\DataFixtures\PHPCR;
+namespace DCMS\Bundle\ThemeBundle\DataFixtures\PHPCR;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use DCMS\Bundle\MenuBundle\Document\MenuEndpoint;
+use DCMS\Bundle\ThemeBundle\Document\Template;
 
 class LoadMenuEndpointData implements FixtureInterface, DependentFixtureInterface
 {
@@ -18,20 +18,17 @@ class LoadMenuEndpointData implements FixtureInterface, DependentFixtureInterfac
 
     public function load(ObjectManager $manager)
     {
-        $rt = $manager->find(null, '/sites/dantleech/endpoints');
+        $rt = $manager->find(null, '/sites/dantleech/templates');
 
-        $e = new MenuEndpoint;
+        $e = new Template;
         $e->setParent($rt);
-        $e->setNodeName('Menu 1');
-        $e->setPath('/menu-1');
-        $manager->persist($e);
-
-        $e = new MenuEndpoint;
-        $e->setParent($rt);
-        $e->setNodeName('Menu 3');
-        $e->setPath('/menu-3');
+        $e->setTitle('Bar Template');
+        $e->setResource('DCMSThemeBundle:Foo:bar.html.twig');
+        $e->setBody('<!doctype html><html><body>Hello</body></html><');
+        $e->setType('layout');
         $manager->persist($e);
 
         $manager->flush();
     }
 }
+

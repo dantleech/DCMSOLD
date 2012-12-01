@@ -1,0 +1,69 @@
+{% extends "DCMSAdminBundle::layout.html.twig" %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#create_template_button').bind('click', function() {
+                $.ajax({
+                    type: 'get',
+                    url: '{{ path('dcms_theme_template_create') }}',
+                    success: function (resp, status, xhr) {
+                        $('#template_create_form').html(resp);
+                        init_create_template_form();
+                    }
+                });
+                init_create_template_form();
+                $('#template_create_form').reveal();
+            });
+
+            $('#delete_template_button').bind('click', function () {
+                return $.confirm('{% trans %}Are you sure?{% endtrans %}');
+            });
+
+            function init_create_template_form() {
+                $('#create_template_submit_button').bind('click', function () {
+                    $('#template_create_form').mask('{% trans %}Updating{% endtrans %}');
+                    var data = $('#template_create_form form').serialize();
+
+                    $.ajax({
+                        type: 'post',
+                        url: '{{ path('dcms_theme_template_create') }}',
+                        data: data,
+                        success: function (resp, status, xhr) {
+                            $('#template_create_form').html(resp);
+                            init_create_template_form();
+                            $('#template_create_form').unmask();
+                        },
+                        error: function (resp, message, xhr) {
+                            $('#template_create_form').html(resp.responseText);
+                            $('#template_create_form').unmask();
+                        },
+                    });
+
+                    return false;
+                });
+            }
+
+            init_create_template_form();
+        });
+    </script>
+{% endblock %}
+{% block main %}
+    <div class="row">
+        <div class="three columns">
+            <div class="action-bar">
+                <button id="create_template_button" class="button">Create</button>
+            </div>
+            <ul class="nav-bar vertical">
+                <li><a href="{{ path('dcms_theme_template_index', {'type': 'layout'}) }}">Layouts</a></li>
+                <li><a href="{{ path('dcms_theme_template_index', {'type': 'partial'}) }}">Partials</a></li>
+            </ul>
+        </div>
+        <div class="nine columns">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </div>
+    <div class="reveal-modal" id="template_create_form">
+    </div>
+{% endblock %}
+

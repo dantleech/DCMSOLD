@@ -1,0 +1,60 @@
+{% extends "DCMSThemeBundle:Template:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/dcmstheme/codemirror-2.36/lib/codemirror.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/dcmstheme/codemirror-2.36/theme/night.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/dcmstheme/codemirror-2.36/lib/codemirror.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/dcmstheme/codemirror-2.36/mode/xml/xml.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var codeMirror = null;
+        $(document).ready(function() {
+            var textArea = document.getElementById('template_edit_source');
+            codeMirror = CodeMirror.fromTextArea(textArea, {
+                mode: {name: "xml", alignCDATA: true},
+                lineNumbers: true,
+                theme: 'night'
+            });
+
+            $('#update_template_button').bind('click', function () {
+                $('#template_edit_source').val(codeMirror.getValue());
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <form action="#" method="post">
+        <div class="row">
+            <div class="six columns">
+                <h3 class="subheader">{{ template.type }}: {{ template.title }}</h3>
+            </div>
+            <div class="six columns text-right">
+                <input id="update_template_button" type="submit" value="Update" class="button"/>
+                <a id="delete_template_button" href="{{ path('dcms_theme_template_delete', {'template_uuid': template.uuid}) }}" class="button alert">Delete</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                {{ form_errors(form) }}
+                <div>
+                    {{ form_errors(form.title) }}
+                    {{ form_widget(form.title, {'attr': {'class': 'large'}}) }}
+                </div>
+                <div>
+                    {{ form_errors(form.resource) }}
+                    {{ form_widget(form.resource) }}
+                </div>
+                <div>
+                    {{ form_errors(form.source) }}
+                    {{ form_widget(form.source) }}
+                </div>
+                {{ form_rest(form) }}
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,9 +1,23 @@
-{% extends "DCMSAdminBundle::layout.html.twig" %}
-{% block title %}
-Templates
+{% extends "DCMSThemeBundle:Template:layout.html.twig" %}
+{% block content %}
+<div class="row">
+    <div class="nine columns">
+        <h3 class="subheader">Templates</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="nine columns">
+        {% for template in templates %}
+            <div>
+                <h4>
+                    <a href="{{ path('dcms_theme_template_edit', {
+                        'template_uuid': template.uuid
+                    }) }}">{{ template.resource }}</a>
+                </h4>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
 
-{% block main %}
-<h1>Templates</h1>
-{% endblock %}
 

@@ -24,7 +24,7 @@ class LoadMenuEndpointData implements FixtureInterface, DependentFixtureInterfac
         $e->setParent($rt);
         $e->setTitle('Bar Template');
         $e->setResource('DCMSThemeBundle:Foo:bar.html.twig');
-        $e->setBody('<!doctype html><html><body>Hello</body></html><');
+        $e->setSource('<!doctype html><html><body>Hello</body></html><');
         $e->setType('layout');
         $manager->persist($e);
 

@@ -1,8 +1,17 @@
 parameters:
     dcms_theme.menu.class: DCMS\Bundle\ThemeBundle\Menu\ThemeMenu
+    dcms_theme.repository.template_repository.class: DCMS\Bundle\ThemeBundle\Repository\TemplateRepository
+    dcms_theme.repository.template.class: DCMS\Bundle\ThemeBundle\Document\Template
 
 services:
     dcms_theme.menu:
         class: %dcms_theme.menu.class%
         tags:
             - { name: kernel.event_listener, event: dcms_admin.menu_extend, method: extendMenu }
+
+    dcms_theme.repository.template:
+        class: %dcms_theme.repository.template_repository.class%
+        factory_service: doctrine_phpcr.odm.document_manager
+        factory_method: getRepository
+        arguments:
+            - %dcms_theme.repository.template.class%

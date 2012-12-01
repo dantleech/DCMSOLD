@@ -51,12 +51,12 @@ class Template
     protected $resource;
 
     /**
-     * @PHPCR\DateTime
+     * @PHPCR\Date
      */
     protected $updatedAt;
 
     /**
-     * @PHPCR\DateTime
+     * @PHPCR\Date
      */
     protected $createdAt;
 

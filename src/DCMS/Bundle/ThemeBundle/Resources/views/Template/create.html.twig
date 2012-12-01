@@ -1,0 +1,15 @@
+<h3>Create Template</h3>
+<form>
+    {{ form_errors(form) }}
+    {{ form_errors(form.title) }}
+    {{ form_widget(form.title, {'attr': {'placeholder': 'Title', 'class': 'large'}}) }}
+    {{ form_errors(form.resource) }}
+    {{ form_widget(form.resource, {'attr': {'placeholder': 'Resource'}}) }}
+    {{ form_errors(form.type) }}
+    {{ form_widget(form.type) }}
+    {{ form_rest(form) }}
+
+    <div class="action-bar text-right">
+        <button class="button" id="create_template_submit_button">{% trans %}Create{% endtrans %}</button>
+        <button class="button secondary" id="create_template_submit_button">{% trans %}Cancel{% endtrans %}</button>
+</form>

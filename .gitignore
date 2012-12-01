@@ -1,4 +1,5 @@
 *.swp
+*.swo
 *.cache
 app/cache
 app/logs

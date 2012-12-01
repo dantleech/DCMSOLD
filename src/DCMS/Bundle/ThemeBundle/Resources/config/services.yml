@@ -1,7 +1,8 @@
 parameters:
-#    dcms_theme.example.class: DCMS\Bundle\ThemeBundle\Example
+    dcms_theme.menu.class: DCMS\Bundle\ThemeBundle\Menu\ThemeMenu
 
 services:
-#    dcms_theme.example:
-#        class: %dcms_theme.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    dcms_theme.menu:
+        class: %dcms_theme.menu.class%
+        tags:
+            - { name: kernel.event_listener, event: dcms_admin.menu_extend, method: extendMenu }

@@ -38,7 +38,7 @@ class Template
     /**
      * @PHPCR\String()
      */
-    protected $body;
+    protected $source;
 
     /**
      * @PHPCR\String()
@@ -49,6 +49,16 @@ class Template
      * @PHPCR\String
      */
     protected $resource;
+
+    /**
+     * @PHPCR\DateTime
+     */
+    protected $updatedAt;
+
+    /**
+     * @PHPCR\DateTime
+     */
+    protected $createdAt;
 
     public function getId()
     {
@@ -65,14 +75,14 @@ class Template
         $this->uuid = $uuid;
     }
 
-    public function getBody()
+    public function getSource()
     {
-        return $this->body;
+        return $this->source;
     }
     
-    public function setBody($body)
+    public function setSource($source)
     {
-        $this->body = $body;
+        $this->source = $source;
     }
 
     public function getType()
@@ -126,5 +136,15 @@ class Template
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

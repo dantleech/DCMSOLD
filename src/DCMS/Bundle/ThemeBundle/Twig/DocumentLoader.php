@@ -1,16 +1,15 @@
 <?php
 
-namespace Ylly\Extension\ThemeBundle\Twig;
-use DCMS\Bundle\ThemeBundle\Repository\TemplateRepository;
+namespace DCMS\Bundle\ThemeBundle\Twig;
+use DCMS\Bundle\ThemeBundle\Repository\TemplateRepositoryInterface;
 
-class TemplateEntityCatchAll implements \Twig_LoaderInterface
+class DocumentLoader implements \Twig_LoaderInterface
 {
     protected $repo;
     protected $templates = array();
 
-    public function __consrepouct(SiteManagerInterface $sm, TemplateRepository $repo)
+    public function __construct(TemplateRepositoryInterface $repo)
     {
-        $this->sm = $sm;
         $this->repo = $repo;
     }
 
@@ -20,9 +19,7 @@ class TemplateEntityCatchAll implements \Twig_LoaderInterface
             return $this->templates[$id];
         }
 
-        $this->templates[$id] = $this->repo->findOneBy(array(
-            'resource' => $id,
-        ));
+        $this->templates[$id] = $this->repo->findTemplate($id);
 
         return $this->templates[$id];
     }
@@ -31,7 +28,7 @@ class TemplateEntityCatchAll implements \Twig_LoaderInterface
     {
         $template = $this->getTemplate($id);
         if ($template) {
-            return $template->getTemplate();
+            return $template->getSource();
         }
 
         return null;
@@ -39,9 +36,9 @@ class TemplateEntityCatchAll implements \Twig_LoaderInterface
 
     public function getCacheKey($id)
     {
-        $template = $this->getTemplate($id);
+        $template = $this->getSource($id);
         if ($template) {
-            return 'template'.$id.'id'.$id;
+            return $id;
         }
 
         return null;
@@ -54,7 +51,7 @@ class TemplateEntityCatchAll implements \Twig_LoaderInterface
             if ($templateTs > $time) {
                 return false;
             } else {
-                return repoue;
+                return true;
             }
         }
 

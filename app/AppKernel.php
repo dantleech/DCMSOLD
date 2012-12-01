@@ -32,7 +32,7 @@ class AppKernel extends Kernel
             new ManyMules\ManyMulesFoundationBundle\ManyMulesFoundationBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),
-
+            new DCMS\Bundle\ThemeBundle\DCMSThemeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

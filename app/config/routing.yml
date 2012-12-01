@@ -18,6 +18,11 @@ dcms_admin:
     type:     annotation
     prefix:   /admin/
 
+dcms_theme:
+    resource: "@DCMSThemeBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/theme
+
 # Internal routing configuration to handle ESI
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

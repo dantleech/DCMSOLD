@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Route;
 
 /**
- * @PHPCR\Document(referenceable=true)
+ * @PHPCR\Document(referenceable=true, repositoryClass="DCMS\Bundle\ThemeBundle\Repository\TemplateRepository")
  */
 class Template
 {
@@ -59,6 +59,11 @@ class Template
      * @PHPCR\Date
      */
     protected $createdAt;
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 
     public function getId()
     {

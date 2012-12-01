@@ -1,1 +1,4 @@
+{% extends template_manager.layoutForEndpoint(endpoint) %}
+{% block endpoint %}
 {{ markdown_parser.transformMarkdown(endpoint.content)|raw }}
+{% endblock %}

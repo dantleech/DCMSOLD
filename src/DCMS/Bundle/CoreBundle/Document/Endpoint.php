@@ -42,6 +42,11 @@ class Endpoint
     protected $path;
 
     /**
+     * @PHPCR\referenceOne(strategy="hard", targetDocument="DCMS\Bundle\ThemeBundle\Document\Template")
+     */
+    protected $layout;
+
+    /**
      * @PHPCR\String()
      */
     protected $epClass;
@@ -132,5 +137,15 @@ class Endpoint
     public function setUuid($uuid)
     {
         $this->uuid = $uuid;
+    }
+
+    public function getLayout()
+    {
+        return $this->layout;
+    }
+    
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
     }
 }

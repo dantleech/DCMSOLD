@@ -4,7 +4,7 @@ namespace DCMS\Bundle\CoreBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document
+ * @PHPCR\Document(repositoryClass="DCMS\Bundle\CoreBundle\Repository\SiteRepository")
  */
 class Site
 {
@@ -32,6 +32,11 @@ class Site
      * @PHPCR\NodeName
      */
     protected $name;
+
+    /**
+     * @PHPCR\String(assoc="preferencesMap")
+     */
+    protected $preferences;
 
     public function getId()
     {
@@ -76,5 +81,19 @@ class Site
     public function setChildren($children)
     {
         $this->children = $children;
+    }
+
+    public function getPreference($key)
+    {
+        if (isset($this->preferences[$key])) {
+            return $this->preferences[$key];
+        }
+
+        return null;
+    }
+
+    public function setPreference($key, $value)
+    {
+        $this->preferences[$key] = $value;
     }
 }

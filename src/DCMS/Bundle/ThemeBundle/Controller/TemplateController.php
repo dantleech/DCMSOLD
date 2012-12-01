@@ -39,6 +39,11 @@ class TemplateController extends Controller
         return $ep;
     }
 
+    protected function getSite()
+    {
+        return $this->get('dcms_core.site_manager')->getSite();
+    }
+
     protected function getRootPath()
     {
         $root = $this->getDm()->find(null, '/sites/dantleech/templates');
@@ -52,7 +57,14 @@ class TemplateController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $site = $this->getSite();
+        $defaultLayout = null;
+        if ($uuid = $site->getPreference('dcms_theme.default_layout_uuid')) {
+            $defaultLayout = $this->getRepo()->find($uuid);
+        }
+
         $type = $request->get('type');
+
         if (in_array($type, array('layout', 'partial'))) {
             $templates = $this->getRepo()->findBy(array('type' => $type));
         } else {
@@ -60,6 +72,8 @@ class TemplateController extends Controller
         }
         return array(
             'templates' => $templates,
+            'defaultLayout' => $defaultLayout,
+            'type' => $type,
         );
     }
 
@@ -146,5 +160,18 @@ class TemplateController extends Controller
                 'template_uuid' => $template->getUuid(),
             )));
         }
+    }
+
+    /**
+     * @Route("/template/{template_uuid}/make_default")
+     */
+    public function makeDefaultAction()
+    {
+        $template = $this->getTemplate();
+        $site = $this->getSite();
+        $site->setPreference('dcms_theme.default_layout_uuid', $template->getUuid());
+        $this->getDm()->persist($site);
+        $this->getDm()->flush();
+        return $this->redirect($this->generateUrl('dcms_theme_template_index'));
     }
 }

@@ -21,6 +21,18 @@
             <argument type="service" id="dcms_core.notification_helper"/>
             <tag name="twig.extension"/>
         </service>
+
+        <service id="dcms_core.repository.site"
+                factory-service="doctrine_phpcr.odm.document_manager"
+                factory-method="getRepository"
+                class="DCMS\Bundle\CoreBundle\Repository\SiteRepository" >
+            <argument>DCMS\Bundle\CoreBundle\Document\Site</argument>
+        </service>
+
+        <service id="dcms_core.site_manager" class="DCMS\Bundle\CoreBundle\Site\SiteManager">
+            <argument type="service" id="dcms_core.repository.site"/>
+        </service>
+
     </services>
 
 

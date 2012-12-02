@@ -11,7 +11,7 @@ class MainBuilder extends ContainerAware
     {
         $menu = $factory->createItem('root');
         $menu->addChild('Home', array('route' => 'dcms_admin_default_index'));
-        $menu->addChild('Pages', array('route' => 'dcms_admin_endpoint_index'));
+        $menu->addChild('Endpoints', array('route' => 'dcms_admin_endpoint_index'));
 
         $this->container->get('event_dispatcher')->dispatch(
             ExtendMenuEvent::EXTEND, 

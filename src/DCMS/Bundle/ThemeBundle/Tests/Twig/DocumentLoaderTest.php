@@ -40,13 +40,16 @@ class DocumentLoaderTest extends \PHPUnit_Framework_Testcase
         $this->assertEquals('foobar', $res);
     }
 
+    /**
+     * @expectedException \Twig_Error_Loader
+     */
     public function testGetSourceNull()
     {
         $this->repo->expects($this->once())
             ->method('findTemplate')
             ->with('test')
             ->will($this->returnValue(null));
-        $this->assertNull($this->tl->getSource('test'));
+        $this->tl->getSource('test');
     }
 
     public function testGetCacheKey()
@@ -56,13 +59,16 @@ class DocumentLoaderTest extends \PHPUnit_Framework_Testcase
         $this->assertEquals('test', $id);
     }
 
+    /**
+     * @expectedException \Twig_Error_Loader
+     */
     public function testGetCacheKeyNull()
     {
         $this->repo->expects($this->once())
             ->method('findTemplate')
             ->with('test')
             ->will($this->returnValue(null));
-        $this->assertNull($this->tl->getCacheKey('test'));
+        $this->tl->getCacheKey('test');
     }
 
     public function testIsFresh_fresh()
@@ -75,7 +81,7 @@ class DocumentLoaderTest extends \PHPUnit_Framework_Testcase
             ->method('getUpdatedAt')
             ->will($this->returnValue($templateDate));
 
-        $this->assertTrue($this->tl->isFresh('test', $ts));
+        $this->tl->isFresh('test', $ts);
     }
 
     public function testIsFresh_notFresh()
@@ -88,6 +94,6 @@ class DocumentLoaderTest extends \PHPUnit_Framework_Testcase
             ->method('getUpdatedAt')
             ->will($this->returnValue($templateDate));
 
-        $this->assertFalse($this->tl->isFresh('test', $ts));
+        $this->tl->isFresh('test', $ts);
     }
 }

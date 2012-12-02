@@ -15,13 +15,20 @@ class DocumentLoader implements \Twig_LoaderInterface
 
     protected function getTemplate($id)
     {
-        if (isset($this->templates[$id])) {
-            return $this->templates[$id];
+        $logicalName = (string) $id;
+        if (isset($this->templates[$logicalName])) {
+            return $this->templates[$logicalName];
         }
 
-        $this->templates[$id] = $this->repo->findTemplate($id);
+        $template = $this->repo->findTemplate($logicalName);
+        
+        if (!$template) {
+            throw new \Twig_Error_Loader(sprintf('Cannot find document for "%s".', $logicalName));
+        }
 
-        return $this->templates[$id];
+        $this->templates[$logicalName] = $template;
+
+        return $this->templates[$logicalName];
     }
 
     public function getSource($id)

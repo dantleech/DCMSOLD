@@ -21,6 +21,7 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    loader_service_id: dcms_theme.twig.chain_loader
 
 # Assetic Configuration
 assetic:

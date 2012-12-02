@@ -21,10 +21,3 @@ services:
         arguments:
             - @dcms_core.site_manager
             - @dcms_theme.repository.template
-
-    dcms_theme.twig.extension:
-        class: DCMS\Bundle\ThemeBundle\Twig\Extension\ThemeExtension
-        arguments:
-            - @dcms_theme.template_manager
-        tags:
-            - { name: twig.extension }

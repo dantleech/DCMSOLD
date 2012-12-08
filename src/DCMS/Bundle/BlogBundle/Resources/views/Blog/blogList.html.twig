@@ -1,0 +1,7 @@
+            <ul class="nav-bar vertical">
+                {% for blog in blogs %}
+                <li>
+                    <a href="{{ path('dcms_blog_blog_index', {'blog': blog.nodeName}) }}">{{ blog.nodeName }}</a></li>
+                {% endfor %}
+            </ul>
+

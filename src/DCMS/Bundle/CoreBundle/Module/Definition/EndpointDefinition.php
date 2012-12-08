@@ -14,7 +14,8 @@ class EndpointDefinition
     );
 
     protected $controllers = array(
-        'render' => '',
+        'edit' => null,
+        'render' => null,
     );
 
     protected $formTypes = array(

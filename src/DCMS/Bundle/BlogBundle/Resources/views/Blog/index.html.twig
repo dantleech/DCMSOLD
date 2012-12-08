@@ -1,0 +1,29 @@
+{% extends "DCMSBlogBundle::layout.html.twig" %}
+{% block content %}
+<div class="row">
+    <div class="nine columns">
+        <h3 class="subheader">Posts</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        {% for post in posts %}
+            <div class="panel radius">
+                <h4>
+                    <a href="{{ path('dcms_blog_post_edit', {
+                        'post_uuid': post.uuid
+                    }) }}">{{ post.title }}</a>
+                </h4>
+                <div class="row">
+                    <div class="twelve columns">
+                        {{ post.blog.nodeName }}, {{ post.date.format('d-m-Y H:i:s') }}
+                    </div>
+                </div>
+                <a href="{{ path('dcms_blog_post_edit', {
+                    'post_uuid': post.uuid
+                }) }}">Edit</a> 
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

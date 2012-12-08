@@ -1,0 +1,24 @@
+{% extends "DCMSAdminBundle::layout.html.twig" %}
+{% block javascripts %}
+    <script type="text/javascript">
+        /** @todo: Create standard JS library, refactor other pages to use it. (e.g. create new thing)
+    </script>
+{% endblock %}
+{% block main %}
+    <div class="row">
+        <div class="three columns">
+            <div class="action-bar">
+                <button id="create_template_button" class="button">Create (not implemented)</button>
+            </div>
+            {% render "DCMSBlogBundle:Blog:blogList" %}
+        </div>
+        <div class="nine columns">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </div>
+    <div class="reveal-modal" id="template_create_form">
+    </div>
+{% endblock %}
+
+

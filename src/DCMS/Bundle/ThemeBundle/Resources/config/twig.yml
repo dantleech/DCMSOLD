@@ -10,8 +10,5 @@ services:
         class: DCMS\Bundle\ThemeBundle\Twig\DocumentLoader
         arguments:
             - @dcms_theme.repository.template
-
-    dcms_theme.twig.chain_loader:
-        class: Twig_Loader_Chain
-        arguments:
-            - [ @dcms_theme.twig.document_loader, @twig.loader.filesystem ]
+        tags:
+            - { name: twig.loader }

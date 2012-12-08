@@ -42,10 +42,12 @@
                 </div>
             </div>
         </div>
-        {% render epDef.controller('edit') with {
-            'endpoint': ep,
-            'form': form,
-        } %}
+        {% if epDef.controller('edit') is not null %}
+            {% render epDef.controller('edit') with {
+                'endpoint': ep,
+                'form': form,
+            } %}
+        {% endif %}
         {{ form_rest(form) }}
     </form>
 {% endblock %}

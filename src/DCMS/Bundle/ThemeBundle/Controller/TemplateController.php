@@ -2,34 +2,22 @@
 
 namespace DCMS\Bundle\ThemeBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use DCMS\Bundle\ThemeBundle\Helper\TreeHelper;
+use DCMS\Bundle\CoreBundle\Controller\DCMSController;
 use DCMS\Bundle\ThemeBundle\Document\Template as TemplateDocument;
 use DCMS\Bundle\ThemeBundle\Form\TemplateEditType;
 use DCMS\Bundle\ThemeBundle\Form\TemplateCreateType;
 
-class TemplateController extends Controller
+class TemplateController extends DCMSController
 {
     protected function getRepo()
     {
         $repo = $this->get('dcms_theme.repository.template');
         return $repo;
-    }
-
-    protected function getDm()
-    {
-        $dm = $this->get('doctrine_phpcr.odm.default_document_manager');
-        return $dm;
-    }
-
-    protected function getNotifier()
-    {
-        $notifier = $this->get('dcms_core.notification_helper');
-        return $notifier;
     }
 
     protected function getTemplate()

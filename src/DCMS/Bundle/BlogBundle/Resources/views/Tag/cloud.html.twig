@@ -1,0 +1,7 @@
+<ul class="tagCloud">
+{% for tag, weight in wTags %}
+    <li style="font-size: {{ 24 * weight }}px">
+    <a href="{{ path('dcms_blog_blog_index', {'tag': tag }) }}">{{ tag }}</a>
+    </li>
+{% endfor %}
+</ul>

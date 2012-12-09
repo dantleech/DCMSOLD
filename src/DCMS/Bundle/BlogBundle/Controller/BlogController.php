@@ -5,6 +5,7 @@ namespace DCMS\Bundle\BlogBundle\Controller;
 use DCMS\Bundle\CoreBundle\Controller\DCMSController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 class BlogController extends DCMSController
 {
@@ -13,7 +14,12 @@ class BlogController extends DCMSController
         return $this->getDm()->getRepository('DCMS\Bundle\BlogBundle\Document\BlogEndpoint');
     }
 
-    protected function getPostsRepo()
+    protected function getBlogRepo()
+    {
+        return $this->getDm()->getRepository('DCMS\Bundle\BlogBundle\Document\BlogEndpoint');
+    }
+
+    protected function getPostRepo()
     {
         return $this->getDm()->getRepository('DCMS\Bundle\BlogBundle\Document\Post');
     }
@@ -22,12 +28,22 @@ class BlogController extends DCMSController
      * @Route("/blog")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $posts = $this->getPostsRepo()->findAll();
+        $blog = null;
+        $posts = $this->getPostRepo()->search(array(
+            'tag' => $tag = $request->get('tag'),
+            'blog_uuid' => $blogUuid = $request->get('blog_uuid'),
+        ));
+
+        if ($blogUuid) {
+            $blog = $this->getBlogRepo()->find($blogUuid);
+        }
 
         return array(
-            'posts' => $posts
+            'posts' => $posts,
+            'tag' => $tag,
+            'blog' => $blog,
         );
     }
 

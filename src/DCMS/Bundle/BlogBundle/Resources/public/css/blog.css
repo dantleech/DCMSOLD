@@ -1,0 +1,8 @@
+ul.tagCloud {
+    text-align: center;
+}
+
+ul.tagCloud li {
+    list-style: none;
+    display: inline;
+}

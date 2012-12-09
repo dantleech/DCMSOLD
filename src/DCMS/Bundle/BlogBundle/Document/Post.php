@@ -5,7 +5,10 @@ namespace DCMS\Bundle\BlogBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document(referenceable=true)
+ * @PHPCR\Document(
+ *   referenceable=true,
+ *   repositoryClass="DCMS\Bundle\BlogBundle\Repository\PostRepository"
+ * )
  */
 class Post
 {
@@ -80,6 +83,13 @@ class Post
     public function setBody($body)
     {
         $this->body = $body;
+    }
+
+    public function getBodyPreview($length = 255)
+    {
+        $suffix = strlen($this->body) > $length ? ' ...' : '';
+
+        return substr($this->body, 0, 255).$suffix;
     }
 
     /**

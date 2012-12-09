@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="twelve columns">
+        {{ form_errors(form) }}
+        <div>
+            {{ form_errors(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'large', 'placeholder': 'Title'}}) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="four columns">
+        {{ form_errors(form.date) }}
+        {{ form_widget(form.date) }}
+    </div>
+    <div class="four columns">
+        {{ form_errors(form.status) }}
+        {{ form_widget(form.status) }}
+    </div>
+    <div class="four columns">
+        {{ form_errors(form.blog) }}
+        {{ form_widget(form.blog) }}
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        {{ form_errors(form.csvTags, {'attr': {'placeholder': 'Tags, e.g. dogs, cats, bigfoot'}}) }}
+        {{ form_widget(form.csvTags, {'attr': {'placeholder': 'Tags, e.g. dogs, cats, bigfoot'}}) }}
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <div class="wmd-panel">
+            <div id="wmd-button-bar"></div>
+            {{ form_widget(form.body, {'id': 'wmd-input', 'attr': {'class': 'wmd-input'}}) }}
+            <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+        </div>
+    </div>
+    {{ form_rest(form) }}
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var converter1 = Markdown.getSanitizingConverter();
+        var editor1 = new Markdown.Editor(converter1);
+        editor1.run();
+    });
+</script>

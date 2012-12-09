@@ -1,0 +1,15 @@
+{% extends "DCMSBlogBundle:Post:layout.html.twig" %}
+{% block content %}
+    <form action="#" method="post" class="custom">
+        <div class="row">
+            <div class="six columns">
+                <h3 class="subheader">Create blog post</h3>
+            </div>
+            <div class="six columns text-right">
+                <input id="update_template_button" type="submit" value="Create" class="button"/>
+            </div>
+        </div>
+        {% include "DCMSBlogBundle:Post:form.html.twig" %}
+    </form>
+{% endblock %}
+

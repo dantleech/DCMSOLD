@@ -1,0 +1,16 @@
+{% extends "DCMSBlogBundle:Post:layout.html.twig" %}
+{% block content %}
+    <form action="#" method="post">
+        <div class="row">
+            <div class="six columns">
+                <h3 class="subheader">Edit blog post</h3>
+            </div>
+            <div class="six columns text-right">
+                <input id="update_template_button" type="submit" value="Update" class="button"/>
+                <a id="delete_post_button" href="{{ path('dcms_blog_post_delete', {'post_uuid': post.uuid}) }}" class="button alert">Delete</a>
+            </div>
+        </div>
+        {% include "DCMSBlogBundle:Post:form.html.twig" %}
+    </form>
+{% endblock %}
+

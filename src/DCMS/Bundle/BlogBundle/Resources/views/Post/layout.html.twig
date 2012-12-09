@@ -1,0 +1,12 @@
+{% extends "DCMSBlogBundle::layout.html.twig" %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/dcmsmarkdown/js/pagedown/Markdown.Converter.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dcmsmarkdown/js/pagedown/Markdown.Sanitizer.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dcmsmarkdown/js/pagedown/Markdown.Editor.js') }}"></script>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/dcmsmarkdown/css/pagedown.css') }}" />
+{% endblock %}
+

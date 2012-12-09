@@ -28,17 +28,11 @@ class LoadBlogData implements FixtureInterface, DependentFixtureInterface
         $manager->persist($ep);
         $manager->flush();
 
-        $rt = $manager->find(null, '/sites/dantleech');
-        $folder = new Folder;
-        $folder->setNodeName('blogs');
-        $folder->setParent($rt);
-        $manager->persist($folder);
-
         $p = new Post;
         $p->setTitle('Foo bar post');
         $p->setDate(new \DateTime());
         $p->setBody('This is a test post');
-        $p->setParent($folder);
+        $p->setParent($ep);
         $p->setBlog($ep);
         $manager->persist($p);
 

@@ -8,7 +8,7 @@
             {{ node.nodeName }}
         </a>
     {% else %}
-        <a>{{ node.id }}</a>
+        {{ node|yaml_dump }}
     {% endif %}
     <ul style="clear: both" class="tree">
         {% for child in node.children %}

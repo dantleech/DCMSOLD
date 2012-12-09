@@ -27,7 +27,7 @@ class Endpoint
     protected $parent;
 
     /**
-     * @PHPCR\Children(filter="*")
+     * @PHPCR\Children()
      */
     protected $children;
 
@@ -35,6 +35,11 @@ class Endpoint
      * @PHPCR\NodeName
      */
     protected $nodeName;
+
+    /**
+     * @PHPCR\Node
+     */
+    protected $node;
 
     /**
      * @PHPCR\String()
@@ -73,7 +78,13 @@ class Endpoint
 
     public function getChildren()
     {
-        return $this->children;
+        $children = array();
+        foreach ($this->children as $child) {
+            if ($child instanceOf Endpoint) {
+                $children[] = $child;
+            }
+        }
+        return $children;
     }
     
     public function setChildren($children)
@@ -147,5 +158,15 @@ class Endpoint
     public function setLayout($layout)
     {
         $this->layout = $layout;
+    }
+
+    public function __toString()
+    {
+        return $this->nodeName;
+    }
+
+    public function getNode()
+    {
+        return $this->node;
     }
 }

@@ -47,6 +47,21 @@ class Post
      */
     protected $blog;
 
+    /**
+     * @PHPCR\Boolean
+     */
+    protected $status;
+
+    /**
+     * @PHPCR\String(multivalue=true)
+     */
+    protected $tags = array();
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
+
     public function getTitle()
     {
         return $this->title;
@@ -125,5 +140,43 @@ class Post
     public function setBlog($blog)
     {
         $this->blog = $blog;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    public function getCsvTags()
+    {
+        $csvTags = '';
+        if ($this->tags) {
+            $csvTags = implode(',', $this->tags->toArray());
+        }
+        return $csvTags;
+    }
+    
+    public function setCsvTags($tags)
+    {
+        $tags = explode(',', $tags);
+        foreach ($tags as &$tag) {
+            $tag = trim($tag);
+        }
+        $this->tags = $tags;
+    }
+
+    public function getTags()
+    {
+        return $this->tags;
+    }
+    
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
     }
 }

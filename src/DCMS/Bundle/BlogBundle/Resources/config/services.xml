@@ -9,9 +9,15 @@
             <tag name="kernel.event_listener" event="dcms_admin.menu_extend" method="extendMenu"/>
         </service>
 
+        <!-- Doctrine subscriber for updating tags in RDBS !-->
         <service id="dcms_blog.doctrine.post_subscriber" class="DCMS\Bundle\BlogBundle\Doctrine\PostSubscriber">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
             <tag name="doctrine_phpcr.event_subscriber"/>
+        </service>
+
+        <service id="dcms_blog.repository.tag" class="DCMS\Bundle\BlogBundle\Repository\TagRepository">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument type="service" id="doctrine_phpcr.odm.default_document_manager"/>
         </service>
     </services>
 </container>

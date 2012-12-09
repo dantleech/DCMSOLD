@@ -1,4 +1,7 @@
 {% extends "DCMSAdminBundle::layout.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/dcmsblog/css/blog.css') }}" />
+{% endblock %}
 {% block main %}
     <div class="row">
         <div class="three columns">
@@ -6,13 +9,12 @@
                 <a href="{{ path('dcms_blog_post_create') }}" class="button">Create</a>
             </div>
             {% render "DCMSBlogBundle:Blog:blogList" %}
+            {% render "DCMSBlogBundle:Tag:cloud" %}
         </div>
         <div class="nine columns">
         {% block content %}
         {% endblock %}
         </div>
-    </div>
-    <div class="reveal-modal" id="template_create_form">
     </div>
 {% endblock %}
 

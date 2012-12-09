@@ -177,6 +177,10 @@ class Post
     
     public function setTags($tags)
     {
-        $this->tags = $tags;
+        $uniq = array();
+        foreach ($tags as $tag) {
+            $uniq[$tag] = $tag;
+        }
+        $this->tags = array_values($uniq);
     }
 }

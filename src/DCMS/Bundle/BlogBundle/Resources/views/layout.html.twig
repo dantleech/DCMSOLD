@@ -9,7 +9,10 @@
                 <a href="{{ path('dcms_blog_post_create') }}" class="button">Create</a>
             </div>
             {% render "DCMSBlogBundle:Post:blogList" %}
-            {% render "DCMSBlogBundle:Tag:cloud" %}
+            {{ sonata_block_render({
+              type: 'dcms.block.service.tag_cloud', 
+              settings: {}
+              }) }}
         </div>
         <div class="nine columns">
         {% block content %}

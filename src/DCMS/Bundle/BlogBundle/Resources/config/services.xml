@@ -19,5 +19,12 @@
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
             <argument type="service" id="doctrine_phpcr.odm.default_document_manager"/>
         </service>
+
+        <service id="dcms.block.service.tag_cloud" class="DCMS\Bundle\BlogBundle\Block\TagCloudBlockService">
+            <argument>dcms.block.service.tag_cloud</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="dcms_blog.repository.tag"/>
+            <tag name="sonata.block" />
+        </service>
     </services>
 </container>

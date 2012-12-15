@@ -98,6 +98,7 @@ sonata_block:
         sonata.block.service.text:
         sonata.block.service.rss:
         dcms.block.service.menu:
+        dcms.block.service.tag_cloud:
 
         # Some specific block from the SonataMediaBundle
         #sonata.media.block.media:

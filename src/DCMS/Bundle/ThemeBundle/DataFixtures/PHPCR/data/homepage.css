@@ -1,0 +1,425 @@
+body {
+  margin: 0px;
+  font-size: 0.9em;
+  background-image: url(../images/body_repeat.png);
+  background-repeat: repeat-x;
+}
+
+p {
+  font-family: sans-serif;
+}
+
+p a {
+  font-family: serif;
+}
+
+img {
+  border-style: none;
+}
+
+h2 span {
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+pre {
+  background-color: #000000;
+  color: white;
+  padding: 5px;
+  overflow: auto;
+  border-style: solid;
+  border-color: #444444;
+  border-width: 1px;
+}
+
+#wrapper {
+  background-color: white;
+  width: 900px;
+  margin: auto;
+  border-right-style: groove;
+  border-right-width: 6px;
+  border-left-style: solid;
+  border-left-width: 2px;
+  border-left-color: #dddddd;
+}
+
+#content {
+  width: 885px;
+  margin: auto;
+}
+
+#header {
+  padding: 10px;
+}
+
+#header_wrapper {
+  width: 900px;
+  margin: auto;
+}
+
+#header h1 span {
+  font-style: italic;
+  font-size: 0.8em;
+  color: #888888;
+}
+
+#header h1 a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+#header {
+  background-color: #222222;
+}
+
+#header h1 {
+  margin: 0px;
+}
+
+#homepage_slot {
+
+  height: 150px;
+}
+
+#homepage_blurb {
+  background-color: #224422;
+  color: #dddddd;
+  font-weight: bold;
+  float: left;
+  height: 130px;
+  width: 280px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#homepage_image {
+  background-image: url(../images/homepage_graphic.png);
+  width: 600px;
+  height: 150px;
+  float: right;
+}
+
+#navigation {
+  background-image: url(../images/nav_grad.png);
+  background-repeat: repeat-x;
+  height: 36px;
+  background-color: #808080;
+  padding-top: 14px;
+}
+
+#navigation ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+#navigation li {
+  display: inline;
+}
+
+#navigation a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-family: sans-serif;
+  padding: 0em 15px 0em 15px;
+}
+
+#next_post {
+  float: right;
+}
+
+#previous_post {
+  float: left;
+}
+
+.nextprev_post a{
+  color: #aaaaaa;
+  font-size: 1.2em;
+  padding-right: 1em;
+}
+
+#latest_blog_posts li {
+}
+
+
+#latest_blog_posts li .date span {
+  color: #dddddd;
+}
+
+#latest_blog_posts li .date {
+  width: 50px;
+  float: left;
+  height: 42px;
+  padding-top: 8px;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+.date_type_git {
+  background-image: url(../images/cal_back_git.png);
+}
+
+.date_type_travel {
+  background-image: url(../images/cal_back_rss.png);
+}
+
+.date_type_trainer {
+  background-image: url(../images/cal_back_rss.png);
+}
+
+
+.date_type_blog {
+  background-image: url(../images/cal_back.png);
+}
+
+#latest_blog_posts li {
+  clear: both;
+}
+
+#latest_blog_posts li .blog_preview {
+  float: left;
+  padding: 5px;
+  width: 195px;
+}
+
+#latest_blog_posts li .blog_preview span {
+  color: #444444;
+  font-size: 0.8em;
+}
+
+#latest_blog_posts li .blog_preview .blog_type {
+  color: green;
+  font-size: 0.7em;
+}
+
+#latest_blog_posts {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+}
+
+#left_col {
+  float: left;
+  width: 585px;
+}
+
+#content {
+  padding-left: 15px;
+}
+
+#right_col {
+  float: left;
+  width: 300px;
+}
+
+.form tbody tr th {
+  vertical-align: top;
+  text-align: left;
+  width: 200px;
+  font-family: sans-serif;
+}
+
+.form tbody input, .form tbody textarea {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #808080;
+}
+
+.form tfoot td {
+  padding: 15px 0em 15px 0em;
+}
+
+.form label {
+  display: block;
+}
+
+.form li {
+  list-style-type: none;
+}
+
+.error_list li {
+  color: red;
+  text-align: left;
+  font-weight: bold;
+}
+
+.form .error_list {
+  margin: 0px;
+  padding: 0px;
+}
+
+#culture ul {
+  margin: 0;
+  padding: 15px;
+}
+
+#culture {
+  text-align: right;
+  width: 885px;
+}
+
+#culture li {
+  padding-left: 15px;
+
+}
+
+#culture li {
+  display: inline;
+}
+
+#footer {
+  background-color: #444444;
+  text-align: center;
+  padding: 15px;
+  text-transform: lowercase;
+}
+
+#footer ul {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+
+}
+
+#footer li {
+  display: inline;
+  padding: 0.5em;
+  font-size: 0.8em;
+}
+
+#footer img {
+}
+
+#footer a {
+  color: #dddddd;
+  text-decoration: none;
+}
+
+#admin_nav {
+  width: 100px;
+  float: left;
+}
+
+#admin_content {
+  width: 600px;
+  float: left;
+}
+
+#admin_content textarea {
+  font-family: monospace;
+}
+
+#admin_options {
+  width: 200px;
+  float: left;
+}
+
+#notification {
+  background-color: #ddffdd;
+  margin: 1em;
+  padding: 0.25em;
+  border-style: solid;
+  border-color: #aabbaa;
+}
+
+.list table {
+  width: 500px;
+  border-style: solid;
+  border-color: #dddddd;
+}
+
+.list table th {
+  text-align: left;
+}
+
+#blog_content h1, #blog_content h2, #blog_content h3, #blog_content h4, #blog_content h5, #blog_content h6 {
+  color: #000000;
+  font-style: italic;
+}
+
+#blog_content table {
+  margin-bottom: 1em;
+}
+
+#blog_content table th {
+  background-color: #eeeeee;
+  text-align: left;
+}
+
+#blog_content table td {
+  font-size: 0.8em;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #eeeeee;
+}
+
+#blog_content {
+  font-size: 1.1em;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+#blog_content {
+  overflow: hidden;
+}
+
+#blog_content p, #blog_content ul, #blog_content ol {
+}
+
+.tags-list {
+  display: inline;
+  padding: 0px;
+}
+
+.tags-list li {
+  display: inline;
+}
+
+.blog_info a, .blog_list_item p a {
+  font-style: italic;
+  color: #444444;
+}
+
+.blog_info {
+  font-size: 0.9em;
+}
+
+.blog_list_item p {
+  padding: 0em 1em 0em 1em;
+}
+
+.tagCloud {
+  padding: 0px;
+  text-align: center;
+}
+
+.tagCloud li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 0.5em;
+}
+
+.comment h3 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.comment_details {
+  margin-bottom: 1em;
+  color: #444444;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.comment {
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  background-color: #eeeeee;
+  border-style: solid none;
+  border-color: #aaaaaa;
+}

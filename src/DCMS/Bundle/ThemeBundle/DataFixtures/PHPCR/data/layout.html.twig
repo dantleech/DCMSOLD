@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- <link rel="alternate" type="application/rss+xml" title="RSS Feed for dantleech.com" href="<?php echo url_for('@blogfeed?sf_format=rss2') ?>" /> !-->
+    <style type="text/css" media="screen">
+    {% include "homepage.css.twig" %}
+    </style>
+  </head>
+  <body>
+  <div id="header">
+    <h1>
+      <a href="/">Dans Homepage</a>
+      <span>PHP, MySQL, Symfony, Javascript ...</span>
+    </h1>
+  </div>
+<div id="header_wrapper">
+
+  <div id="navigation">
+      {{ sonata_block_render({
+        type: 'dcms.block.service.menu',
+        settings: {}
+      }) }}
+  </div>
+</div>
+<div id="wrapper">
+    <div id="content">
+      <div id="left_col">
+          {% block endpoint %}
+          {% endblock %}
+      </div>
+      <div id="right_col">
+        {{ sonata_block_render({
+          type: 'dcms.block.service.tag_cloud', 
+          settings: {}
+          }) }}
+      </div>
+    <div style="clear: both"></div>
+    </div>
+  </div>
+  <div id="footer">
+    Site by Daniel Leech 2010
+    <ul>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">CV</a></li>
+      <li><a href="#">About this site</a></li>
+      <!--      <li><a title="RSS2 Feed" href="#"><?php echo image_tag('icn_rss2.png') ?></a></li>!-->
+  </div>
+</body>
+</html>
+
+

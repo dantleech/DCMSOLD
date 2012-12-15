@@ -1,0 +1,17 @@
+{% for child in node.children %}
+    <div class="panel">
+        <h3><a href="{{ path('dcms_admin_endpoint_edit', {'endpoint_uuid': child.uuid}) }}">{{ child.path }}</a></h3>
+        {% set epDef = mm.endpointDefinition(child) %}
+        <a href="{{ path('dcms_admin_endpoint_edit', {
+            'endpoint_uuid': child.uuid
+        }) }}">
+        </a>
+        <h5>
+            <img src="{{ asset(mm.endpointDefinition(child).icon) }}"/>
+            {{ child.nodeName }}
+        </h5>
+    </div>
+    {% if child.children %}
+    {% include "DCMSAdminBundle:Endpoint:_endpoint.html.twig" with {'node': child} %}
+    {% endif %}
+{% endfor %}

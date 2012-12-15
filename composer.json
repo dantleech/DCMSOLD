@@ -23,6 +23,7 @@
         "sensio/framework-extra-bundle": "2.2.*",
         "sensio/generator-bundle": "2.2.*",
         "sonata-project/jquery-bundle": "1.8.x-dev",
+        "sonata-project/block-bundle": "dev-master",
         "simonjodet/markdown": "1.0.x-dev",
         "symfony-cmf/routing": "1.0.x-dev",
         "symfony-cmf/routing-extra-bundle": "1.0.x-dev",

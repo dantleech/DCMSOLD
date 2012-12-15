@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new DCMS\Bundle\CoreBundle\DCMSCoreBundle(),
             new DCMS\Bundle\MenuBundle\DCMSMenuBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
             new ManyMules\ManyMulesFoundationBundle\ManyMulesFoundationBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),

@@ -1,0 +1,9 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+{% for node in menu.children %}
+{% include "DCMSMenuBundle:Block:_menuNode.html.twig" with {
+  'node': node
+} %}
+{% endfor %}
+{% endblock %}

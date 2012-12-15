@@ -1,0 +1,8 @@
+<li><a href="{{ node.path }}">{{ node.nodeName }}</a></li>
+{% if menu.children %}
+    <ul>
+    {% for child in node.children %}
+        {% include "DCMSMenuBundle:Block:_menuNode.html.twig" with {'node': child} %}
+    {% endfor %}
+    </ul>
+{% endif %}

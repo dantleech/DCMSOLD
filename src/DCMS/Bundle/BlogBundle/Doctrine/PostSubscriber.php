@@ -86,7 +86,7 @@ class PostSubscriber implements EventSubscriber
         $this->updateTags($args);
     }
 
-    public function preRemove(LifecycleEventArgs $args)
+    public function postRemove(LifecycleEventArgs $args)
     {
     }
 }

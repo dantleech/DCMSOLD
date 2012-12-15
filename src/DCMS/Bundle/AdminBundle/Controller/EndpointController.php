@@ -70,7 +70,11 @@ class EndpointController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        $root = $this->getEPRoot();
+        return array(
+            'rootNode' => $root,
+            'mm' => $this->getMm(),
+        );
     }
 
     /**

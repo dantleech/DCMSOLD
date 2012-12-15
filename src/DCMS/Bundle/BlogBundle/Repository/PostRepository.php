@@ -6,7 +6,7 @@ use PHPCR\Query\QOM\QueryObjectModelConstantsInterface as Constants;
 
 class PostRepository extends DocumentRepository
 { 
-    public function search($options)
+    public function searchQuery($options)
     {
         $options = array_merge(array(
             'tag' => null,
@@ -25,7 +25,7 @@ class PostRepository extends DocumentRepository
         }
 
         if ($options['blog_uuid']) {
-            $criterias[] = $qf->comparison(
+            $qf->comparison(
                 $qf->propertyValue('blog'),
                 Constants::JCR_OPERATOR_EQUAL_TO,
                 $qf->literal($options['blog_uuid'])
@@ -41,6 +41,12 @@ class PostRepository extends DocumentRepository
         $qb->orderBy($qf->propertyValue('date'), 'DESC');
         $q = $qb->getQuery();
 
+        return $q;
+    }
+
+    public function search($options)
+    {
+        $q = $this->searchQuery($options);
         $res = $this->getDocumentsByQuery($q);
         return $res;
     }

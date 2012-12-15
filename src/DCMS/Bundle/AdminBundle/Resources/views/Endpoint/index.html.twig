@@ -1,4 +1,9 @@
 {% extends "DCMSAdminBundle:Endpoint:layout.html.twig" %}
 {% block endpoint_edit %}
-    Select something ! (and tidy this message up)
+    <div class="row">
+        <div class="twelve columns">
+            <h3 class="subheader">Endpoints</h3>
+        </div>
+    </div>
+    {% include "DCMSAdminBundle:Endpoint:_endpoint.html.twig" with {'node': rootNode} %}
 {% endblock %}

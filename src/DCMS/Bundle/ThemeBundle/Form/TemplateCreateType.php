@@ -16,6 +16,7 @@ class TemplateCreateType extends AbstractType
             'choices' => array(
                 Template::TYPE_LAYOUT => 'Layout',
                 Template::TYPE_PARTIAL => 'Partial',
+                Template::TYPE_STYLESHEET => 'Stylesheet',
             )
         ));
     }

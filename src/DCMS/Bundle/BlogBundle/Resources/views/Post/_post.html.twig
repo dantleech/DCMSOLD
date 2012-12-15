@@ -22,7 +22,7 @@
         </div>
         <div class="eight columns" style="text-align: right">
             Tagged: {% for tag in post.tags %}
-                <a href="{{ path('dcms_blog_blog_index', {'tag': tag}) }}">{{ tag }}</a></span>
+                <a href="{{ path('dcms_blog_post_index', {'tag': tag}) }}">{{ tag }}</a></span>
             {% endfor %}
         </div>
     </div>

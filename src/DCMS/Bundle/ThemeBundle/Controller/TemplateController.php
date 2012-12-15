@@ -53,7 +53,7 @@ class TemplateController extends DCMSController
 
         $type = $request->get('type');
 
-        if (in_array($type, array('layout', 'partial'))) {
+        if (in_array($type, array('layout', 'partial', 'stylesheet'))) {
             $templates = $this->getRepo()->findBy(array('type' => $type));
         } else {
             $templates = $this->getRepo()->findAll();

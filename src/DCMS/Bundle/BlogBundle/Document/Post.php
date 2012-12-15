@@ -166,7 +166,7 @@ class Post
     {
         $csvTags = '';
         if ($this->tags) {
-            $csvTags = implode(',', $this->tags->toArray());
+            $csvTags = implode(',', (array) $this->tags);
         }
         return $csvTags;
     }

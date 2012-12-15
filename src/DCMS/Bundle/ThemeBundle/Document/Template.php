@@ -14,6 +14,7 @@ class Template
 {
     const TYPE_LAYOUT = 'layout';
     const TYPE_PARTIAL = 'partial';
+    const TYPE_STYLESHEET = 'stylesheet';
 
     /** 
      * @PHPCR\Id

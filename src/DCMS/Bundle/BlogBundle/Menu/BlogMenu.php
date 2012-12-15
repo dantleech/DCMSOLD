@@ -8,7 +8,7 @@ class BlogMenu
     public function extendMenu(ExtendMenuEvent $event)
     {
         $menu = $event->getMenu();
-        $menu->addChild('Posts', array('route' => 'dcms_blog_blog_index'));
+        $menu->addChild('Posts', array('route' => 'dcms_blog_post_index'));
     }
 }
 

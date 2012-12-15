@@ -11,15 +11,20 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends DCMSController
 {
-    protected function getRepo()
+    protected function getPostRepo()
     {
         return $this->getDm()->getRepository('DCMS\Bundle\BlogBundle\Document\Post');
+    }
+
+    protected function getBlogRepo()
+    {
+        return $this->getDm()->getRepository('DCMS\Bundle\BlogBundle\Document\BlogEndpoint');
     }
 
     protected function getPost()
     {
         $post_uuid = $this->get('request')->get('post_uuid');
-        if (!$post = $this->getRepo()->find($post_uuid)) {
+        if (!$post = $this->getPostRepo()->find($post_uuid)) {
             throw $this->createHttpNotFoundException('Post with UUID "'.$uuid.'" not found.');
         }
         return $post;
@@ -49,6 +54,39 @@ class PostController extends DCMSController
         }
     }
 
+    /**
+     * @Route("/blog")
+     * @Template()
+     */
+    public function indexAction(Request $request)
+    {
+        $blog = null;
+        $posts = $this->getPostRepo()->search(array(
+            'tag' => $tag = $request->get('tag'),
+            'blog_uuid' => $blogUuid = $request->get('blog_uuid'),
+        ));
+
+        if ($blogUuid) {
+            $blog = $this->getBlogRepo()->find($blogUuid);
+        }
+
+        return array(
+            'posts' => $posts,
+            'tag' => $tag,
+            'blog' => $blog,
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function blogListAction()
+    {
+        $blogs = $this->getBlogRepo()->findAll();
+        return array(
+            'blogs' => $blogs,
+        );
+    }
     /**
      * @Route("/blog/post/{post_uuid}/edit")
      * @Template()
@@ -97,7 +135,7 @@ class PostController extends DCMSController
             $this->getNotifier()->info('Post "%s" deleted', array(
                 $post->getTitle(),
             )); 
-            return $this->redirect($this->generateUrl('dcms_blog_blog_index', array(
+            return $this->redirect($this->generateUrl('dcms_blog_post_index', array(
             )));
         } catch (\Excposttion $e) {
             $this->getNotifier()->error($e->getMessage());

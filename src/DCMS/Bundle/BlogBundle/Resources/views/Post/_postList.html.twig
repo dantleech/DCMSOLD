@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="twelve columns">
+        {% if tag %}
+            <div class="alert-box">
+                Showing posts with tag "{{ tag }}"
+            </div>
+        {% endif %}
+        {% if blog %}
+            <div class="alert-box">
+                Showing posts from blog "{{ blog.nodeName }}"
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        {% for post in posts %}
+            {% include "DCMSBlogBundle:Post:_post.html.twig" %}
+        {% endfor %}
+    </div>
+</div>
+

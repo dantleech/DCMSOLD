@@ -16,18 +16,33 @@ class EndpointRepository extends DocumentRepository implements RouteRepositoryIn
         $qb = $this->dm->createQueryBuilder();
         $qf = $qb->getQOMFactory();
         $qb->from($qf->selector('dcms:endpoint'));
-        $qb->andWhere(
-            $qf->comparison(
-                $qf->propertyValue('path'), Constants::JCR_OPERATOR_EQUAL_TO, $qf->literal($url)
-            )
-        );
+        $parts = explode('/', $url);
+        $parts[] = $url;
+        foreach ($parts as $part) {
+            if ('' === $part) {
+                continue;
+            }
+            $qb->orWhere(
+                $qf->andConstraint(
+                    $qf->comparison(
+                        $qf->propertyValue('path'), Constants::JCR_OPERATOR_EQUAL_TO, $qf->literal($part)
+                    ),
+                    $qf->comparison(
+                        $qf->propertyValue('routeable'), Constants::JCR_OPERATOR_EQUAL_TO, $qf->literal(true)
+                    )
+                )
+            );
+        }
+        
         $q = $qb->getQuery();
         $eps = $this->dm->getDocumentsByQuery($q);
+
         $collection = new RouteCollection();
         foreach ($eps as $ep) {
-            $route = new Route($ep->getPath(), array(
+            $route = new Route($ep->getFullPath(), array(
                 'endpoint' => $ep,
             ));
+
             $collection->add('dcms_endpoint_'.uniqid(), $route);
         }
 

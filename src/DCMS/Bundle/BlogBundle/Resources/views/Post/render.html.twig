@@ -1,0 +1,6 @@
+{% extends template_manager.layoutForEndpoint(post) %}
+{% block endpoint %}
+<h2>{{ post.title }}</h2>
+{{ markdown_parser.transformMarkdown(post.body)|raw }}
+{% endblock %}
+

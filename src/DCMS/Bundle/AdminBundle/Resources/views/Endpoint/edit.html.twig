@@ -28,9 +28,18 @@
             {{ form_errors(form.nodeName) }}
             {{ form_widget(form.nodeName, {'attr': {'class': 'large'}}) }}
         </div>
-        <div>
-            {{ form_errors(form.path) }}
-            {{ form_widget(form.path) }}
+        <div class="row">
+            <div class="nine columns">
+                {{ form_errors(form.path) }}
+                {{ form_widget(form.path) }}
+            </div>
+            <div class="two columns">
+                <label class=".inline">Routable?</label>
+            </div>
+            <div class="one columns">
+                {{ form_errors(form.routeable) }}
+                {{ form_widget(form.routeable) }}
+            </div>
         </div>
         <div class="row">
             <div class="six columns">

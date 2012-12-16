@@ -8,6 +8,7 @@ use DCMS\Bundle\BlogBundle\Form\PostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use dflydev\markdown\MarkdownParser;
 
 class PostController extends DCMSController
 {
@@ -143,5 +144,18 @@ class PostController extends DCMSController
                 'post_uuid' => $post->getUuid(),
             )));
         }
+    }
+
+    /**
+     * @Template()
+     */
+    public function renderAction()
+    {
+        $post = $this->get('request')->get('endpoint');
+        $mdParser = new MarkdownParser;
+        return array(
+            'post' => $post,
+            'markdown_parser' => $mdParser
+        );
     }
 }

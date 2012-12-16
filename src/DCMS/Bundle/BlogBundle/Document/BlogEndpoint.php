@@ -11,7 +11,7 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 class BlogEndpoint extends Endpoint
 {
     /**
-     * @PHPCR\ReferenceMany(targetDocument="DCMS\Bundle\BlogBundle\Document\Post")
+     * @PHPCR\Referrers()
      */
     protected $posts;
 

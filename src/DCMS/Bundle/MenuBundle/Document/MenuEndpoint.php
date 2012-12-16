@@ -11,5 +11,9 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
  */
 class MenuEndpoint extends Endpoint
 {
+    public function __construct()
+    {
+        $this->routeable = false;
+    }
 }
 

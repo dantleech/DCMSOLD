@@ -12,7 +12,17 @@ class DCMSBlogBundle extends ModuleBundle
     {
         $m = $mm->createModule('blog');
         $m->createEndpointDefinition('DCMS\Bundle\BlogBundle\Document\BlogEndpoint')
+            ->setControllers(array(
+                'render' => 'DCMSBlogBundle:Blog:render',
+            ))
             ->setTitle('Blog')
+            ->setIcon('bundles/dcmsblog/images/blog-16.png');
+
+        $m->createEndpointDefinition('DCMS\Bundle\BlogBundle\Document\Post')
+            ->setTitle('Post')
+            ->setControllers(array(
+                'render' => 'DCMSBlogBundle:Post:render',
+            ))
             ->setIcon('bundles/dcmsblog/images/blog-16.png');
     }
 }

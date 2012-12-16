@@ -3,6 +3,7 @@
 namespace DCMS\Bundle\BlogBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
+use DCMS\Bundle\CoreBundle\Document\Endpoint;
 
 /**
  * @PHPCR\Document(
@@ -10,18 +11,8 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
  *   repositoryClass="DCMS\Bundle\BlogBundle\Repository\PostRepository"
  * )
  */
-class Post
+class Post extends Endpoint
 {
-    /**
-     * @PHPCR\Uuid
-     */
-    protected $uuid;
-
-    /**
-     * @PHPCR\NodeName
-     */
-    protected $slug;
-
     /**
      * @PHPCR\String()
      */
@@ -31,11 +22,6 @@ class Post
      * @PHPCR\String()
      */
     protected $body;
-
-    /**
-     * @PHPCR\ParentDocument()
-     */
-    protected $parent;
 
     /**
      * @PHPCR\Date()
@@ -63,6 +49,7 @@ class Post
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->showInMenu = false;
     }
 
     public function getTitle()
@@ -109,7 +96,8 @@ class Post
             $clean = substr($clean, 0, -1);
         }
 
-        $this->slug = $clean;
+        $this->nodeName = $clean;
+        $this->path = $clean;
     }
 
     public function getDate()

@@ -1,3 +1,4 @@
+{% if node.showInMenu %}
 <li class="endpoint" uuid="{{ node.uuid }}">
     {% set epDef = mm.endpointDefinition(node) %}
     {% if epDef %}
@@ -16,3 +17,4 @@
         {% endfor %}
     </ul>
 </li>
+{% endif %}

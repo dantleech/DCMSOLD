@@ -61,6 +61,21 @@ class Endpoint
      */
     protected $parameters;
 
+    /**
+     * @PHPCR\Boolean()
+     */
+    protected $showInMenu = true;
+
+    /**
+     * @PHPCR\Boolean()
+     */
+    protected $inheritPath = false;
+
+    /**
+     * @PHPCR\Boolean()
+     */
+    protected $routeable = true;
+
     public function getId()
     {
         return $this->id;
@@ -168,5 +183,59 @@ class Endpoint
     public function getNode()
     {
         return $this->node;
+    }
+
+    public function getShowInMenu()
+    {
+        return $this->showInMenu;
+    }
+    
+    public function setShowInMenu($showInMenu)
+    {
+        $this->showInMenu = $showInMenu;
+    }
+
+    public function getInheritPath()
+    {
+        return $this->inheritPath;
+    }
+    
+    public function setInheritPath($inheritPath)
+    {
+        $this->inheritPath = $inheritPath;
+    }
+
+    public function getRouteable()
+    {
+        return $this->routeable;
+    }
+    
+    public function setRouteable($routeable)
+    {
+        $this->routeable = $routeable;
+    }
+
+    public function getFullPath()
+    {
+        $parents = array();
+        $currentParent = $this;
+        $paths = array(
+            $this->getPath(),
+        );
+        while ($parent = $currentParent->getParent()) {
+            if (false === $parent instanceOf Endpoint) {
+                break;
+            }
+
+            if (false === $parent->getRouteable()) {
+                break;
+            }
+
+            $paths[] = $parent->getPath();
+            $currentParent = $parent;
+        }
+
+        $fullPath = implode('/', array_reverse($paths));
+        return $fullPath;
     }
 }

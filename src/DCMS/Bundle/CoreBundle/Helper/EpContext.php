@@ -4,15 +4,21 @@ namespace DCMS\Bundle\CoreBundle\Helper;
 
 class EpContext
 {
-    protected $inEndpoint;
+    protected $onEndpoint;
 
-    public function setInEndpoint($boolean)
+    public function setOnEndpoint($boilean)
     {
-        $this->inEndpoint = $boolean;
+        $this->onEndpoint = $boilean;
     }
 
-    public function getInEndpoint()
+    public function getOnEndpoint()
     {
-        return $this->inEndpoint;
+        return $this->onEndpoint;
     }
+
+    public function onEndpoint()
+    {
+        return $this->getOnEndpoint();
+    }
+
 }

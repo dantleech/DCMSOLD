@@ -12,16 +12,6 @@ use dflydev\markdown\MarkdownParser;
 
 class PostController extends DCMSController
 {
-    protected function getPostRepo()
-    {
-        return $this->getDm()->getRepository('DCMS\Bundle\BlogBundle\Document\Post');
-    }
-
-    protected function getBlogRepo()
-    {
-        return $this->getDm()->getRepository('DCMS\Bundle\BlogBundle\Document\BlogEndpoint');
-    }
-
     protected function getPost()
     {
         $post_uuid = $this->get('request')->get('post_uuid');

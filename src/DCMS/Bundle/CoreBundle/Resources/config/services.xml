@@ -8,7 +8,7 @@
         <parameter key="dcms_core.module_manager.class">DCMS\Bundle\CoreBundle\Module\ModuleManager</parameter>
         <parameter key="dcms_core.response_helper.class">DCMS\Bundle\CoreBundle\Helper\ResponseHelper</parameter>
         <parameter key="dcms_core.notification_helper.class">DCMS\Bundle\CoreBundle\Helper\NotificationHelper</parameter>
-        <parameter key="dcms_core.ep_context.class">DCMS\Bundle\CoreBundle\Helper\NotificationHelper</parameter>
+        <parameter key="dcms_core.ep_context.class">DCMS\Bundle\CoreBundle\Helper\EpContext</parameter>
         <parameter key="dcms_core.twig_extension.class">DCMS\Bundle\CoreBundle\Twig\Extension\DCMSCoreExtension</parameter>
     </parameters>
 
@@ -21,8 +21,7 @@
         </service>
         <service id="dcms_core.twig_extension" class="%dcms_core.twig_extension.class%">
             <argument type="service" id="dcms_core.notification_helper"/>
-            <argument type="service" id="router"/>
-            <argument type="service" id="dcms_core.module_manager"/>
+            <argument type="service" id="dcms_core.ep_context"/>
             <tag name="twig.extension"/>
         </service>
 

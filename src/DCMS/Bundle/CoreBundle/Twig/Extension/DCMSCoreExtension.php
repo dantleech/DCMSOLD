@@ -13,6 +13,7 @@ class DCMSCoreExtension extends \Twig_Extension
     public function __construct(NotificationHelper $nh, EpContext $epContext)
     {
         $this->nh = $nh;
+        $this->epContext = $epContext;
     }
 
     public function initRuntime(\Twig_Environment $environment)
@@ -24,7 +25,7 @@ class DCMSCoreExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'ep_path', new \Twig_Filter_Method($this, 'endpointPath')
+            'ep_path' => new \Twig_Function_Method($this, 'epPath')
         );
     }
 

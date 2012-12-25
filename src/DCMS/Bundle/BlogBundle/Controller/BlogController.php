@@ -2,24 +2,26 @@
 
 namespace DCMS\Bundle\BlogBundle\Controller;
 
-use DCMS\Bundle\CoreBundle\Controller\DCMSController;
-use DCMS\Bundle\BlogBundle\Document\Post;
-use DCMS\Bundle\BlogBundle\Form\PostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use dflydev\markdown\MarkdownParser;
 
-class BlogController extends DCMSController
+class BlogController extends BaseController
 {
     /**
      * @Template()
      */
-    public function renderAction()
+    public function renderAction(Request $request)
     {
         $blog = $this->get('request')->get('endpoint');
+        $posts = $this->getPostRepo()->search(array(
+            'tag' => $tag = $request->get('tag'),
+            'blog_uuid' => $blog->getUuid(),
+        ));
         return array(
             'blog' => $blog,
+            'posts' => $posts,
+            'tag' => $tag
         );
     }
 }

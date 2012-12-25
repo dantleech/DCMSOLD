@@ -25,7 +25,7 @@ class EndpointMapper implements ControllerMapperInterface
             foreach ($this->eps as $ep) {
                 $contentFqn = $ep->getContentFQN();
                 if (get_class($endpoint) == $ep->getContentFQN()) {
-                    $this->epContext->setInEndpoint(true);
+                    $this->epContext->setOnEndpoint(true);
                     return $ep->getController('render');
                 }
             }

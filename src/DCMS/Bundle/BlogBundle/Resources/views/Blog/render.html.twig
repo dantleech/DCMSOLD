@@ -2,7 +2,8 @@
 {% block endpoint %}
 <h2>{{ blog.nodeName }}</h2>
 {% include "DCMSBlogBundle:Post:_postList.html.twig" with {
-    "posts": blog.posts, 
-    "tag": null,
+    posts: posts, 
+    tag: tag,
+    blog: null
 } %}
 {% endblock %}

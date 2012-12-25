@@ -10,10 +10,10 @@ class EpContextTest extends \PHPUnit_Framework_Testcase
         $this->epContext = new EpContext;
     }
 
-    public function testSetGetInEndpoint()
+    public function testSetGetOnEndpoint()
     {
-        $this->epContext->setInEndpoint(true);
-        $this->assertTrue($this->epContext->getInEndpoint());
+        $this->epContext->setOnEndpoint(true);
+        $this->assertTrue($this->epContext->getOnEndpoint());
     }
 }
 

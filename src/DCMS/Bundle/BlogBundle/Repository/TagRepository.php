@@ -30,22 +30,26 @@ class TagRepository
     {
         $qb = $this->getTagPostRepo()->createQueryBuilder('tp');
         $qb->join('tp.tag', 't');
-        $qb->select('t.name, count(tp.tag) c');
+        $qb->select('t.name, count(tp.tag) c, tp.blogUuid blogUuid');
         $qb->groupBy('t.name');
         $q = $qb->getQuery();
         $results = $q->getResult();
         $max = 0;
         $wTags = array();
         foreach ($results as $result) {
-            list($count, $name) = array($result['c'], $result['name']);
-            $wTags[$name] = $count;
+            list($count, $name, $blogUuid) = array($result['c'], $result['name'], $result['blogUuid']);
+            $blog = $this->dm->find('DCMS\Bundle\BlogBundle\Document\BlogEndpoint', $blogUuid);
+            $wTags[$name] = array(
+                'blog' => $blog,
+                'count' => $count,
+            );
             if ($count > $max) {
                 $max = $count;
             }
         }
 
-        foreach ($wTags as $name => &$count) {
-            $count = $count / $max;
+        foreach ($wTags as $name => &$tag) {
+            $tag['weight'] = $tag['count'] / $max;
         }
 
         return $wTags;

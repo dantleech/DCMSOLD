@@ -52,6 +52,10 @@ class PostSubscriber implements EventSubscriber
             if (!$doc->getUuid()) {
                 $dm->refresh($doc);
             }
+            $blog = $doc->getParent();
+            if (!$blog->getUuid()) {
+                $dm->refresh($blog);
+            }
             $this->purgePostTags($doc->getUuid());
             $tags = $doc->getTags();
             foreach ($tags as $tag) {
@@ -70,6 +74,7 @@ class PostSubscriber implements EventSubscriber
                 $tagPost = new TagPost;
                 $tagPost->setTag($tagEnt);
                 $tagPost->setPostUuid($doc->getUuid());
+                $tagPost->setBlogUuid($blog->getUuid());
                 $this->em->persist($tagPost);
             }
             $this->em->flush();

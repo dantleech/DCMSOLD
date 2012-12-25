@@ -35,7 +35,7 @@ class EndpointRepository extends DocumentRepository implements RouteRepositoryIn
         }
         
         $q = $qb->getQuery();
-        $eps = $this->dm->getDocumentsByQuery($q);
+        $eps = $q->execute();
 
         $collection = new RouteCollection();
         foreach ($eps as $ep) {

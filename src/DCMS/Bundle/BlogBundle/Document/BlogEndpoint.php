@@ -19,9 +19,4 @@ class BlogEndpoint extends Endpoint
     {
         return $this->posts;
     }
-    
-    public function setPosts($posts)
-    {
-        $this->posts = $posts;
-    }
 }

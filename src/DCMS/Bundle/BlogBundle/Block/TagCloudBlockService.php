@@ -20,6 +20,13 @@ class TagCloudBlockService extends BaseBlockService
         parent::__construct($name, $templating);
     }
 
+    public function getDefaultSettings()
+    {
+        return array(
+            'path' => 'dcms_blog_post_index'
+        );
+    }
+
     public function buildEditForm(FormMapper $fm, BlockInterface $block)
     {
     }

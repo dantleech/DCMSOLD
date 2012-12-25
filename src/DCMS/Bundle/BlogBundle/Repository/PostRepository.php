@@ -47,7 +47,7 @@ class PostRepository extends DocumentRepository
     public function search($options)
     {
         $q = $this->searchQuery($options);
-        $res = $this->getDocumentsByQuery($q);
+        $res = $q->execute();
         return $res;
     }
 }

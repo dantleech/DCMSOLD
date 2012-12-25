@@ -5,5 +5,5 @@
         <h3 class="subheader">Posts</h3>
     </div>
 </div>
-{% include "DCMSBlogBundle:Post:_postList.html.twig" %}
+{% include "DCMSBlogBundle:Post:_postList.html.twig" with { linkToEdit: true } %}
 {% endblock %}

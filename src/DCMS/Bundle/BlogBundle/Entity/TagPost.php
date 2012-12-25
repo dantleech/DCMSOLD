@@ -22,6 +22,12 @@ class TagPost
      */
     protected $postUuid;
 
+    /**
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\Column(type="string")
+     */
+    protected $blogUuid;
+
     public function getId()
     {
         return $this->id;
@@ -45,5 +51,15 @@ class TagPost
     public function setPostUuid($postUuid)
     {
         $this->postUuid = $postUuid;
+    }
+
+    public function getBlogUuid()
+    {
+        return $this->blogUuid;
+    }
+    
+    public function setBlogUuid($blogUuid)
+    {
+        $this->blogUuid = $blogUuid;
     }
 }

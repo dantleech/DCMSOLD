@@ -9,7 +9,6 @@ use Doctrine\ODM\PHPCR\DocumentRepository;
 use Symfony\Component\Routing\Route;
 
 class EndpointRepository extends DocumentRepository implements RouteRepositoryInterface
-
 {
     public function findManyByUrl($url)
     {

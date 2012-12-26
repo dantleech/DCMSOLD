@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use dflydev\markdown\MarkdownParser;
 
-class PostController extends DCMSController
+class PostController extends BaseController
 {
     protected function getPost()
     {

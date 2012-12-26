@@ -59,7 +59,7 @@ class EndpointDefinition
 
     public function setControllers(array $controllers)
     {
-        $this->controllers = $controllers;
+        $this->controllers = array_merge($this->controllers, $controllers);
         return $this;
     }
 

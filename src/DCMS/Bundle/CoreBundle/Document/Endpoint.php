@@ -230,12 +230,13 @@ class Endpoint
             if (false === $parent->getRouteable()) {
                 break;
             }
-
-            $paths[] = $parent->getPath();
+            $path = $parent->getPath();
+            $paths[] = $path;
             $currentParent = $parent;
         }
 
         $fullPath = implode('/', array_reverse($paths));
+        $fullPath = str_replace('//', '/', $fullPath);
         return $fullPath;
     }
 }

@@ -85,17 +85,6 @@ class Post extends Endpoint
      */
     public function updateSlug()
     {
-        setlocale(LC_CTYPE, 'fr_FR.UTF8');
-        $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $this->title);
-        $clean = strip_tags($clean);
-        $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
-        $clean = strtolower(trim($clean, '-'));
-        $clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
-
-        if (substr($clean, -1) == '-') {
-            $clean = substr($clean, 0, -1);
-        }
-
         $this->nodeName = $clean;
         $this->path = $clean;
     }

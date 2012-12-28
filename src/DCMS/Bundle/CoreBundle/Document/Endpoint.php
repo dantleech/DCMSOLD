@@ -32,19 +32,24 @@ class Endpoint
     protected $children;
 
     /** 
-     * @PHPCR\NodeName
+     * URL compatible name
+     * @PHPCR\NodeName()
      */
-    protected $nodeName;
+    protected $name;
 
     /**
-     * @PHPCR\Node
-     */
-    protected $node;
-
-    /**
+     * Title (infer name from this if autoRoute)
      * @PHPCR\String()
      */
-    protected $path;
+    protected $title;
+
+    /**
+     * If the children should be orderable
+     *   - e.g. blog posts are non user-orderable
+     *
+     * @PHPCR\Boolean()
+     */
+    protected $orderableChildren = true;
 
     /**
      * @PHPCR\referenceOne(strategy="hard", targetDocument="DCMS\Bundle\ThemeBundle\Document\Template")
@@ -69,12 +74,22 @@ class Endpoint
     /**
      * @PHPCR\Boolean()
      */
-    protected $inheritPath = false;
+    protected $routeAuto = true;
+
+    /**
+     * @PHPCR\String()
+     */
+    protected $routePath;
 
     /**
      * @PHPCR\Boolean()
      */
     protected $routeable = true;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     public function getId()
     {
@@ -89,6 +104,15 @@ class Endpoint
     public function setParent($parent)
     {
         $this->parent = $parent;
+    }
+
+    public function getEndpointParent()
+    {
+        if ($this->parent instanceOf Endpoint) {
+            return $this->parent;
+        }
+
+        return null;
     }
 
     public function getChildren()
@@ -115,14 +139,24 @@ class Endpoint
         $this->children->add($child);
     }
 
-    public function getNodeName()
+    public function getName()
     {
-        return $this->nodeName;
+        return $this->name;
     }
     
-    public function setNodeName($nodeName)
+    public function setName($name)
     {
-        $this->nodeName = $nodeName;
+        $this->name = $name;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     public function getPath()
@@ -175,11 +209,6 @@ class Endpoint
         $this->layout = $layout;
     }
 
-    public function __toString()
-    {
-        return $this->nodeName;
-    }
-
     public function getNode()
     {
         return $this->node;
@@ -195,14 +224,14 @@ class Endpoint
         $this->showInMenu = $showInMenu;
     }
 
-    public function getInheritPath()
+    public function getRouteInheritPath()
     {
-        return $this->inheritPath;
+        return $this->routeInheritPath;
     }
     
-    public function setInheritPath($inheritPath)
+    public function setRouteInheritPath($routeInheritPath)
     {
-        $this->inheritPath = $inheritPath;
+        $this->routeInheritPath = $routeInheritPath;
     }
 
     public function getRouteable()
@@ -215,28 +244,51 @@ class Endpoint
         $this->routeable = $routeable;
     }
 
-    public function getFullPath()
+    public function getOrderableChildren()
     {
-        $parents = array();
-        $currentParent = $this;
-        $paths = array(
-            $this->getPath(),
-        );
-        while ($parent = $currentParent->getParent()) {
-            if (false === $parent instanceOf Endpoint) {
-                break;
-            }
+        return $this->orderableChildren;
+    }
+    
+    public function setOrderableChildren($orderableChildren)
+    {
+        $this->orderableChildren = $orderableChildren;
+    }
 
-            if (false === $parent->getRouteable()) {
-                break;
-            }
-            $path = $parent->getPath();
-            $paths[] = $path;
-            $currentParent = $parent;
+    public function getRouteAuto()
+    {
+        return $this->routeAuto;
+    }
+    
+    public function setRouteAuto($routeAuto)
+    {
+        $this->routeAuto = $routeAuto;
+    }
+
+    /**
+     * @PHPCR\PreUpdate()
+     * @PHPCR\PrePersist()
+     */
+    public function prePersist()
+    {
+        $path = array();
+        if (true === $this->autoName) {
+            $this->name = $this->slugify($this->title);
+        }
+    }
+
+    protected function slugify($name)
+    {
+        setlocale(LC_CTYPE, 'fr_FR.UTF8');
+        $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $name);
+        $clean = strip_tags($clean);
+        $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+        $clean = strtolower(trim($clean, '-'));
+        $clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
+
+        if (substr($clean, -1) == '-') {
+            $clean = substr($clean, 0, -1);
         }
 
-        $fullPath = implode('/', array_reverse($paths));
-        $fullPath = str_replace('//', '/', $fullPath);
-        return $fullPath;
+        return $clean;
     }
 }

@@ -4,7 +4,7 @@ namespace DCMS\Bundle\CoreBundle\Module\Definition;
 
 class EndpointDefinition
 {
-    protected $contentFQN;
+    protected $endpointFQN;
     protected $icon;
     protected $title;
 
@@ -13,10 +13,7 @@ class EndpointDefinition
         'render',
     );
 
-    protected $controllers = array(
-        'edit' => null,
-        'render' => null,
-    );
+    protected $controller;
 
     protected $formTypes = array(
         'edit' => 'DCMS\Bundle\CoreBundle\Form\BaseEndpointType',
@@ -30,9 +27,9 @@ class EndpointDefinition
         'edit' => array(),
     );
 
-    public function __construct($contentFQN)
+    public function __construct($endpointFQN)
     {
-        $this->contentFQN = $contentFQN;
+        $this->endpointFQN = $endpointFQN;
     }
 
     public function setIcon($icon)
@@ -52,20 +49,20 @@ class EndpointDefinition
         return $this->icon;
     }
 
-    public function getContentFQN()
+    public function getEndpointFQN()
     {
-        return $this->contentFQN;
+        return $this->endpointFQN;
     }
 
-    public function setControllers(array $controllers)
+    public function setController($controller)
     {
-        $this->controllers = array_merge($this->controllers, $controllers);
+        $this->controller = $controller;
         return $this;
     }
 
-    public function getController($type)
+    public function getController()
     {
-        return $this->controllers[$type];
+        return $this->controller;
     }
 
     public function setJavascriptDependencies(array $jsDeps)
@@ -104,5 +101,16 @@ class EndpointDefinition
     public function getTitle()
     {
         return $this->title;
+    }
+
+    public function setRoutingResource($resource)
+    {
+        $this->routingResource = $resource;
+        return $this;
+    }
+
+    public function getRoutingResource()
+    {
+        return $this->routingResource;
     }
 }

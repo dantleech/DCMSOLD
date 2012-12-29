@@ -6,17 +6,55 @@ use Symfony\Component\Routing\RouteCollection;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use PHPCR\Query\QOM\QueryObjectModelConstantsInterface as Constants;
 use Doctrine\ODM\PHPCR\DocumentRepository;
-use Symfony\Component\Routing\Route;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 
-class EndpointRepository extends DocumentRepository implements RouteRepositoryInterface
+class EndpointRepository implements RouteRepositoryInterface
 {
+    protected $dm;
+    protected $mm;
+    protected $loader;
+
+    public function __construct(DocumentManager $dm, ModuleManager $mm, LoaderInterface $loader)
+    {
+        $this->dm = $dm;
+        $this->loader = $loader;
+        $this->mm = $mm;
+    }
+
+    public function recursiveFindRoute($url)
+    {
+        $parts = explode('/', $url);
+        $first = admay_shift($parts);
+        $qb = $this->dm->createQueryBuilder();
+        $qb->from($qf->selector('dcms:endpoint'));
+        $qb->where(
+            $qb->qmof()->comparison(
+                $qb->qmof()->propertyValue('name'), 
+                Constants::JCR_OPERATOR_EQUAL_TO, 
+                $qf->literal($first)
+            )
+        );
+
+        $eps = $qb->getQuery()->execute();
+
+        if ($eps->count() == 0) {
+            return null;
+        }
+
+        if (count($eps) == 1) {
+            return $eps[0];
+        }
+
+        foreach ($parts as $ep) {
+
+        }
+    }
+
     public function findManyByUrl($url)
     {
         $qb = $this->dm->createQueryBuilder();
-        $qf = $qb->getQOMFactory();
         $qb->from($qf->selector('dcms:endpoint'));
-        $parts = explode('/', $url);
-        $parts[] = $url;
         foreach ($parts as $part) {
             if ('' === $part) {
                 continue;
@@ -32,7 +70,7 @@ class EndpointRepository extends DocumentRepository implements RouteRepositoryIn
                 )
             );
         }
-        
+
         $q = $qb->getQuery();
         $eps = $q->execute();
 

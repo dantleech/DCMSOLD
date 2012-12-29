@@ -52,35 +52,48 @@ class WebTestCase extends BaseWebTestCase
         }
         $params = $connection->getParams();
 
-        // drop database
-        $schemaTool = new SchemaTool($this->getEm());
-        $schemaTool->dropDatabase($params['dbname']);
+        $dbFile = sprintf('%s/test.db', 
+            $this->getContainer()->getParameter('kernel.cache_dir')
+        );
+        $backupDbFile = sprintf('%s/test.db.clean', 
+            $this->getContainer()->getParameter('kernel.cache_dir')
+        );
 
-        // init phpcr
-        $initCommand = new InitDoctrineDbalCommand;
-        $helperSet = new HelperSet(array(
-            new DoctrineDbalHelper($connection)
-        ));
-        $initCommand->setHelperSet($helperSet);
-        $initCommand->run(new ArrayInput(array()), new NullOutput);
+        if (!file_exists($backupDbFile)) {
+            // drop database
+            $schemaTool = new SchemaTool($this->getEm());
+            $schemaTool->dropDatabase($params['dbname']);
 
-        // create test workspace
-        $session = $this->getDm()->getPHPCRSession();
-        $workspace = $session->getWorkspace();
-        $workspace->createWorkspace('test');
+            // init phpcr
+            $initCommand = new InitDoctrineDbalCommand;
+            $helperSet = new HelperSet(array(
+                new DoctrineDbalHelper($connection)
+            ));
+            $initCommand->setHelperSet($helperSet);
+            $initCommand->run(new ArrayInput(array()), new NullOutput);
 
-        // register system nodes
-        $registerNodesCmd = new RegisterSystemNodeTypesCommand;
-        $helperSet = new HelperSet(array(
-            new PhpcrHelper($session)
-        ));
-        $registerNodesCmd->setHelperSet($helperSet);
-        $registerNodesCmd->run(new ArrayInput(array()), new NullOutput);
+            // create test workspace
+            $session = $this->getDm()->getPHPCRSession();
+            $workspace = $session->getWorkspace();
+            $workspace->createWorkspace('test');
 
-        // register endpoint nodes
-        $registerNodesCmd = new RegisterNodeTypesCommand;
-        $registerNodesCmd->setContainer($this->getContainer());
-        $registerNodesCmd->run(new ArrayInput(array()), new NullOutput);
+            // register system nodes
+            $registerNodesCmd = new RegisterSystemNodeTypesCommand;
+            $helperSet = new HelperSet(array(
+                new PhpcrHelper($session)
+            ));
+            $registerNodesCmd->setHelperSet($helperSet);
+            $registerNodesCmd->run(new ArrayInput(array()), new NullOutput);
+
+            // register endpoint nodes
+            $registerNodesCmd = new RegisterNodeTypesCommand;
+            $registerNodesCmd->setContainer($this->getContainer());
+            $registerNodesCmd->run(new ArrayInput(array()), new NullOutput);
+            copy($dbFile, $backupDbFile);
+        } else {
+            unlink($dbFile);
+            copy($backupDbFile, $dbFile);
+        }
 
         $loader = $this->getFixtureLoader($fixtureClasses);
         $purger = new PHPCRPurger($this->getDm());

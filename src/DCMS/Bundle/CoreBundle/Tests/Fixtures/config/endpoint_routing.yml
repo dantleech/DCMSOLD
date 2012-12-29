@@ -1,0 +1,11 @@
+index:
+    pattern: /
+    defaults: { _controller: FooBar }
+
+foobar:
+    pattern: /foo/{bar}
+    defaults: { _controller: FooBar }
+
+barfoo:
+    pattern: /foo/{bar}/tag/boo
+    defaults: { _controller: FooBar }

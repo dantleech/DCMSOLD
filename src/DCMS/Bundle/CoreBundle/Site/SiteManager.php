@@ -34,4 +34,10 @@ class SiteManager
         $this->init();
         return $this->site;
     }
+
+    public function getEndpointPath()
+    {
+        $this->init();
+        return $this->site->getId().'/endpoints';
+    }
 }

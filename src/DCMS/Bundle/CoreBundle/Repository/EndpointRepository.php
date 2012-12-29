@@ -8,81 +8,77 @@ use PHPCR\Query\QOM\QueryObjectModelConstantsInterface as Constants;
 use Doctrine\ODM\PHPCR\DocumentRepository;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
+use DCMS\Bundle\CoreBundle\Site\SiteManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class EndpointRepository implements RouteRepositoryInterface
+class EndpointRepository implements RouteRepositoryInterface, ContainerAwareInterface
 {
     protected $dm;
     protected $mm;
-    protected $loader;
+    protected $sm;
+    protected $container;
 
-    public function __construct(DocumentManager $dm, ModuleManager $mm, LoaderInterface $loader)
+    public function __construct(DocumentManager $dm, ModuleManager $mm, SiteManager $sm)
     {
         $this->dm = $dm;
-        $this->loader = $loader;
         $this->mm = $mm;
+        $this->sm = $sm;
     }
 
-    public function recursiveFindRoute($url)
+    public function setContainer(ContainerInterface $container = null)
     {
-        $parts = explode('/', $url);
-        $first = admay_shift($parts);
-        $qb = $this->dm->createQueryBuilder();
-        $qb->from($qf->selector('dcms:endpoint'));
-        $qb->where(
-            $qb->qmof()->comparison(
-                $qb->qmof()->propertyValue('name'), 
-                Constants::JCR_OPERATOR_EQUAL_TO, 
-                $qf->literal($first)
-            )
-        );
-
-        $eps = $qb->getQuery()->execute();
-
-        if ($eps->count() == 0) {
-            return null;
-        }
-
-        if (count($eps) == 1) {
-            return $eps[0];
-        }
-
-        foreach ($parts as $ep) {
-
-        }
+        $this->container = $container;
     }
 
     public function findManyByUrl($url)
     {
-        $qb = $this->dm->createQueryBuilder();
-        $qb->from($qf->selector('dcms:endpoint'));
+        if (substr($url, 0, 1) == '/') {
+            $url = substr($url, 1);
+        }
+        $parts = explode('/', $url);
+        $first = array_shift($parts);
+        $firstPath = $this->sm->getEndpointPath().'/'.$first;
+
+        $ep = $this->dm->find(
+            'DCMS\Bundle\CoreBundle\Document\Endpoint',
+            $firstPath
+        );
+
+        if (null === $ep) {
+            return null;
+        }
+
+        $currentNode = $ep->getNode();
         foreach ($parts as $part) {
-            if ('' === $part) {
-                continue;
+            $currentNode = $ep->getNode();
+            $children = $currentNode->getNodes();
+            $match = false;
+            foreach ($children as $child) {
+                if ($child->getName() == $part) {
+                    $currentNode = $child;
+                    $match = true;
+                }
             }
-            $qb->orWhere(
-                $qf->andConstraint(
-                    $qf->comparison(
-                        $qf->propertyValue('path'), Constants::JCR_OPERATOR_EQUAL_TO, $qf->literal($part)
-                    ),
-                    $qf->comparison(
-                        $qf->propertyValue('routeable'), Constants::JCR_OPERATOR_EQUAL_TO, $qf->literal(true)
-                    )
-                )
-            );
+
+            if (false === $match) {
+                break;
+            }
         }
 
-        $q = $qb->getQuery();
-        $eps = $q->execute();
+        $ep = $this->dm->getUnitOfWork()->createDocument('DCMS\Bundle\CoreBundle\Document\Endpoint', $currentNode);
+        $epDef = $this->mm->getEndpointDefinition($ep);
+        $routingResource = $epDef->getRoutingResource();
+        $loader = $this->container->get('routing.loader');
+        $collection = $loader->load($routingResource);
 
-        $collection = new RouteCollection();
-        foreach ($eps as $ep) {
-            $route = new Route($ep->getFullPath(), array(
-                'endpoint' => $ep,
-            ));
-
-            $collection->add('dcms_endpoint_'.uniqid(), $route);
+        foreach ($collection as $route) {
+            $route->setDefault('_endpoint', $ep);
         }
 
+        // strip off PHPCR path
+        $prefix = substr($ep->getId(), strlen($this->sm->getEndpointPath()));
+        $collection->addPrefix($prefix);
         return $collection;
     }
 

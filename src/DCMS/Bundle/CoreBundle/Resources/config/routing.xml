@@ -8,7 +8,8 @@
         <service id="dcms_core.repository.endpoint" class="DCMS\Bundle\CoreBundle\Repository\EndpointRepository" >
             <argument type="service" id="doctrine_phpcr.odm.document_manager"/>
             <argument type="service" id="dcms_core.module_manager"/>
-            <argument type="service" id="routing.loader"/>
+            <argument type="service" id="dcms_core.site_manager"/>
+            <call method="setContainer"><argument type="service" id="service_container"/></call>
         </service>
 
         <service id="dcms_core.routing_mapper.endpoint" class="DCMS\Bundle\CoreBundle\Mapper\EndpointMapper">

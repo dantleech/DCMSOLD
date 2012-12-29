@@ -85,6 +85,11 @@ class Endpoint
      */
     protected $routeable = true;
 
+    /**
+     * @PHPCR\Node()
+     */
+    protected $node;
+
     public function __toString()
     {
         return $this->name;

@@ -23,15 +23,15 @@ class LoadSiteData implements FixtureInterface
         $s->setName('dantleech');
         $manager->persist($s);
 
-        $f = new Folder;
-        $f->setParent($s);
-        $f->setNodeName('endpoints');
-        $manager->persist($f);
+        $endpoints = new Folder;
+        $endpoints->setParent($s);
+        $endpoints->setNodeName('endpoints');
+        $manager->persist($endpoints);
 
-        $f = new Folder;
-        $f->setParent($s);
-        $f->setNodeName('templates');
-        $manager->persist($f);
+        $templates = new Folder;
+        $templates->setParent($s);
+        $templates->setNodeName('templates');
+        $manager->persist($templates);
 
         $manager->flush();
     }

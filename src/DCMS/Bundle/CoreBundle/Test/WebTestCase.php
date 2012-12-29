@@ -13,6 +13,9 @@ use Jackalope\Tools\Console\Helper\DoctrineDbalHelper;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader as DataFixturesLoader;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ODM\PHPCR\Tools\Console\Command\RegisterSystemNodeTypesCommand;
+use PHPCR\Util\Console\Helper\PhpcrHelper;
+use DCMS\Bundle\CoreBundle\Command\RegisterNodeTypesCommand;
 
 class WebTestCase extends BaseWebTestCase
 {
@@ -65,6 +68,19 @@ class WebTestCase extends BaseWebTestCase
         $session = $this->getDm()->getPHPCRSession();
         $workspace = $session->getWorkspace();
         $workspace->createWorkspace('test');
+
+        // register system nodes
+        $registerNodesCmd = new RegisterSystemNodeTypesCommand;
+        $helperSet = new HelperSet(array(
+            new PhpcrHelper($session)
+        ));
+        $registerNodesCmd->setHelperSet($helperSet);
+        $registerNodesCmd->run(new ArrayInput(array()), new NullOutput);
+
+        // register endpoint nodes
+        $registerNodesCmd = new RegisterNodeTypesCommand;
+        $registerNodesCmd->setContainer($this->getContainer());
+        $registerNodesCmd->run(new ArrayInput(array()), new NullOutput);
 
         $loader = $this->getFixtureLoader($fixtureClasses);
         $purger = new PHPCRPurger($this->getDm());

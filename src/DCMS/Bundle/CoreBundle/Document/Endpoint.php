@@ -12,17 +12,17 @@ use Symfony\Component\Routing\Route;
 class Endpoint
 {
     /** 
-     * @PHPCR\Id
+     * @PHPCR\Id()
      */
     protected $id;
 
     /**
-     * @PHPCR\Uuid
+     * @PHPCR\Uuid()
      */
     protected $uuid;
 
     /** 
-     * @PHPCR\ParentDocument
+     * @PHPCR\ParentDocument()
      */
     protected $parent;
 
@@ -32,7 +32,6 @@ class Endpoint
     protected $children;
 
     /** 
-     * URL compatible name
      * @PHPCR\NodeName()
      */
     protected $name;
@@ -74,7 +73,7 @@ class Endpoint
     /**
      * @PHPCR\Boolean()
      */
-    protected $routeAuto = true;
+    protected $autoName = true;
 
     /**
      * @PHPCR\String()
@@ -254,14 +253,14 @@ class Endpoint
         $this->orderableChildren = $orderableChildren;
     }
 
-    public function getRouteAuto()
+    public function getAutoName()
     {
-        return $this->routeAuto;
+        return $this->autoName;
     }
     
-    public function setRouteAuto($routeAuto)
+    public function setAutoName($autoName)
     {
-        $this->routeAuto = $routeAuto;
+        $this->autoName = $autoName;
     }
 
     /**
@@ -272,6 +271,9 @@ class Endpoint
     {
         $path = array();
         if (true === $this->autoName) {
+            if (!$this->title) {
+                throw new \Exception('Endpoint has autoName set, but title is empty. Use setTitle');
+            }
             $this->name = $this->slugify($this->title);
         }
     }

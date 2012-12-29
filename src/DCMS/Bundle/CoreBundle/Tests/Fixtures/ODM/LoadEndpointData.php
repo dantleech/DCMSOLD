@@ -23,12 +23,12 @@ class LoadEndpointData implements FixtureInterface, DependentFixtureInterface
 
         $home = new Endpoint;
         $home->setParent($rt);
-        $home->setName('home');
+        $home->setTitle('Home');
         $manager->persist($home);
 
         $contact = new Endpoint;
         $contact->setParent($home);
-        $contact->setNodeName('contact');
+        $contact->setTitle('Contact');
         $manager->persist($contact);
 
         $manager->flush();

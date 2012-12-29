@@ -46,7 +46,7 @@ class EndpointController extends Controller
 
     protected function getEPRoot()
     {
-        $root = $this->getDm()->find(null, '/sites/dantleech/endpoints');
+        $root = $this->getDm()->find(null, '/sites/dantleech.com/endpoints');
         return $root;
     }
 

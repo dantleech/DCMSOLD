@@ -18,7 +18,7 @@ class LoadMenuEndpointData implements FixtureInterface, DependentFixtureInterfac
 
     public function load(ObjectManager $manager)
     {
-        $rt = $manager->find(null, '/sites/dantleech/templates');
+        $rt = $manager->find(null, '/sites/dantleech.com/templates');
 
         $e = new Template;
         $e->setParent($rt);

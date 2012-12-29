@@ -18,7 +18,7 @@ class LoadEndpointData implements FixtureInterface, DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        $rt = $manager->find(null, '/sites/dantleech/endpoints');
+        $rt = $manager->find(null, '/sites/dantleech.com/endpoints');
 
         $e = new MarkdownEndpoint;
         $e->setParent($rt);

@@ -19,7 +19,7 @@ class SiteManager
             return;
         }
 
-        $sitePath = '/sites/dantleech';
+        $sitePath = '/sites/dantleech.com';
         $site = $this->sr->find($sitePath);
 
         if (!$site) {

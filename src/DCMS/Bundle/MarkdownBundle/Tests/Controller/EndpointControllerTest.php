@@ -12,7 +12,7 @@ class EndpointControllerTest extends WebTestCase
         ));
         $this->client = $this->createClient();
         $this->epRep = $this->getDm()->getRepository('DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint');
-        $this->ep1 = $this->epRep->find('/sites/dantleech/endpoints/cv');
+        $this->ep1 = $this->epRep->find('/sites/dantleech.com/endpoints/cv');
     }
 
     public function testEdit()

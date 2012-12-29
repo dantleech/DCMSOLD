@@ -20,7 +20,7 @@ class LoadSiteData implements FixtureInterface
 
         $s = new Site;
         $s->setParent($f);
-        $s->setName('dantleech');
+        $s->setName('dantleech.com');
         $manager->persist($s);
 
         $f = new Folder;

@@ -34,7 +34,7 @@ class TemplateController extends DCMSController
 
     protected function getRootPath()
     {
-        $root = $this->getDm()->find(null, '/sites/dantleech/templates');
+        $root = $this->getDm()->find(null, '/sites/dantleech.com/templates');
         return $root;
     }
 

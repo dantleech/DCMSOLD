@@ -20,7 +20,7 @@ class LoadBlogData implements FixtureInterface, DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        $epRoot = $manager->find(null, '/sites/dantleech/endpoints');
+        $epRoot = $manager->find(null, '/sites/dantleech.com/endpoints');
 
         $ep = new BlogEndpoint;
         $ep->setParent($epRoot);

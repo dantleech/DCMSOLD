@@ -79,16 +79,6 @@ class Post extends Endpoint
         return substr($this->body, 0, 255).$suffix;
     }
 
-    /**
-     * @PHPCR\PreUpdate
-     * @PHPCR\PrePersist
-     */
-    public function updateSlug()
-    {
-        $this->nodeName = $clean;
-        $this->path = $clean;
-    }
-
     public function getDate()
     {
         return $this->date;

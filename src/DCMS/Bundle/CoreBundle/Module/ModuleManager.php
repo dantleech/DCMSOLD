@@ -62,7 +62,7 @@ class ModuleManager
         $epsForSelect = array();
 
         foreach ($this->getEndpointDefinitions() as $epDef) {
-            $epsForSelect[$epDef->getContentFQN()] = $epDef->getTitle();
+            $epsForSelect[$epDef->getEndpointFQN()] = $epDef->getTitle();
         }
 
         return $epsForSelect;

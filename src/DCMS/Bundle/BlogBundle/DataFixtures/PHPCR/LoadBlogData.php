@@ -24,8 +24,7 @@ class LoadBlogData implements FixtureInterface, DependentFixtureInterface
 
         $ep = new BlogEndpoint;
         $ep->setParent($epRoot);
-        $ep->setNodeName('Dans Blog');
-        $ep->setPath('/blog');
+        $ep->setTitle('Dans Blog');
         $manager->persist($ep);
         $manager->flush();
 
@@ -42,8 +41,7 @@ class LoadBlogData implements FixtureInterface, DependentFixtureInterface
 
         $ep = new BlogEndpoint;
         $ep->setParent($epRoot);
-        $ep->setNodeName('Bicycle tour 2013');
-        $ep->setPath('/travel');
+        $ep->setTitle('Bicycle tour 2013');
         $manager->persist($ep);
         $manager->flush();
 

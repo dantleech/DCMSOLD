@@ -9,9 +9,7 @@ class BaseEndpointType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nodeName');
-        $builder->add('path');
-        $builder->add('routeable');
+        $builder->add('title');
         $builder->add('layout', 'phpcr_document', array(
             'class' => 'DCMS\Bundle\ThemeBundle\Document\Template',
             'empty_value' => '<default template>',

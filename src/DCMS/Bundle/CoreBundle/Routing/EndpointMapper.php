@@ -1,6 +1,6 @@
 <?php
 
-namespace DCMS\Bundle\CoreBundle\Mapper;
+namespace DCMS\Bundle\CoreBundle\Routing;
 
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 use DCMS\Bundle\CoreBundle\Helper\EpContext;

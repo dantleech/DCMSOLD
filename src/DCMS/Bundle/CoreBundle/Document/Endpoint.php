@@ -7,7 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Route;
 
 /**
- * @PHPCR\Document(nodeType="dcms:endpoint",referenceable=true, repositoryClass="DCMS\Bundle\CoreBundle\Repository\EndpointRepository")
+ * @PHPCR\Document(
+ *  nodeType="dcms:endpoint",
+ *  referenceable=true,
+ *  repositoryClass="DCMS\Bundle\CoreBundle\Repository\EndpointRepository"
+ * )
  */
 class Endpoint
 {
@@ -74,11 +78,6 @@ class Endpoint
      * @PHPCR\Boolean()
      */
     protected $autoName = true;
-
-    /**
-     * @PHPCR\String()
-     */
-    protected $routePath;
 
     /**
      * @PHPCR\Boolean()
@@ -161,16 +160,6 @@ class Endpoint
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-
-    public function getPath()
-    {
-        return $this->path;
-    }
-    
-    public function setPath($path)
-    {
-        $this->path = $path;
     }
 
     public function getEpClass()

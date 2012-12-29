@@ -22,8 +22,7 @@ class LoadEndpointData implements FixtureInterface, DependentFixtureInterface
 
         $e = new MarkdownEndpoint;
         $e->setParent($rt);
-        $e->setNodeName('home');
-        $e->setPath('/');
+        $e->setTitle('Home');
         $e->setContent(<<<FOO
 This is a test
 ==============
@@ -35,8 +34,7 @@ FOO
 
         $e = new MarkdownEndpoint;
         $e->setParent($rt);
-        $e->setNodeName('cv');
-        $e->setPath('/cv');
+        $e->setTitle('CV');
         $e->setContent(<<<FOO
 Curriculum Vitae
 ================
@@ -58,8 +56,7 @@ FOO
 
         $about = new MarkdownEndpoint;
         $about->setParent($rt);
-        $about->setNodeName('about');
-        $about->setPath('/about');
+        $about->setTitle('About');
         $about->setContent(<<<FOO
 About this site
 FOO
@@ -68,8 +65,7 @@ FOO
 
         $e = new MarkdownEndpoint;
         $e->setParent($about);
-        $e->setNodeName('me');
-        $e->setPath('/me');
+        $e->setTitle('Me');
         $e->setContent(<<<FOO
 About me
 FOO
@@ -78,8 +74,7 @@ FOO
 
         $e = new MarkdownEndpoint;
         $e->setParent($about);
-        $e->setNodeName('them');
-        $e->setPath('/them');
+        $e->setTitle('Them');
         $e->setContent(<<<FOO
 About them 
 FOO
@@ -87,8 +82,7 @@ FOO
         $manager->persist($e);
         $e = new MarkdownEndpoint;
         $e->setParent($rt);
-        $e->setNodeName('finding stray commits');
-        $e->setPath('/blog/finding-stray-commits');
+        $e->setTitle('Finding stray commits');
         $e->setContent(<<<FOO
 How many times have you done some work on some branch, which was not the right branch, only to go back to the branch you __thought__ you were working on, only to find out that your precious commit has dissapeared, where is it?
 

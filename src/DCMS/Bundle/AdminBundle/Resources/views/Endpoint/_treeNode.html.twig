@@ -6,7 +6,7 @@
             'endpoint_uuid': node.uuid
         }) }}">
             <img src="{{ asset(mm.endpointDefinition(node).icon) }}"/>
-            {{ node.nodeName }}
+            {{ node.title }}
         </a>
     {% else %}
         {{ node|yaml_dump }}

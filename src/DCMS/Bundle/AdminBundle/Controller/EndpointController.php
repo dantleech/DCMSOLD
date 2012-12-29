@@ -15,7 +15,7 @@ class EndpointController extends Controller
 {
     protected function getRepo()
     {
-        $repo = $this->get('dcms_core.repository.endpoint');
+        $repo = $this->getDm()->getRepository('DCMS\Bundle\CoreBundle\Document\Endpoint');
         return $repo;
     }
 
@@ -94,7 +94,7 @@ class EndpointController extends Controller
                 $this->getDm()->persist($ep);
                 $this->getDm()->flush();
                 $this->getNotifier()->info('Endpoint "%s" updated', array(
-                    $ep->getNodeName()
+                    $ep->getTitle()
                 ));
 
                 return $this->redirect($this->generateUrl('dcms_admin_endpoint_edit', array(
@@ -132,8 +132,8 @@ class EndpointController extends Controller
             $nextEp = $this->getDm()->find(null, $nextUuid);
             $this->getDm()->reorder(
                 $sourceEp->getParent(), 
-                $sourceEp->getNodeName(), 
-                $nextEp->getNodeName(), 
+                $sourceEp->getName(), 
+                $nextEp->getName(), 
                 true
             );
         }
@@ -142,8 +142,8 @@ class EndpointController extends Controller
             $prevEp = $this->getDm()->find(null, $prevUuid);
             $this->getDm()->reorder(
                 $sourceEp->getParent(), 
-                $sourceEp->getNodeName(), 
-                $prevEp->getNodeName(), 
+                $sourceEp->getName(), 
+                $prevEp->getName(), 
                 false
             );
         }
@@ -171,7 +171,7 @@ class EndpointController extends Controller
                 $parent = $this->getDm()->find(null, '/');
 
                 $ep = new $epClass;
-                $ep->setNodeName($data->nodeName);
+                $ep->setTitle($data->title);
                 $ep->setParent($parent);
                 $ep->setPath($data->path);
                 $this->getDm()->persist($ep);
@@ -179,7 +179,7 @@ class EndpointController extends Controller
                 $this->getDm()->refresh($ep);
 
                 $this->getNotifier()->info('Endpoint "%s" created', array(
-                    $ep->getNodeName()
+                    $ep->getTitle()
                 ));
 
                 return $this->render('DCMSAdminBundle:Endpoint:createOK.html.twig', array(

@@ -1,6 +1,6 @@
 {% for child in node.children %}
     <div class="panel">
-        <h3><a href="{{ path('dcms_admin_endpoint_edit', {'endpoint_uuid': child.uuid}) }}">{{ child.path }}</a></h3>
+        <h3><a href="{{ path('dcms_admin_endpoint_edit', {'endpoint_uuid': child.uuid}) }}">{{ child.title }}</a></h3>
         {% set epDef = mm.endpointDefinition(child) %}
         <a href="{{ path('dcms_admin_endpoint_edit', {
             'endpoint_uuid': child.uuid
@@ -8,7 +8,7 @@
         </a>
         <h5>
             <img src="{{ asset(mm.endpointDefinition(child).icon) }}"/>
-            {{ child.nodeName }}
+            {{ ep_path(child) }}
         </h5>
     </div>
     {% if child.children %}

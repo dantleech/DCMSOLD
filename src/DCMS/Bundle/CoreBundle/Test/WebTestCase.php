@@ -31,6 +31,12 @@ class WebTestCase extends BaseWebTestCase
         return $this->kernelInstance->getContainer();
     }
 
+    protected function getUrl($routeName, $params = array())
+    {
+        $router = $this->getContainer()->get('router');
+        return $router->generate($routeName, $params);
+    }
+
     protected function getDm()
     {
         $dm = $this->getContainer()->get('doctrine_phpcr.odm.default_document_manager');
@@ -52,11 +58,14 @@ class WebTestCase extends BaseWebTestCase
         }
         $params = $connection->getParams();
 
+        $hash = md5(serialize($fixtureClasses));
+
         $dbFile = sprintf('%s/test.db', 
             $this->getContainer()->getParameter('kernel.cache_dir')
         );
-        $backupDbFile = sprintf('%s/test.db.clean', 
-            $this->getContainer()->getParameter('kernel.cache_dir')
+        $backupDbFile = sprintf('%s/test.db.%s', 
+            $this->getContainer()->getParameter('kernel.cache_dir'),
+            $hash
         );
 
         if (!file_exists($backupDbFile)) {

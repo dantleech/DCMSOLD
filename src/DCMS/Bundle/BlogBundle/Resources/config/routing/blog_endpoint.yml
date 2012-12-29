@@ -1,0 +1,7 @@
+blog_tag:
+    pattern: /post/tag/{tag}
+    defaults: { _controller: DCMSBlogBundle:Blog:render }
+
+blog_index:
+    pattern: /
+    defaults: { _controller: DCMSBlogBundle:Blog:render }

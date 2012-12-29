@@ -40,6 +40,8 @@ class PostRepository extends DocumentRepository
 
         $qb->orderBy($qf->propertyValue('date'), 'DESC');
         $q = $qb->getQuery();
+        // @todo: Should be handled by QB
+        $q->setDocumentClass('DCMS\Bundle\BlogBundle\Document\Post');
 
         return $q;
     }

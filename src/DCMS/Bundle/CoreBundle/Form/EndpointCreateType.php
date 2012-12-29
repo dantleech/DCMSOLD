@@ -25,7 +25,6 @@ class EndpointCreateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title');
-        $builder->add('path');
         $builder->add('type', 'choice', array(
             'choices' => $this->mm->getEndpointsForSelect(),
         ));

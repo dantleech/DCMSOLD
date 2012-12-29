@@ -12,13 +12,13 @@ class DCMSBlogBundle extends ModuleBundle
     {
         $m = $mm->createModule('blog');
         $m->createEndpointDefinition('DCMS\Bundle\BlogBundle\Document\BlogEndpoint')
-            ->setController('DCMSBlogBundle:Blog:render')
             ->setTitle('Blog')
-            ->setIcon('bundles/dcmsblog/images/blog-16.png');
+            ->setIcon('bundles/dcmsblog/images/blog-16.png')
+            ->setRoutingResource('@DCMSBlogBundle/Resources/config/routing/blog_endpoint.yml');
 
         $m->createEndpointDefinition('DCMS\Bundle\BlogBundle\Document\Post')
             ->setTitle('Post')
-            ->setController('DCMSBlogBundle:Post:render')
-            ->setIcon('bundles/dcmsblog/images/blog-16.png');
+            ->setIcon('bundles/dcmsblog/images/blog-16.png')
+            ->setRoutingResource('@DCMSBlogBundle/Resources/config/routing/blog_post.yml');
     }
 }

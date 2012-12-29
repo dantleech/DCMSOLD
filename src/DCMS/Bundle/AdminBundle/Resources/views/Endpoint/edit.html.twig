@@ -25,21 +25,9 @@
 
         {{ form_errors(form) }}
         <div>
-            {{ form_errors(form.nodeName) }}
-            {{ form_widget(form.nodeName, {'attr': {'class': 'large'}}) }}
-        </div>
-        <div class="row">
-            <div class="nine columns">
-                {{ form_errors(form.path) }}
-                {{ form_widget(form.path) }}
-            </div>
-            <div class="two columns">
-                <label class=".inline">Routable?</label>
-            </div>
-            <div class="one columns">
-                {{ form_errors(form.routeable) }}
-                {{ form_widget(form.routeable) }}
-            </div>
+            {{ form_errors(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'large'}}) }}
+            <span class="ep_abs_path"><a href="{{ ep_abs_path(ep) }}">{{ ep_abs_path(ep) }}</a></span>
         </div>
         <div class="row">
             <div class="six columns">
@@ -51,8 +39,8 @@
                 </div>
             </div>
         </div>
-        {% if epDef.controller('edit') is not null %}
-            {% render epDef.controller('edit') with {
+        {% if epDef.controller is not null %}
+            {% render epDef.controller with {
                 'endpoint': ep,
                 'form': form,
             } %}

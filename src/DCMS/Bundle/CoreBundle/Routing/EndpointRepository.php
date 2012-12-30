@@ -80,6 +80,7 @@ class EndpointRepository implements RouteRepositoryInterface, ContainerAwareInte
         // strip off PHPCR path
         $prefix = substr($ep->getId(), strlen($this->sm->getEndpointPath()));
         $collection->addPrefix($prefix);
+
         return $collection;
     }
 

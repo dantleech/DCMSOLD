@@ -1,6 +1,6 @@
 <?php
 
-namespace DCMS\Bundle\AdminBundle\DataFixtures\PHPCR;
+namespace DCMS\Bundle\MenuBundle\DataFixtures\PHPCR;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;

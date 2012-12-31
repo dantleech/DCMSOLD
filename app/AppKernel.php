@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new ManyMules\ManyMulesFoundationBundle\ManyMulesFoundationBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),
+            new Symfony\Cmf\Bundle\MenuBundle\SymfonyCmfMenuBundle(),
             new DCMS\Bundle\ThemeBundle\DCMSThemeBundle(),
             new DCMS\Bundle\BlogBundle\DCMSBlogBundle(),
         );

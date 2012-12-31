@@ -1,0 +1,20 @@
+{% extends "DCMSAdminBundle::layout.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/dcmsblog/css/blog.css') }}" />
+{% endblock %}
+{% block main %}
+    <div class="row">
+        <div class="three columns">
+            <div class="action-bar">
+                <a href="{{ path('dcms_blog_post_create') }}" class="button">Create</a>
+            </div>
+            {% render 'DCMSMenuBundle:Menu:_menuList' %}
+        </div>
+        <div class="nine columns">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -27,11 +27,6 @@ class TemplateController extends DCMSController
         return $ep;
     }
 
-    protected function getSite()
-    {
-        return $this->get('dcms_core.site_manager')->getSite();
-    }
-
     protected function getRootPath()
     {
         $root = $this->getDm()->find(null, '/sites/dantleech.com/templates');

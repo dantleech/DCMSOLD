@@ -33,6 +33,11 @@ class LoadSiteData implements FixtureInterface
         $f->setNodeName('templates');
         $manager->persist($f);
 
+        $f = new Folder;
+        $f->setParent($s);
+        $f->setNodeName('menus');
+        $manager->persist($f);
+
         $manager->flush();
     }
 }

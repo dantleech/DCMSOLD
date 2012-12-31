@@ -80,6 +80,7 @@ About them
 FOO
     );
         $manager->persist($e);
+
         $e = new MarkdownEndpoint;
         $e->setParent($rt);
         $e->setTitle('Finding stray commits');

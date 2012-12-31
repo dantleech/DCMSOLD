@@ -19,11 +19,13 @@ class DCMSCoreExtension extends \Twig_Extension
         $this->sm = $sm;
     }
 
-    public function initRuntime(\Twig_Environment $environment)
+    public function getGlobals()
     {
-        $environment->addGlobal('dcms_notification_helper', $this->nh);
-        $environment->addGlobal('ep', $this->epContext);
-        $environment->addGlobal('site_manager', $this->sm);
+        return array(
+            'dcms_notification_helper' => $this->nh,
+            'ep' => $this->epContext,
+            'site_manager' => $this->sm,
+        );
     }
 
     public function getFunctions()

@@ -1,0 +1,25 @@
+{% extends "DCMSMenuBundle:Menu:layout.html.twig" %}
+{% block content %}
+<div class="row">
+    <div class="nine columns">
+        <h3 class="subheader">Menus</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        {% for menu in menus %}
+            <div class="panel radius">
+                <h4>
+                    <a href="{{ path('dcms_menu_menu_edit', {
+                        'menu_uuid': menu.uuid
+                    }) }}">{{ menu.title }}</a>
+                </h4>
+                <a href="{{ path('dcms_menu_menu_edit', {
+                    'menu_uuid': menu.uuid
+                }) }}">Edit</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

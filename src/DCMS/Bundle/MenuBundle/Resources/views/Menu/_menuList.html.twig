@@ -1,0 +1,5 @@
+<ul class="nav-bar vertical">
+    {% for menu in menus %}
+    <li><a href="{{ path('dcms_menu_menu_edit', {'menu_uuid': menu.uuid}) }}">{{ menu.title }}</a></li>
+    {% endfor %}
+</ul>

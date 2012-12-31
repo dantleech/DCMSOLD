@@ -20,4 +20,8 @@ class DCMSController extends Controller
         return $notifier;
     }
 
+    protected function getSite()
+    {
+        return $this->get('dcms_core.site_manager')->getSite();
+    }
 }

@@ -10,9 +10,5 @@ class DCMSMenuBundle extends ModuleBundle
     protected function setupModule(ModuleManager $mm)
     {
         $m = $mm->createModule('menu');
-        $m->createEndpointDefinition('DCMS\Bundle\MenuBundle\Document\MenuEndpoint')
-            ->setTitle('Menu')
-            ->setController('DCMSMenuBundle:Endpoint:edit')
-            ->setIcon('bundles/dcmsmenu/images/menu-16.png');
     }
 }

@@ -1,0 +1,210 @@
+{% extends "DCMSMenuBundle:Menu:layout.html.twig" %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/dcmsmenu/js/jquery.nestedSortable.js') }}"></script>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/dcmsmenu/js/jquery.nestedSortable.css') }}" />
+    <style>
+        .node_delete:hover {
+            cursor: pointer;
+        }
+        .node_field {
+            float: left;
+            vertical-align: top;
+            margin-right: 10px;
+        }
+
+        .node_form {
+            float: right;
+        }
+
+        .node_label {
+            float: left;
+            font-size: 18px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <form action="{{ path('dcms_menu_menu_edit', {'menu_uuid': menu.uuid }) }}" method="POST">
+        <div class="row">
+            <div class="six columns">
+                <h3 class="subheader">{{ menu.title }} </h3>
+            </div>
+            <div class="six columns text-right">
+                <input type="submit" value="Update" class="button"/>
+                <a id="delete_menu_button" href="{{ path('dcms_menu_menu_delete', {'menu_uuid': menu.uuid}) }}" class="button alert">Delete</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large two columns">
+                <h6>Create Item</h6>
+            </div>
+            <div class="ten columns">
+                <ul class="button-group radius">
+                    <li><a class="button radius" href="#">Endpoint</a></li>
+                    <li><a class="button radius" href="#">Separator</a></li>
+                    <li><a class="button radius" href="#">External link</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                <ul id="tree"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+var tree = {};
+var serializeableAttrs = [
+    'label',
+    'endpointId',
+    'externalLink',
+    'type'
+]; 
+
+$(document).ready(function () {
+    $.each(tree, function (i, nodeObj) {
+        build_tree(nodeObj, $('#tree'));
+    });
+
+    $('#create_button').bind('click', function () {
+        var nodeObj = {
+            attr: {
+                'routeId': '',
+                'label': 'New node'
+            },
+            data: 'New node'
+        };
+        var li = build_tree(nodeObj);
+        $('#tree').prepend(li);
+        return false;
+    });
+
+    $('#update_button').bind('click', function () {
+        progress.modal.start();
+        var node = {
+            attr: {},
+            data: '',
+            children: []
+        };
+        $('#tree > li').each(function (i, el) {
+            var ret = serialize(el, node);
+            node.children.push(ret);
+        });
+        var data = {
+            'tree': node,
+        };
+        return false;
+    });
+
+    $('#tree').nestedSortable({
+        handle: 'div',
+        items: 'li.node',
+        toleranceElement: '> div',
+        listType: 'ul',
+        placeholder: 'placeholder',
+        forcePlaceholderSize: true
+    });
+});
+
+function build_tree(nodeObj, ulEl) {
+    var li = $('<li/>');
+    li.addClass('node');
+    $.each(nodeObj.attr, function (key, value) {
+        li.attr(key, value);
+    });
+    var div = build_div(nodeObj, li);
+    li.append(div);
+
+    // only append if passed
+    if (ulEl != undefined) {
+        ulEl.append(li);
+    }
+
+    if (nodeObj.children != undefined) {
+        var childUlEl = $('<ul/>');
+        li.append(childUlEl);
+        $.each(nodeObj.children, function (i, childObj) {
+            build_tree(childObj, childUlEl);
+        });
+    }
+
+    return li;
+}
+
+function build_div(nodeObj, liEl) {
+    var div = $('<div/>');
+    var nodeLabelEl = $('<div class="node_label">' + nodeObj.data + '</div>');
+    div.append(nodeLabelEl);
+
+    var form = $('<div class="node_form"/>');
+
+    // label
+    var labelField = $('<div class="node_field"/>');
+    var labelLabelEl = $('<label>Label&nbsp;&nbsp;</label>');
+    var labelEl = $('<input type="text" value="' + nodeObj.data + '">');
+    labelEl.bind('keyup', function () {
+        nodeLabelEl.html($(this).val());
+        liEl.attr('label', $(this).val());
+    });
+    labelField.append(labelLabelEl);
+    labelField.append(labelEl);
+
+    var routeField = $('<div class="node_field"/>');
+    var routeEl = $('<input type="hidden" class="route_field">');
+
+    routeEl.val(nodeObj.attr.routeId);
+    routeEl.bind('change', function () {
+        liEl.attr('routeId', $(this).val());
+    });
+    routeField.append(routeEl);
+
+    var deleteField = $('<div class="node_field"/>');
+    var deleteEl = $('<a class="node_delete"/>');
+    deleteImg = $('<img/>');
+    deleteImg.attr('src', '{{ asset('bundles/yllybackoffice/images/icons/delete.png') }}');
+    deleteEl.append(deleteImg);
+    deleteField.append(deleteEl);
+
+    form.append(labelField);
+    form.append(routeField);
+    form.append(deleteField);
+    div.append(form);
+    div.append('<div style="clear: both"></div>');
+    routeEl.yProxRouteSelect({
+        data: routeData
+    });
+
+    deleteEl.bind('click', function () {
+        $(this).closest('.node').detach();
+        return false;
+    });
+
+    return div;
+}
+
+function serialize(el, data) {
+    var node = {
+        attr: {},
+        data: '',
+        children: []
+    };
+
+    $.each(serializeableAttrs, function (i, attrName) {
+        node['attr'][attrName] = $(el).attr(attrName);
+    });
+
+    $(el).find('> ul > li').each(function () {
+        node.children.push(serialize($(this), node));
+    });
+
+    return node;
+}
+    </script>
+    {% endblock %}
+

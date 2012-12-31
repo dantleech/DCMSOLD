@@ -13,9 +13,11 @@ class ThemeExtension extends \Twig_Extension
         $this->tm = $tm;
     }
 
-    public function initRuntime(\Twig_Environment $environment)
+    public function getGlobals()
     {
-        $environment->addGlobal('template_manager', $this->tm);
+        return array(
+            'template_manager' => $this->tm,
+        );
     }
 
     public function getName()

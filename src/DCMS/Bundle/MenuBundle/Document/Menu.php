@@ -3,6 +3,10 @@
 namespace DCMS\Bundle\MenuBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+
 /**
  * @PHPCR\Document(referenceable=true)
  */
@@ -29,9 +33,9 @@ class Menu
     protected $title;
 
     /**
-     * @PHPCR\Children()
+     * @PHPCR\Child()
      */
-    protected $items;
+    protected $rootItem;
 
     public function getId()
     {
@@ -68,21 +72,13 @@ class Menu
         $this->title = $title;
     }
 
-    public function setItems(MenuItem $items)
+    public function getRootItem()
     {
-        foreach ($items as $item) {
-            $this->addItem($item);
-        }
+        return $this->rootItem;
     }
 
-    public function addItem(MenuItem $item)
+    public function setRootItem(MenuItem $menuItem)
     {
-        $item->setParent($this);
-        $this->items[] = $item;
-    }
-
-    public function getItems()
-    {
-        return $this->items;
+        $this->rootItem = $menuItem;
     }
 }

@@ -10,20 +10,24 @@
         .node_delete:hover {
             cursor: pointer;
         }
-        .node_field {
-            float: left;
-            vertical-align: top;
-            margin-right: 10px;
-        }
 
         .node_form {
             float: right;
+        }
+
+        .node_form li {
+            float: left;
+        }
+
+        .node_form img {
+            margin: 5px 0px 0px 10px;
         }
 
         .node_label {
             float: left;
             font-size: 18px;
         }
+
     </style>
 {% endblock %}
 
@@ -45,166 +49,154 @@
             </div>
             <div class="ten columns">
                 <ul class="button-group radius">
-                    <li><a class="button radius" href="#">Endpoint</a></li>
-                    <li><a class="button radius" href="#">Separator</a></li>
-                    <li><a class="button radius" href="#">External link</a></li>
+                    <li><a class="button secondary radius" href="#">Endpoint</a></li>
+                    <li><a class="button secondary radius" href="#">Separator</a></li>
+                    <li><a class="button secondary radius" href="#">External link</a></li>
                 </ul>
             </div>
         </div>
         <div class="row">
             <div class="twelve columns">
-                <ul id="tree"></ul>
+                <ul class="menu_node" id="tree"></ul>
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
-var tree = {};
-var serializeableAttrs = [
-    'label',
-    'endpointId',
-    'externalLink',
-    'type'
-]; 
+        var tree = {{ jsonMenu|raw }};
+        var serializableKeys = ['id', 'name', 'label', 'uri', 'content'];
 
-$(document).ready(function () {
-    $.each(tree, function (i, nodeObj) {
-        build_tree(nodeObj, $('#tree'));
-    });
+        $(document).ready(function () {
+            $.each(tree.children, function (i, nodeObj) {
+                build_tree(nodeObj, $('#tree'));
+            });
 
-    $('#create_button').bind('click', function () {
-        var nodeObj = {
-            attr: {
-                'routeId': '',
-                'label': 'New node'
-            },
-            data: 'New node'
-        };
-        var li = build_tree(nodeObj);
-        $('#tree').prepend(li);
-        return false;
-    });
+            $('#create_button').bind('click', function () {
+                var nodeObj = {
+                    attr: {
+                        'routeId': '',
+                        'label': 'New node'
+                    },
+                    data: 'New node'
+                };
+                var li = build_tree(nodeObj);
+                $('#tree').prepend(li);
+                return false;
+            });
 
-    $('#update_button').bind('click', function () {
-        progress.modal.start();
-        var node = {
-            attr: {},
-            data: '',
-            children: []
-        };
-        $('#tree > li').each(function (i, el) {
-            var ret = serialize(el, node);
-            node.children.push(ret);
+            $('#update_button').bind('click', function () {
+                progress.modal.start();
+                var node = {
+                    attr: {},
+                    data: '',
+                    children: []
+                };
+                $('#tree > li').each(function (i, el) {
+                    var ret = serialize(el, node);
+                    node.children.push(ret);
+                });
+                var data = {
+                    'tree': node,
+                };
+                return false;
+            });
+
+            $('#tree').nestedSortable({
+                handle: 'div',
+                items: 'li.node',
+                toleranceElement: '> div',
+                listType: 'ul',
+                placeholder: 'placeholder',
+                forcePlaceholderSize: true
+            });
         });
-        var data = {
-            'tree': node,
-        };
-        return false;
-    });
 
-    $('#tree').nestedSortable({
-        handle: 'div',
-        items: 'li.node',
-        toleranceElement: '> div',
-        listType: 'ul',
-        placeholder: 'placeholder',
-        forcePlaceholderSize: true
-    });
-});
+        function build_tree(nodeObj, ulEl) {
+            var li = $('<li/>');
+            li.addClass('node');
+            $.each(nodeObj, function (key, value) {
+                if ($.inArray(key, serializableKeys) > -1) {
+                    li.attr('_' + key, value);
+                }
+            });
+            var div = build_div(nodeObj, li);
+            li.append(div);
 
-function build_tree(nodeObj, ulEl) {
-    var li = $('<li/>');
-    li.addClass('node');
-    $.each(nodeObj.attr, function (key, value) {
-        li.attr(key, value);
-    });
-    var div = build_div(nodeObj, li);
-    li.append(div);
+            // only append if passed
+            if (ulEl != undefined) {
+                ulEl.append(li);
+            }
 
-    // only append if passed
-    if (ulEl != undefined) {
-        ulEl.append(li);
-    }
+            if (nodeObj.children != undefined) {
+                var childUlEl = $('<ul/>');
+                li.append(childUlEl);
+                $.each(nodeObj.children, function (i, childObj) {
+                    build_tree(childObj, childUlEl);
+                });
+            }
 
-    if (nodeObj.children != undefined) {
-        var childUlEl = $('<ul/>');
-        li.append(childUlEl);
-        $.each(nodeObj.children, function (i, childObj) {
-            build_tree(childObj, childUlEl);
-        });
-    }
+            return li;
+        }
 
-    return li;
-}
+        function build_div(nodeObj, liEl) {
+            var div = $('<div class="radius"/>');
+            var nodeLabelEl = $('<div class="node_label">' + nodeObj.label + '</div>');
+            div.append(nodeLabelEl);
 
-function build_div(nodeObj, liEl) {
-    var div = $('<div/>');
-    var nodeLabelEl = $('<div class="node_label">' + nodeObj.data + '</div>');
-    div.append(nodeLabelEl);
+            var form = $('<ul class="node_form"/>');
 
-    var form = $('<div class="node_form"/>');
+            // label
+            var labelField = $('<li class="node_field"/>');
+            var labelEl = $('<input type="text" value="' + nodeObj.label + '">');
+            labelEl.bind('keyup', function () {
+                nodeLabelEl.html($(this).val());
+                liEl.attr('label', $(this).val());
+            });
+            labelField.append(labelEl);
 
-    // label
-    var labelField = $('<div class="node_field"/>');
-    var labelLabelEl = $('<label>Label&nbsp;&nbsp;</label>');
-    var labelEl = $('<input type="text" value="' + nodeObj.data + '">');
-    labelEl.bind('keyup', function () {
-        nodeLabelEl.html($(this).val());
-        liEl.attr('label', $(this).val());
-    });
-    labelField.append(labelLabelEl);
-    labelField.append(labelEl);
+            var deleteField = $('<li class="node_field"/>');
+            var deleteEl = $('<a class="node_delete"/>');
+            deleteImg = $('<img/>');
+            deleteImg.attr('src', '{{ asset('bundles/dcmsadmin/images/32/delete.png') }}');
+            deleteEl.append(deleteImg);
+            deleteEl.attr('title', 'Delete this item');
+            deleteField.append(deleteEl);
 
-    var routeField = $('<div class="node_field"/>');
-    var routeEl = $('<input type="hidden" class="route_field">');
+            endpointSelectField = $('<li class="node_field"/>');
+            endpointSelectEl = $('<select name="endpoint_id"/>');
+            endpointSelectField.append(endpointSelectEl);
 
-    routeEl.val(nodeObj.attr.routeId);
-    routeEl.bind('change', function () {
-        liEl.attr('routeId', $(this).val());
-    });
-    routeField.append(routeEl);
+            form.append(labelField);
+            form.append(endpointSelectField);
+            form.append(deleteField);
+            div.append(form);
+            div.append('<div style="clear: both"></div>');
 
-    var deleteField = $('<div class="node_field"/>');
-    var deleteEl = $('<a class="node_delete"/>');
-    deleteImg = $('<img/>');
-    deleteImg.attr('src', '{{ asset('bundles/yllybackoffice/images/icons/delete.png') }}');
-    deleteEl.append(deleteImg);
-    deleteField.append(deleteEl);
+            deleteEl.bind('click', function () {
+                $(this).closest('.node').detach();
+                return false;
+            });
 
-    form.append(labelField);
-    form.append(routeField);
-    form.append(deleteField);
-    div.append(form);
-    div.append('<div style="clear: both"></div>');
-    routeEl.yProxRouteSelect({
-        data: routeData
-    });
+            return div;
+        }
 
-    deleteEl.bind('click', function () {
-        $(this).closest('.node').detach();
-        return false;
-    });
+        function serialize(el, data) {
+            var node = {
+                attr: {},
+                data: '',
+                children: []
+            };
 
-    return div;
-}
+            $.each(serializeableAttrs, function (i, attrName) {
+                node['attr'][attrName] = $(el).attr(attrName);
+            });
 
-function serialize(el, data) {
-    var node = {
-        attr: {},
-        data: '',
-        children: []
-    };
+            $(el).find('> ul > li').each(function () {
+                node.children.push(serialize($(this), node));
+            });
 
-    $.each(serializeableAttrs, function (i, attrName) {
-        node['attr'][attrName] = $(el).attr(attrName);
-    });
-
-    $(el).find('> ul > li').each(function () {
-        node.children.push(serialize($(this), node));
-    });
-
-    return node;
-}
-    </script>
+            return node;
+        }
+            </script>
     {% endblock %}
 

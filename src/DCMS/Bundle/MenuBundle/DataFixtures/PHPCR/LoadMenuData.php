@@ -22,51 +22,42 @@ class LoadMenuData implements FixtureInterface, DependentFixtureInterface
     {
         $rt = $manager->find(null, '/sites/dantleech.com/menus');
         $docs = array(
-            'Home' => $manager->find(null, '/sites/dantleech.com/endpoints/home'),
-            'Cv' => $manager->find(null, '/sites/dantleech.com/endpoints/cv'),
-            'Finding stray commits' => $manager->find(null, '/sites/dantleech.com/endpoints/finding-stray-commits'),
-            'Me' => $manager->find(null, '/sites/dantleech.com/endpoints/about/me'),
-            'Them' => $manager->find(null, '/sites/dantleech.com/endpoints/about/them'),
-            'About' => $manager->find(null, '/sites/dantleech.com/endpoints/about'),
+            'home' => $manager->find(null, '/sites/dantleech.com/endpoints/home'),
+            'cv' => $manager->find(null, '/sites/dantleech.com/endpoints/cv'),
+            'finding-stray-commits' => $manager->find(null, '/sites/dantleech.com/endpoints/finding-stray-commits'),
+            'me' => $manager->find(null, '/sites/dantleech.com/endpoints/about/me'),
+            'them' => $manager->find(null, '/sites/dantleech.com/endpoints/about/them'),
+            'about' => $manager->find(null, '/sites/dantleech.com/endpoints/about'),
         );
 
-        $items = array();
-        foreach ($docs as $title => $doc) {
-            $items[$title] = $this->createEpItem($title, $doc);
-        }
-
         $menu = new Menu;
-        $menu->setParent($rt);
         $menu->setTitle('Main Menu');
-        $menu->addItem($items['Home']);
-        $menu->addItem($items['Cv']);
-        $items['Me']->setParent($items['About']);
-        $items['Them']->setParent($items['About']);
-        $menu->addItem($items['About']);
-
-        // because cascading doesn't seem to work
-        $manager->persist($items['Me']);
-        $manager->persist($items['Them']);
-
-        $menu->addItem($items['Finding stray commits']);
-        $manager->persist($menu);
-
-        $menu = new Menu;
         $menu->setParent($rt);
-        $menu->setTitle('Secondary Menu');
-        $manager->persist($menu);
+        $rootItem = $this->createEpItem('__root__');
+        $rootItem->setParent($menu);
+        $rootItem->addChild($this->createEpItem('content', $docs['home']));
+        $rootItem->addChild($this->createEpItem('cv', $docs['cv']));
+        $rootItem->addChild($this->createEpItem('finding-stray-commits', $docs['finding-stray-commits']));
+        $about = $this->createEpItem('About', $docs['about']);
+        $rootItem->addChild($about);
+        $about->addChild($me = $this->createEpItem('Me', $docs['me']));
+        $about->addChild($them = $this->createEpItem('Them', $docs['them']));
+        $menu->setRootItem($rootItem);
 
+        $manager->persist($menu);
         $manager->flush();
     }
 
-    protected function createEpItem($title, $homeDoc)
+    protected function createEpItem($title, $homeDoc = null)
     {
         $name = strtolower($title);
         $name .= '-item';
         $i = new MenuItem;
         $i->setName($name);
         $i->setLabel($title);
-        $i->setContent($homeDoc);
+        if ($homeDoc) {
+            $i->setContent($homeDoc);
+        }
         return $i;
     }
 }

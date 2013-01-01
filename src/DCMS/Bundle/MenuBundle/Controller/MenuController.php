@@ -21,6 +21,11 @@ class MenuController extends DCMSController
         return $menu;
     }
 
+    protected function getEndpointRepo()
+    {
+        return $this->getDm()->getRepository('DCMS\Bundle\CoreBundle\Document\Endpoint');
+    }
+
     /**
      * @Route("/menu")
      * @Template()
@@ -50,9 +55,17 @@ class MenuController extends DCMSController
      */
     public function editAction()
     {
+        $site = $this->getSite();
         $menu = $this->getMenu();
+        $encoder = new \Symfony\Component\Serializer\Encoder\JsonEncoder;
+        $normalizer = new \Symfony\Cmf\Bundle\MenuBundle\Serializer\MenuItemNormalizer($this->getDm());
+        $serializer = new \Symfony\Component\Serializer\Serializer(array($normalizer), array($encoder));
+        $jsonMenu = $serializer->serialize($menu->getRootItem(), 'json');
+        $epsForSelect = $this->getEndpointRepo()->getEndpointsForSelect($site);;
+
         return array(
-            'menu' => $menu
+            'menu' => $menu,
+            'jsonMenu' => $jsonMenu
         );
     }
 

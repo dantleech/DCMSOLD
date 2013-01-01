@@ -1,29 +1,19 @@
-.sortable .node > div  {
-    border: 1px solid #d4d4d4;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    border-color: #D4D4D4 #D4D4D4 #BCBCBC;
-    padding: 6px;
-    margin: 0;
-    cursor: move;
-    background: #f6f6f6;
-    background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
-    background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-    background: -o-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-    background: -ms-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-    background: .nodenear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+.menu_node lI {
+    list-style: none;
 }
 
-.sortable .node.mjs-nestedSortable-branch div {
-    background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #f0ece9 100%);
-    background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#f0ece9 100%);
-
+.menu_node .node > div  {
+    background: #f2f2f2; 
+    border: solid 1px #e6e6e6; 
+    margin: 0 0 0px 0; 
+    padding: 10px;
 }
 
-.sortable .node.mjs-nestedSortable-leaf div {
+.menu_node input[type="text"] {
+    margin: 0px;
+}
+
+.menu_node .node.mjs-nestedSortable-leaf div {
     background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #bcccbc 100%);
     background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#bcccbc 100%);
 
@@ -40,19 +30,19 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
     display: none;
 }
 
-.sortable .node.mjs-nestedSortable-collapsed > ol {
+.menu_node .node.mjs-nestedSortable-collapsed > ol {
     display: none;
 }
 
-.sortable .node.mjs-nestedSortable-branch > div > .disclose {
+.menu_node .node.mjs-nestedSortable-branch > div > .disclose {
     display: inline-block;
 }
 
-.sortable .node.mjs-nestedSortable-collapsed > div > .disclose > span:before {
+.menu_node .node.mjs-nestedSortable-collapsed > div > .disclose > span:before {
     content: '+ ';
 }
 
-.sortable .node.mjs-nestedSortable-expanded > div > .disclose > span:before {
+.menu_node .node.mjs-nestedSortable-expanded > div > .disclose > span:before {
     content: '- ';
 }
 
@@ -74,23 +64,23 @@ h2 {
     color: #c33;
 }
 
-.sortable ul {
+.menu_node ul {
     margin: 0;
     padding: 0;
     padding-left: 30px;
 }
 
-ul.sortable, ul.sortable ul {
+ul.menu_node, ul.menu_node ul {
     margin: 0 0 0 25px;
     padding: 0;
     .nodest-style-type: none;
 }
 
-ul.sortable {
-    margin: 4em 0;
+ul.menu_node {
+    margin: 0;
 }
 
-.sortable .node {
+.menu_node .node {
     margin: 5px 0 0 0;
     padding: 0;
 }

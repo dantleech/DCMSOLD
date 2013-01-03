@@ -34,6 +34,7 @@ class LoadMenuData implements FixtureInterface, DependentFixtureInterface
         $menu->setTitle('Main Menu');
         $menu->setParent($rt);
         $rootItem = $this->createEpItem('__root__');
+        $menu->setRootItem($rootItem);
         $rootItem->setParent($menu);
         $rootItem->addChild($this->createEpItem('content', $docs['home']));
         $rootItem->addChild($this->createEpItem('cv', $docs['cv']));
@@ -42,7 +43,21 @@ class LoadMenuData implements FixtureInterface, DependentFixtureInterface
         $rootItem->addChild($about);
         $about->addChild($me = $this->createEpItem('Me', $docs['me']));
         $about->addChild($them = $this->createEpItem('Them', $docs['them']));
+
+        $manager->persist($menu);
+        $manager->flush();
+
+        $menu = new Menu;
+        $menu->setTitle('Secondary Menu');
+        $menu->setParent($rt);
+        $rootItem = $this->createEpItem('__root__');
+        $rootItem->setParent($menu);
         $menu->setRootItem($rootItem);
+        $about = $this->createEpItem('About', $docs['about']);
+        $rootItem
+            ->addChild($this->createEpItem('Testing', $docs['about']))
+            ->addChild($this->createEpItem('Foo', $docs['me']))
+            ->addChild($this->createEpItem('Bar', $docs['them']));
 
         $manager->persist($menu);
         $manager->flush();

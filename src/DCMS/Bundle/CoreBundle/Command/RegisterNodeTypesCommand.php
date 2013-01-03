@@ -41,16 +41,33 @@ class RegisterNodeTypesCommand extends ContainerAwareCommand
         $ns->registerNamespace($this->dcmsNamespace, $this->dcmsNamespaceUri);
         $nt = $session->getWorkspace()->getNodeTypeManager();
 
-        $proptpl = $nt->createPropertyDefinitionTemplate();
-        $proptpl->setName('phpcr:class');
-        $proptpl->setRequiredType(\PHPCR\PropertyType::STRING);
-        $tpl = $nt->createNodeTypeTemplate();
-        $tpl->setName('dcms:endpoint');
-        $tpl->setDeclaredSuperTypeNames(array('nt:unstructured'));
-        $props = $tpl->getPropertyDefinitionTemplates();
-        $props->offsetSet(null, $proptpl);
+        if ($session instanceof \Jackalope\Session
+            && $session->getTransport() instanceof \Jackalope\Transport\Jackrabbit\Client
+        ) {
+            $cnd = <<<CND
+[dcms:endpoint] > nt:unstructured
+CND
+            ;
 
-        $nt->registerNodeType($tpl, true);
+            try {
+                $ntm = $session->getWorkspace()->getNodeTypeManager();
+                $ntm->registerNodeTypesCnd($cnd, true);
+            } catch (\Exception $e) {
+                $output->writeln('<error>'.$e->getMessage().'</error>');
+                return 1;
+            }
+        } else {
+            $proptpl = $nt->createPropertyDefinitionTemplate();
+            $proptpl->setName('phpcr:class');
+            $proptpl->setRequiredType(\PHPCR\PropertyType::STRING);
+            $tpl = $nt->createNodeTypeTemplate();
+            $tpl->setName('dcms:endpoint');
+            $tpl->setDeclaredSuperTypeNames(array('nt:unstructured'));
+            $props = $tpl->getPropertyDefinitionTemplates();
+            $props->offsetSet(null, $proptpl);
+            $nt->registerNodeType($tpl, true);
+        }
+
     }
 }
 

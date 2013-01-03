@@ -3,7 +3,7 @@
 namespace DCMS\Bundle\CoreBundle\Site;
 use DCMS\Bundle\CoreBundle\Repository\SiteRepository;
 
-class SiteManager
+class SiteContext
 {
     protected $site;
     protected $sr;

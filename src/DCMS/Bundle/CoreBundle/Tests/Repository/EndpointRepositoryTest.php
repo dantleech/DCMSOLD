@@ -10,29 +10,27 @@ class EndpointRepositoryTest extends WebTestCase
         $this->loadDocumentFixtures(array(
             'DCMS\Bundle\CoreBundle\Tests\Fixtures\ODM\LoadEndpointData',
         ));
-        $this->repository = $this->getContainer()->get('dcms_core.repository.endpoint');
-        $this->mm = $this->getContainer()->get('dcms_core.module_manager');
-        $mm = $this->mm->createModule('test');
-        $mm->createEndpointDefinition('DCMS\Bundle\CoreBundle\Document\Endpoint')
-            ->setRoutingResource('@DCMSCoreBundle/Tests/Fixtures/config/endpoint_routing.yml');
-    } 
-
-    public function testFindManyByUrl()
-    {
-        $url = '/home/contact';
-        $coll = $this->repository->findManyByUrl($url);
-        $route = $coll->get('index');
-        $this->assertEquals('/home/contact/', $route->getPattern());
-        $route = $coll->get('foobar');
-        $this->assertEquals('/home/contact/foo/{bar}', $route->getPattern());
-        $route = $coll->get('barfoo');
-        $this->assertEquals('/home/contact/foo/{bar}/tag/boo', $route->getPattern());
+        $this->repo = $this->getDm()->getRepository('DCMS\Bundle\CoreBundle\Document\Endpoint');
     }
 
-    public function testFindManyByUrl_noMatch()
+    public function testGetEndpoints()
     {
-        $url = 'asd';
-        $coll = $this->repository->findManyByUrl($url);
-        $this->assertNull($coll);
+        $eps = $this->repo->getEndpoints('/no/path/');
+        $this->assertCount(0, $eps);
+        $eps = $this->repo->getEndpoints('/sites/dantleech.com');
+        $this->assertCount(2, $eps);
+    }
+
+    public function testGetEndpointsForSelect()
+    {
+        $epsForSelect = $this->repo->getEndpointsForSelect('/sites/dantleech.com');
+        $this->assertCount(2, $epsForSelect);
+
+        $expected = array(
+            '/sites/dantleech.com/endpoints/home' => 'Home',
+            '/sites/dantleech.com/endpoints/home/contact' => 'Contact',
+        );
+
+        $this->assertEquals($expected, $epsForSelect);
     }
 }

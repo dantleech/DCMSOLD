@@ -65,6 +65,7 @@
     <script type="text/javascript">
         var tree = {{ jsonMenu|raw }};
         var serializableKeys = ['id', 'name', 'label', 'uri', 'content'];
+        var epsForSelect = {{ epsForSelect|json_encode|raw }};
 
         $(document).ready(function () {
             $.each(tree.children, function (i, nodeObj) {
@@ -162,7 +163,11 @@
             deleteEl.attr('title', 'Delete this item');
             deleteField.append(deleteEl);
 
-            endpointSelectField = $('<li class="node_field"/>');
+            var endpointSelectField = $('<li class="node_field"/>');
+            $.each(epsForSelect, function(id, name) {
+                var epOption = $('<option>' + name + '</option>');
+                epOption.val
+            });
             endpointSelectEl = $('<select name="endpoint_id"/>');
             endpointSelectField.append(endpointSelectEl);
 

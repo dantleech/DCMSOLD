@@ -61,11 +61,12 @@ class MenuController extends DCMSController
         $normalizer = new \Symfony\Cmf\Bundle\MenuBundle\Serializer\MenuItemNormalizer($this->getDm());
         $serializer = new \Symfony\Component\Serializer\Serializer(array($normalizer), array($encoder));
         $jsonMenu = $serializer->serialize($menu->getRootItem(), 'json');
-        $epsForSelect = $this->getEndpointRepo()->getEndpointsForSelect($site);;
+        $epsForSelect = $this->getEndpointRepo()->getEndpointsForSelect($this->getSc()->getEndpointPath());;
 
         return array(
             'menu' => $menu,
-            'jsonMenu' => $jsonMenu
+            'jsonMenu' => $jsonMenu,
+            'epsForSelect' => $epsForSelect,
         );
     }
 

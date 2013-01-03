@@ -114,7 +114,7 @@
             <div class="action-bar">
                 <button id="create_endpoint_button" class="button">Create</button>
             </div>
-            {% render "DCMSAdminBundle:Endpoint:_tree" %}
+            {% render url('dcms_admin_endpoint_tree') %}
         </div>
         <div class="nine columns">
         {% block endpoint_edit %}

@@ -4,11 +4,12 @@ namespace DCMS\Bundle\CoreBundle\Routing;
 
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 use DCMS\Bundle\CoreBundle\Helper\EpContext;
-use Symfony\Cmf\Component\Routing\Mapper\ControllerMapperInterface;
+use Symfony\Cmf\Component\Routing\Enhancer\RouteEnhancerInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+use Symfony\Component\HttpFoundation\Request;
 
-class EndpointMapper implements ControllerMapperInterface
+class EndpointMapper implements RouteEnhancerInterface 
 {
     protected $eps;
     protected $epContext;
@@ -19,18 +20,18 @@ class EndpointMapper implements ControllerMapperInterface
         $this->epContext = $epContext;
     }
 
-    public function getController(Route $route, array &$defaults)
+    public function enhance(array $defaults, Request $request)
     {
-        if ($endpoint = $route->getDefault('endpoint')) {
+        if ($endpoint = $defaults['endpoint']) {
             foreach ($this->eps as $ep) {
                 $contentFqn = $ep->getContentFQN();
                 if (get_class($endpoint) == $ep->getContentFQN()) {
                     $this->epContext->setOnEndpoint(true);
-                    return $ep->getController('render');
+                    $defaults['_controller'] = $ep->getController('render');
                 }
             }
         }
 
-        return false;
+        return $defaults;
     }
 }

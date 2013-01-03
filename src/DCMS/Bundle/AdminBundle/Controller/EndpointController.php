@@ -51,6 +51,7 @@ class EndpointController extends Controller
     }
 
     /**
+     * @Route("/endpoint/_tree")
      * @Template()
      */
     public function _treeAction()

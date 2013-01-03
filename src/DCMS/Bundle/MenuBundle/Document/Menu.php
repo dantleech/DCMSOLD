@@ -6,6 +6,7 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Cmf\Bundle\MenuBundle\Document\MenuItem;
 
 /**
  * @PHPCR\Document(referenceable=true)
@@ -74,6 +75,11 @@ class Menu
 
     public function getRootItem()
     {
+        if (!$this->rootItem) {
+            $this->rootItem = new MenuItem;
+            $this->rootItem->setName('0-item');
+        }
+
         return $this->rootItem;
     }
 

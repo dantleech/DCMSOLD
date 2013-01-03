@@ -20,6 +20,11 @@ class DCMSController extends Controller
         return $notifier;
     }
 
+    protected function getResponseHelper()
+    {
+        return $this->get('dcms_core.response_helper');
+    }
+
     protected function getSite()
     {
         return $this->getSc()->getSite();

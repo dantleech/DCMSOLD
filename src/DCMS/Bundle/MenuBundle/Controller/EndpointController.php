@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class EndpointController extends Controller
 {
     /**
+     * @Route('/endpoint/menu/_edit')
      * @Template()
      */
     public function editAction()

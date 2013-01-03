@@ -6,13 +6,13 @@ use DCMS\Bundle\CoreBundle\Document\Site;
 
 class EndpointRepository extends DocumentRepository
 {
-    public function getEndpointsForSelect($epPath)
+    public function getEndpointsForSelect($epPath, $truncate = 25)
     {
         $forSelect = array();
 
         $endpoints = $this->getEndpoints($epPath);
         foreach ($endpoints as $endpoint) {
-            $forSelect[$endpoint->getId()] = $endpoint->getTitle();
+            $forSelect[$endpoint->getId()] = substr($endpoint->getId(), strlen($epPath));
         }
 
         return $forSelect;

@@ -12,7 +12,8 @@ class DCMSMarkdownBundle extends ModuleBundle
         $m = $mm->createModule('markdown');
         $m->createEndpointDefinition('DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint')
             ->setTitle('Markdown')
-            ->setController('DCMSMarkdownBundle:Endpoint:edit')
+            ->setEditRoute('dcms_markdown_endpoint_edit')
+            ->setRenderRoute('dcms_markdown_endpoint_render')
             ->setFormTypes(array(
                 'edit' => 'DCMS\Bundle\MarkdownBundle\Form\EndpointType',
             ))

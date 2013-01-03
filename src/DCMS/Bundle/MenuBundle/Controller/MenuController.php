@@ -26,6 +26,13 @@ class MenuController extends DCMSController
         return $this->getDm()->getRepository('DCMS\Bundle\CoreBundle\Document\Endpoint');
     }
 
+    protected function getNormalizer()
+    {
+        $normalizer = new \Symfony\Cmf\Bundle\MenuBundle\Serializer\MenuItemNormalizer($this->getDm());
+
+        return $normalizer;
+    }
+
     /**
      * @Route("/menu")
      * @Template()
@@ -39,6 +46,7 @@ class MenuController extends DCMSController
     }
 
     /**
+     * @Route("/menu/_menuList")
      * @Template()
      */
     public function _menuListAction()
@@ -53,21 +61,41 @@ class MenuController extends DCMSController
      * @Route("/menu/{menu_uuid}/edit")
      * @Template()
      */
-    public function editAction()
+    public function editAction(Request $request)
     {
         $site = $this->getSite();
         $menu = $this->getMenu();
-        $encoder = new \Symfony\Component\Serializer\Encoder\JsonEncoder;
-        $normalizer = new \Symfony\Cmf\Bundle\MenuBundle\Serializer\MenuItemNormalizer($this->getDm());
-        $serializer = new \Symfony\Component\Serializer\Serializer(array($normalizer), array($encoder));
-        $jsonMenu = $serializer->serialize($menu->getRootItem(), 'json');
+        $treeArray = $this->getNormalizer()->normalize($menu->getRootItem());
         $epsForSelect = $this->getEndpointRepo()->getEndpointsForSelect($this->getSc()->getEndpointPath());;
 
         return array(
             'menu' => $menu,
-            'jsonMenu' => $jsonMenu,
+            'treeArray' => $treeArray,
             'epsForSelect' => $epsForSelect,
         );
+    }
+
+    /**
+     * @Route("/menu/{menu_uuid}/update")
+     */
+    public function updateAction(Request $request)
+    {
+        $menu = $this->getMenu();
+        $tree = $request->get('menu');
+
+        if ($menu->getRootItem()->getId()) {
+            $this->getDm()->remove($menu->getRootItem());
+            $this->getDm()->flush();
+            $this->getDm()->clear();
+            $menu = $this->getMenu();
+        }
+
+        $rootItem = $this->getNormalizer()->denormalize($tree, 'Symfony\Cmf\Bundle\MenuBundle\Document\MenuItem');
+        $menu->setRootItem($rootItem);
+        $this->getDm()->persist($menu);
+        $this->getDm()->flush();
+
+        return $this->getResponseHelper()->createJsonResponse(true);
     }
 
     /**

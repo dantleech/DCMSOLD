@@ -2,8 +2,9 @@
 
 namespace DCMS\Bundle\CoreBundle\Routing;
 
-use Symfony\Cmf\Component\Routing\RouteRepositoryInterface;
+use Symfony\Cmf\Component\Routing\RouteProviderInterface;
 use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use PHPCR\Query\QOM\QueryObjectModelConstantsInterface as Constants;
 use Doctrine\ODM\PHPCR\DocumentRepository;
@@ -12,8 +13,9 @@ use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 use DCMS\Bundle\CoreBundle\Site\SiteContext;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
-class EndpointRepository implements RouteRepositoryInterface, ContainerAwareInterface
+class EndpointRepository implements RouteProviderInterface, ContainerAwareInterface
 {
     protected $dm;
     protected $mm;
@@ -32,8 +34,9 @@ class EndpointRepository implements RouteRepositoryInterface, ContainerAwareInte
         $this->container = $container;
     }
 
-    public function findManyByUrl($url)
+    public function getRouteCollectionForRequest(Request $request)
     {
+        $url = $request->getUri();
         if (substr($url, 0, 1) == '/') {
             $url = substr($url, 1);
         }
@@ -86,6 +89,11 @@ class EndpointRepository implements RouteRepositoryInterface, ContainerAwareInte
 
     public function getRouteByName($name, $params = array())
     {
-        return null;
+        throw new RouteNotFoundException();
+    }
+
+    public function getRoutesByNames($name, $params = array())
+    {
+        throw new RouteNotFoundException();
     }
 }

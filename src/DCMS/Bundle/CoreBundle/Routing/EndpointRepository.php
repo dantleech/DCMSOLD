@@ -9,7 +9,7 @@ use PHPCR\Query\QOM\QueryObjectModelConstantsInterface as Constants;
 use Doctrine\ODM\PHPCR\DocumentRepository;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
-use DCMS\Bundle\CoreBundle\Site\SiteManager;
+use DCMS\Bundle\CoreBundle\Site\SiteContext;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -20,11 +20,11 @@ class EndpointRepository implements RouteRepositoryInterface, ContainerAwareInte
     protected $sm;
     protected $container;
 
-    public function __construct(DocumentManager $dm, ModuleManager $mm, SiteManager $sm)
+    public function __construct(DocumentManager $dm, ModuleManager $mm, SiteContext $sm)
     {
         $this->dm = $dm;
         $this->mm = $mm;
-        $this->sm = $sm;
+        $this->sc = $sm;
     }
 
     public function setContainer(ContainerInterface $container = null)
@@ -39,7 +39,7 @@ class EndpointRepository implements RouteRepositoryInterface, ContainerAwareInte
         }
         $parts = explode('/', $url);
         $first = array_shift($parts);
-        $firstPath = $this->sm->getEndpointPath().'/'.$first;
+        $firstPath = $this->sc->getEndpointPath().'/'.$first;
 
         $ep = $this->dm->find(
             'DCMS\Bundle\CoreBundle\Document\Endpoint',
@@ -78,7 +78,7 @@ class EndpointRepository implements RouteRepositoryInterface, ContainerAwareInte
         }
 
         // strip off PHPCR path
-        $prefix = substr($ep->getId(), strlen($this->sm->getEndpointPath()));
+        $prefix = substr($ep->getId(), strlen($this->sc->getEndpointPath()));
         $collection->addPrefix($prefix);
 
         return $collection;

@@ -22,11 +22,11 @@ class DCMSController extends Controller
 
     protected function getSite()
     {
-        return $this->getSm()->getSite();
+        return $this->getSc()->getSite();
     }
 
-    protected function getSm()
+    protected function getSc()
     {
-        return $this->get('dcms_core.site_manager');
+        return $this->get('dcms_core.site.context');
     }
 }

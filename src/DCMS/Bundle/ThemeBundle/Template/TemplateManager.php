@@ -2,7 +2,7 @@
 
 namespace DCMS\Bundle\ThemeBundle\Template;
 
-use DCMS\Bundle\CoreBundle\Site\SiteManager;
+use DCMS\Bundle\CoreBundle\Site\SiteContext;
 use DCMS\Bundle\ThemeBundle\Repository\TemplateRepository;
 use DCMS\Bundle\CoreBundle\Document\Endpoint;
 
@@ -11,15 +11,15 @@ class TemplateManager
     protected $sm;
     protected $tr;
 
-    public function __construct(SiteManager $sm, TemplateRepository $tr)
+    public function __construct(SiteContext $sm, TemplateRepository $tr)
     {
-        $this->sm = $sm;
+        $this->sc = $sm;
         $this->tr = $tr;
     }
 
     public function getLayoutForEndpoint(Endpoint $endpoint)
     {
-        $site = $this->sm->getSite();
+        $site = $this->sc->getSite();
         if ($layout = $endpoint->getLayout()) {
             return $layout->getResource();
         } else {

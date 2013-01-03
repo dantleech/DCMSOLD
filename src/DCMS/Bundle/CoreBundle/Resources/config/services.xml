@@ -22,7 +22,7 @@
         <service id="dcms_core.twig_extension" class="%dcms_core.twig_extension.class%">
             <argument type="service" id="dcms_core.notification_helper"/>
             <argument type="service" id="dcms_core.ep_context"/>
-            <argument type="service" id="dcms_core.site_manager"/>
+            <argument type="service" id="dcms_core.site.context"/>
             <tag name="twig.extension"/>
         </service>
 
@@ -33,7 +33,7 @@
             <argument>DCMS\Bundle\CoreBundle\Document\Site</argument>
         </service>
 
-        <service id="dcms_core.site_manager" class="DCMS\Bundle\CoreBundle\Site\SiteManager">
+        <service id="dcms_core.site.context" class="DCMS\Bundle\CoreBundle\Site\SiteContext">
             <argument type="service" id="dcms_core.repository.site"/>
         </service>
 

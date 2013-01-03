@@ -19,5 +19,5 @@ services:
     dcms_theme.template_manager:
         class: DCMS\Bundle\ThemeBundle\Template\TemplateManager
         arguments:
-            - @dcms_core.site_manager
+            - @dcms_core.site.context
             - @dcms_theme.repository.template

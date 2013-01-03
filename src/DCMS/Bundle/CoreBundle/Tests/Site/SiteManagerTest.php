@@ -1,16 +1,16 @@
 <?php
 
 namespace DCMS\Bundle\CoreBundle\Tests\Site;
-use DCMS\Bundle\CoreBundle\Site\SiteManager;
+use DCMS\Bundle\CoreBundle\Site\SiteContext;
 
-class SiteManagerTest extends \PHPUnit_Framework_Testcase
+class SiteContextTest extends \PHPUnit_Framework_Testcase
 {
     public function setUp()
     {
         $this->sr = $this->getMockBuilder('DCMS\Bundle\CoreBundle\Repository\SiteRepository')
           ->disableOriginalConstructor()
           ->getMock();
-        $this->sm = new SiteManager($this->sr);
+        $this->sc = new SiteContext($this->sr);
         $this->site = $this->getMock('DCMS\Bundle\CoreBundle\Document\Site');
     }
 
@@ -19,7 +19,7 @@ class SiteManagerTest extends \PHPUnit_Framework_Testcase
      */
     public function testGetSite_notFound()
     {
-        $this->sm->getSite();
+        $this->sc->getSite();
     }
 
     public function testGetSite_found()
@@ -27,7 +27,7 @@ class SiteManagerTest extends \PHPUnit_Framework_Testcase
         $this->sr->expects($this->once())
           ->method('find')
           ->will($this->returnValue($this->site));
-        $this->sm->getSite();
+        $this->sc->getSite();
     }
 }
 

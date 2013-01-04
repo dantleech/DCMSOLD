@@ -11,24 +11,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EndpointMapper implements RouteEnhancerInterface 
 {
-    protected $eps;
+    protected $mm;
     protected $epContext;
 
     public function __construct(ModuleManager $mm, EpContext $epContext)
     {
-        $this->eps = $mm->getEndpointDefinitions();
+        $this->mm = $mm;
         $this->epContext = $epContext;
     }
 
     public function enhance(array $defaults, Request $request)
     {
         if ($endpoint = $defaults['endpoint']) {
-            foreach ($this->eps as $ep) {
-                $contentFqn = $ep->getContentFQN();
-                if (get_class($endpoint) == $ep->getContentFQN()) {
-                    $this->epContext->setOnEndpoint(true);
-                    $defaults['_controller'] = $ep->getController('render');
-                }
+            if ($epDef = $this->mm->getEndpointDefinition($endpoint)) {
+                $this->epContext->setOnEndpoint(true);
+                $defaults['_controller'] = $epDef->getRenderController();
             }
         }
 

@@ -56,14 +56,10 @@ class ModuleManagerTest extends \PHPUnit_Framework_TestCase
     {
         $forSelect = $this->mm->getEndpointsForSelect();
         $this->assertEquals(array(
-            'test1' => array(
                 'FQN/Foo/Bar1' => 'Foobar1',
                 'FQN/Foo/Bar2' => 'Foobar2',
-            ),
-            'test2' => array(
                 'FQN/Foo/Bar1' => 'Boofar1',
                 'FQN/Foo/Bar2' => 'Boofar2',
-            )
         ), $forSelect);
     }
 }

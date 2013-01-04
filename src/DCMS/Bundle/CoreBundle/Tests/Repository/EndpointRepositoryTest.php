@@ -15,7 +15,7 @@ class EndpointRepositoryTest extends WebTestCase
 
     public function testGetEndpoints()
     {
-        $eps = $this->repo->getEndpoints('/no/path/');
+        $eps = $this->repo->getEndpoints('/no/path');
         $this->assertCount(0, $eps);
         $eps = $this->repo->getEndpoints('/sites/dantleech.com');
         $this->assertCount(2, $eps);
@@ -27,8 +27,8 @@ class EndpointRepositoryTest extends WebTestCase
         $this->assertCount(2, $epsForSelect);
 
         $expected = array(
-            '/sites/dantleech.com/endpoints/home' => 'Home',
-            '/sites/dantleech.com/endpoints/home/contact' => 'Contact',
+            '/sites/dantleech.com/endpoints/home' => '/endpoints/home',
+            '/sites/dantleech.com/endpoints/home/contact' => '/endpoints/home/contact',
         );
 
         $this->assertEquals($expected, $epsForSelect);

@@ -1,8 +1,9 @@
 <?php
 
-namespace DCMS\Bundle\CoreBundle\Tests\Mapper;
+namespace DCMS\Bundle\CoreBundle\Tests\Routing;
 
-use DCMS\Bundle\CoreBundle\Mapper\EndpointMapper;
+use DCMS\Bundle\CoreBundle\Routing\EndpointMapper;
+use DCMS\Bundle\CoreBundle\Document\Endpoint;
 
 class EndpointMapperTest extends \PHPUnit_Framework_Testcase
 {
@@ -12,20 +13,19 @@ class EndpointMapperTest extends \PHPUnit_Framework_Testcase
           ->disableOriginalConstructor()
           ->getMock();
         $this->epContext = $this->getMock('DCMS\Bundle\CoreBundle\Helper\EpContext');
-        $this->route = $this->getMockBuilder('Symfony\Component\Routing\Route')
+        $this->request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')
             ->disableOriginalConstructor()
             ->getMock();
         $this->mapper = new EndpointMapper($this->mm, $this->epContext);
+        $this->endpoint = $this->getMock('DCMS\Bundle\CoreBundle\Document\Endpoint');;
     }
 
     public function testGetController()
     {
-        $this->route->expects($this->once())
-            ->method('getDefault')
-            ->with('endpoint');
-
-        $defaults = array();
-        $res = $this->mapper->getController($this->route, $defaults);
+        $defaults = array(
+            'endpoint' => $this->endpoint
+        );
+        $res = $this->mapper->enhance($defaults, $this->request);
     }
 }
 

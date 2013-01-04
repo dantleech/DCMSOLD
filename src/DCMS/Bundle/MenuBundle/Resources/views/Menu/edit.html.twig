@@ -32,13 +32,13 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{{ path('dcms_menu_menu_edit', {'menu_uuid': menu.uuid }) }}" method="POST">
+    <form action="#" method="POST">
         <div class="row">
             <div class="six columns">
                 <h3 class="subheader">{{ menu.title }} </h3>
             </div>
             <div class="six columns text-right">
-                <input id="update_button" type="submit" value="Update" class="button"/>
+                <input id="update_button" type="submit" value="Update" class="button disabled"/>
                 <a id="delete_menu_button" href="{{ path('dcms_menu_menu_delete', {'menu_uuid': menu.uuid}) }}" class="button alert">Delete</a>
             </div>
         </div>
@@ -66,6 +66,7 @@
         var tree = {{ treeArray|json_encode|raw }};
         var serializableKeys = ['name', 'label', 'uri', 'content'];
         var epsForSelect = {{ epsForSelect|json_encode|raw }};
+        var dirty = false;
 
         $(document).ready(function () {
             $.each(tree.children, function (i, nodeObj) {
@@ -78,10 +79,15 @@
                 };
                 var li = build_tree(nodeObj);
                 $('#tree').prepend(li);
+                set_dirty(true);
                 return false;
             });
 
             $('#update_button').bind('click', function () {
+                if (dirty == false) {
+                    return false;
+                }
+
                 var node = {
                     children: []
                 };
@@ -98,6 +104,7 @@
                     data: {'menu': node},
                     success: function () {
                         $('#tree').unmask();
+                        set_dirty(false);
                     }
                 });
                 
@@ -109,10 +116,23 @@
                 items: 'li.node',
                 toleranceElement: '> div',
                 listType: 'ul',
+                stop: function () {
+                    set_dirty(true);
+                },
                 placeholder: 'placeholder',
                 forcePlaceholderSize: true
             });
         });
+
+        function set_dirty(bool) {
+            if (bool == true) {
+                $('#update_button').removeClass('disabled');
+            } else {
+                $('#update_button').addClass('disabled');
+            }
+
+            dirty = bool;
+        }
 
         function build_tree(nodeObj, ulEl) {
             var li = $('<li/>');
@@ -145,15 +165,16 @@
             var div = $('<div class="radius"/>');
             var nodeLabelEl = $('<div class="node_label"/>');
             var labelEl = $('<input type="text" value="' + nodeObj.label + '">');
+
+            // @todo: Serialize this on update, not update here
             labelEl.bind('keyup', function () {
+                set_dirty(true);
                 $(this).closest('li.node').attr('_label', $(this).val());
             });
             nodeLabelEl.append(labelEl);
             div.append(nodeLabelEl);
 
             var form = $('<ul class="node_form"/>');
-
-            // label
 
             var deleteField = $('<li class="node_field"/>');
             var deleteEl = $('<a class="node_delete"/>');
@@ -175,8 +196,10 @@
             });
             endpointSelectField.append(endpointSelectEl);
             endpointSelectEl.bind('change', function () {
+                set_dirty(true);
                 $(this).closest('li.node').attr('_content', $(this).val());
             });
+            endpointSelectEl.trigger('change');
 
             form.append(endpointSelectField);
             form.append(deleteField);

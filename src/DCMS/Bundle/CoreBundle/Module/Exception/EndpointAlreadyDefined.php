@@ -7,7 +7,7 @@ class EndpointAlreadyDefined extends \Exception
 {
     public function __construct(EndpointDefinition $module)
     {
-        $message = sprintf('Endpoint for document "%s" has already been defined', $module->getContentFQN());
+        $message = sprintf('Endpoint for document "%s" has already been defined', $module->getEndpointFQN());
         return parent::__construct($message);
     }
 }

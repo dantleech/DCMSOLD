@@ -1,6 +1,6 @@
 <?php
 
-namespace DCMS\Bundle\CoreBundle\Tests\Repository;
+namespace DCMS\Bundle\CoreBundle\Tests\Routing;
 use DCMS\Bundle\CoreBundle\Test\WebTestCase;
 
 class EndpointRepositoryTest extends WebTestCase
@@ -15,12 +15,18 @@ class EndpointRepositoryTest extends WebTestCase
         $mm = $this->mm->createModule('test');
         $mm->createEndpointDefinition('DCMS\Bundle\CoreBundle\Document\Endpoint')
             ->setRoutingResource('@DCMSCoreBundle/Tests/Fixtures/config/endpoint_routing.yml');
+        $this->req = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')
+            ->disableOriginalConstructor()
+            ->getMock();
     } 
 
     public function testFindManyByUrl()
     {
         $url = '/home/contact';
-        $coll = $this->repository->findManyByUrl($url);
+        $this->req->expects($this->any())
+            ->method('getUri')
+            ->will($this->returnValue($url));
+        $coll = $this->repository->getRouteCollectionForRequest($this->req);
         $route = $coll->get('index');
         $this->assertEquals('/home/contact/', $route->getPattern());
         $route = $coll->get('foobar');
@@ -32,7 +38,10 @@ class EndpointRepositoryTest extends WebTestCase
     public function testFindManyByUrl_noMatch()
     {
         $url = 'asd';
-        $coll = $this->repository->findManyByUrl($url);
+        $this->req->expects($this->any())
+            ->method('getUri')
+            ->will($this->returnValue($url));
+        $coll = $this->repository->getRouteCollectionForRequest($this->req);
         $this->assertNull($coll);
     }
 }

@@ -35,6 +35,13 @@ class ModuleManager
         return $this->modules;
     }
 
+    /**
+     * Retrieve the definition for the given Document
+     *
+     * @param object
+     *
+     * @return EndpointDefinition
+     */
     public function getEndpointDefinition($document)
     {
         foreach ($this->modules as $module) {

@@ -10,7 +10,7 @@ use dflydev\markdown\MarkdownParser;
 class EndpointController extends Controller
 {
     /**
-     * @Route('/endpoint/markdown/_edit')
+     * @Route("/endpoint/markdown/_edit")
      * @Template()
      */
     public function editAction($endpoint, $form)

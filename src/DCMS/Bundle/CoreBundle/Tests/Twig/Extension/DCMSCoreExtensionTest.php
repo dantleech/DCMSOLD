@@ -12,15 +12,25 @@ class DCMSCoreExtensionTest extends \PHPUnit_Framework_Testcase
             ->disableOriginalConstructor()
             ->getMock();
         $epContext = $this->getMock('DCMS\Bundle\CoreBundle\Helper\EpContext');
-        $this->extension = new DCMSCoreExtension($nh, $epContext);
+        $this->sc = $this->getMockBuilder('DCMS\Bundle\CoreBundle\Site\SiteContext')
+          ->disableOriginalConstructor()
+          ->getMock();
+        
+        $this->extension = new DCMSCoreExtension($nh, $epContext, $this->sc);
     }
 
     public function testEpPath()
     {
         $ep = $this->getMock('DCMS\Bundle\CoreBundle\Document\Endpoint');
+        $this->sc->expects($this->once())
+            ->method('getEndpointPath')
+            ->will($this->returnValue('/mytestsite/endpoints'));
         $ep->expects($this->once())
-            ->method('getFullPath');
-        $this->extension->epPath($ep);
+            ->method('getId')
+            ->will($this->returnValue('/mytestsite/endpoints/foobar/barfoo'));
+        $path = $this->extension->epPath($ep);
+        $this->assertEquals('/foobar/barfoo', $path);
+
     }
 }
 

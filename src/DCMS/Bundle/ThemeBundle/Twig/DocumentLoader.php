@@ -20,7 +20,14 @@ class DocumentLoader implements \Twig_LoaderInterface
             return $this->templates[$logicalName];
         }
 
-        $template = $this->repo->findTemplate($logicalName);
+        try {
+            $template = $this->repo->findTemplate($logicalName);
+        } catch (\Exception $e) {
+            throw new \Twig_Error_Loader(
+                sprintf('Cannot find document for "%s".', $logicalName),
+                -1, null, $e
+            );
+        }
         
         if (!$template) {
             throw new \Twig_Error_Loader(sprintf('Cannot find document for "%s".', $logicalName));

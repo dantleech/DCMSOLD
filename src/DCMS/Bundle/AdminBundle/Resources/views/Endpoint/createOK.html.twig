@@ -1,3 +1,3 @@
 <h2>{% trans %}Page Created{% endtrans %}</h2>
 <a href="{{ path('dcms_admin_endpoint_edit', {'endpoint_uuid': ep.uuid}) }}" class="button">Edit the page</a>
-<button class="button">Return</button>
+<a href="{{ path('dcms_admin_endpoint_index') }}" class="button">Return</a>

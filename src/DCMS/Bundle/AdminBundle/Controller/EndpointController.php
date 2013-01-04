@@ -10,8 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use DCMS\Bundle\AdminBundle\Helper\TreeHelper;
 use DCMS\Bundle\CoreBundle\Form\EndpointCreateType;
 use DCMS\Bundle\CoreBundle\Document\Endpoint;
+use DCMS\Bundle\CoreBundle\Controller\DCMSController;
 
-class EndpointController extends Controller
+class EndpointController extends DCMSController
 {
     protected function getRepo()
     {
@@ -169,12 +170,11 @@ class EndpointController extends Controller
             if ($form->isValid()) {
                 $data = $form->getData();
                 $epClass = $data->type;
-                $parent = $this->getDm()->find(null, '/');
+                $parent = $this->getDm()->find(null, $this->getSc()->getEndpointPath());
 
                 $ep = new $epClass;
                 $ep->setTitle($data->title);
                 $ep->setParent($parent);
-                $ep->setPath($data->path);
                 $this->getDm()->persist($ep);
                 $this->getDm()->flush();
                 $this->getDm()->refresh($ep);

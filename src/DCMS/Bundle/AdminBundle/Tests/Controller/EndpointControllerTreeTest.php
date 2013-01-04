@@ -108,12 +108,12 @@ class EndpointControllerTreeTest extends WebTestCase
         $client = $this->createClient();
         $client->request('post', $this->getUrl('dcms_admin_endpoint_create'), array(
             'endpoint' => array(
-                'type' => 'DCMS\Bundle\CoreBundle\Document\Endpoint',
-                'path' => '/hello',
+                'type' => 'DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint',
+                'title' => 'Hello',
             ),
         ));
         $resp = $client->getResponse();
-        $this->assertEquals('300', $resp->getStatusCode());
+        $this->assertEquals('200', $resp->getStatusCode());
     }
 
     protected function assertResponseOK(Response $response)

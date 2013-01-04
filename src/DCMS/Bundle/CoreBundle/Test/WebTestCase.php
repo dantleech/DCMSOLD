@@ -8,14 +8,16 @@ use Symfony\Component\Console\Output\NullOutput;
 use Doctrine\Common\DataFixtures\Executor\PHPCRExecutor;
 use Doctrine\Common\DataFixtures\Purger\PHPCRPurger;
 use Doctrine\ORM\Tools\SchemaTool;
-use Jackalope\Tools\Console\Command\InitDoctrineDbalCommand;
 use Jackalope\Tools\Console\Helper\DoctrineDbalHelper;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader as DataFixturesLoader;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\ODM\PHPCR\Tools\Console\Command\RegisterSystemNodeTypesCommand;
 use PHPCR\Util\Console\Helper\PhpcrHelper;
+
+use Jackalope\Tools\Console\Command\InitDoctrineDbalCommand;
+use Doctrine\ODM\PHPCR\Tools\Console\Command\RegisterSystemNodeTypesCommand;
 use DCMS\Bundle\CoreBundle\Command\RegisterNodeTypesCommand;
+use Doctrine\Bundle\DoctrineBundle\Command\Proxy\UpdateSchemaDoctrineCommand;
 
 class WebTestCase extends BaseWebTestCase
 {
@@ -72,6 +74,10 @@ class WebTestCase extends BaseWebTestCase
             // drop database
             $schemaTool = new SchemaTool($this->getEm());
             $schemaTool->dropDatabase($params['dbname']);
+
+            // update ORM schema
+            $emMetas = $this->getEm()->getMetadataFactory()->getAllMetadata();
+            $schemaTool->updateSchema($emMetas);
 
             // init phpcr
             $initCommand = new InitDoctrineDbalCommand;

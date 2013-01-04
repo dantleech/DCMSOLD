@@ -1,6 +1,6 @@
 <?php
 
-namespace DCMS\Bundle\BlogBundle\Tests\Controller;
+namespace DCMS\Bundle\MarkdownBundle\Tests\Controller;
 use DCMS\Bundle\CoreBundle\Test\WebTestCase;
 
 class EndpointControllerTest extends WebTestCase
@@ -21,7 +21,6 @@ class EndpointControllerTest extends WebTestCase
             'endpoint_uuid' => $this->ep1->getUuid()
         )));
         $resp = $this->client->getResponse();
-        die($resp->getContent());
         $this->assertEquals(200, $resp->getStatusCode());
     }
 }

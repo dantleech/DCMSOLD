@@ -15,7 +15,7 @@ class EndpointDefinitionTest extends \PHPUnit_Framework_Testcase
     {
         $this->epDef
             ->setIcon('foobar')
-            ->setEditRoute('edit_route')
+            ->setEditController('edit_route')
             ->setRenderController('HelloController')
             ->setTitle('Foo Endpoint')
             ->setJavascriptDependencies(array(
@@ -41,7 +41,7 @@ class EndpointDefinitionTest extends \PHPUnit_Framework_Testcase
 
         $this->assertEquals('foobar', $this->epDef->getIcon());
         $this->assertEquals('To test return value', $this->epDef->getTitle());
-        $this->assertEquals('edit_route', $this->epDef->getEditRoute());
+        $this->assertEquals('edit_route', $this->epDef->getEditController());
         $this->assertEquals('HelloController', $this->epDef->getRenderController());
         $this->assertEquals(array(
             'foo1.js',

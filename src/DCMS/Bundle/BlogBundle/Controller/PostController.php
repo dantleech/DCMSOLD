@@ -69,6 +69,7 @@ class PostController extends BaseController
     }
 
     /**
+     * @Route("/_blogList")
      * @Template()
      */
     public function blogListAction()
@@ -86,6 +87,7 @@ class PostController extends BaseController
     {
         $post = $this->getPost();
         $form = $this->createForm(new PostType, $post);
+
         if ($resp = $this->processForm('Post "%s" updated', $form)) {
             return $resp;
         }

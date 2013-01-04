@@ -14,6 +14,7 @@ class DCMSBlogBundle extends ModuleBundle
         $m->createEndpointDefinition('DCMS\Bundle\BlogBundle\Document\BlogEndpoint')
             ->setTitle('Blog')
             ->setIcon('bundles/dcmsblog/images/blog-16.png')
+            ->setRenderController('DCMSBlogBundle:Blog:render')
             ->setRoutingResource('@DCMSBlogBundle/Resources/config/routing/blog_endpoint.yml');
 
         $m->createEndpointDefinition('DCMS\Bundle\BlogBundle\Document\Post')

@@ -13,8 +13,8 @@ class EndpointDefinition
         'render',
     );
 
-    protected $editRoute;
     protected $renderController;
+    protected $editController;
 
     protected $formTypes = array(
         'edit' => 'DCMS\Bundle\CoreBundle\Form\BaseEndpointType',
@@ -55,15 +55,15 @@ class EndpointDefinition
         return $this->endpointFQN;
     }
 
-    public function setEditRoute($editRoute)
+    public function setEditController($editController)
     {
-        $this->editRoute = $editRoute;
+        $this->editController = $editController;
         return $this;
     }
 
-    public function getEditRoute()
+    public function getEditController()
     {
-        return $this->editRoute;
+        return $this->editController;
     }
 
     public function setRenderController($renderController)

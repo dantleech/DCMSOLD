@@ -39,12 +39,9 @@
                 </div>
             </div>
         </div>
-        {% if epDef.controller is not null %}
-            {% render epDef.controller with {
-                'endpoint': ep,
-                'form': form,
-            } %}
-        {% endif %}
+        <div class="panel">
+            <h1>Temporarily disabled until symfony PR is merged.</h1>
+        </div>
         {{ form_rest(form) }}
     </form>
 {% endblock %}

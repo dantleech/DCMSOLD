@@ -15,8 +15,23 @@ class BlogEndpoint extends Endpoint
      */
     protected $posts;
 
+    /**
+     * @PHPCR\ReferenceOne(strategy="hard")
+     */
+    protected $postsFolder;
+
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    public function getPostsFolder()
+    {
+        return $this->postsFolder;
+    }
+    
+    public function setPostsFolder($postsFolder)
+    {
+        $this->postsFolderName = $postsFolder;
     }
 }

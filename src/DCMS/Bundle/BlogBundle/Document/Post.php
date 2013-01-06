@@ -34,7 +34,7 @@ class Post extends Endpoint
      *   strategy="hard"
      * )
      */
-    protected $blog;
+    public $blog;
 
     /**
      * @PHPCR\Boolean

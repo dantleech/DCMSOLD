@@ -55,7 +55,7 @@ class Endpoint
     protected $orderableChildren = true;
 
     /**
-     * @PHPCR\referenceOne(strategy="hard", targetDocument="DCMS\Bundle\ThemeBundle\Document\Template")
+     * @PHPCR\ReferenceOne(strategy="hard", targetDocument="DCMS\Bundle\ThemeBundle\Document\Template")
      */
     protected $layout;
 

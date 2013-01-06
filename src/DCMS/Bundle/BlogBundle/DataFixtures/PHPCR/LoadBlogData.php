@@ -25,32 +25,42 @@ class LoadBlogData implements FixtureInterface, DependentFixtureInterface
         $ep = new BlogEndpoint;
         $ep->setParent($epRoot);
         $ep->setTitle('Dans Blog');
+        $folder = new Folder;
+        $folder->setNodeName('posts');
+        $folder->setParent($ep);
+        $ep->setPostsFolder($folder);
+
+        $manager->persist($folder);
         $manager->persist($ep);
-        $manager->flush();
 
         for ($i = 1; $i <= 20; $i++) {
             $p = new Post;
             $p->setTitle('Post '.$i);
             $p->setDate(new \DateTime());
             $p->setBody($this->getWords());
-            $p->setParent($ep);
+            $p->setParent($folder);
             $p->setBlog($ep);
             $p->setTags($this->getTags());
             $manager->persist($p);
         }
 
+        $manager->flush();
+
         $ep = new BlogEndpoint;
         $ep->setParent($epRoot);
         $ep->setTitle('Bicycle tour 2013');
+        $folder = new Folder;
+        $folder->setNodeName('logs');
+        $folder->setParent($ep);
+        $ep->setPostsFolder($folder);
         $manager->persist($ep);
-        $manager->flush();
 
         for ($i = 1; $i <= 20; $i++) {
             $p = new Post;
             $p->setTitle('Travel post '.$i);
             $p->setDate(new \DateTime());
             $p->setBody($this->getWords());
-            $p->setParent($ep);
+            $p->setParent($folder);
             $p->setBlog($ep);
             $p->setTags($this->getTags());
             $manager->persist($p);

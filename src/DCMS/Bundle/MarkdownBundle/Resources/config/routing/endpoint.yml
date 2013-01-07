@@ -1,0 +1,3 @@
+asdasd_index:
+    pattern: /
+    defaults: { _controller: 'DCMSMarkdownBundle:Endpoint:render' }

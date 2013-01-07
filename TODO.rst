@@ -1,18 +1,20 @@
 Part I - dantleech.com
 ======================
 
-* Routing system - full path doesn't work. (???)
 
 Tasks
 -----
 
+ * [done] regression with integer passed to CacascadeMode
+ * Routing system - full path doesn't work. e.g. /about/me does not get found.
  * [NO] Blog to not use endpoints for posts, to manage all as routes /blog/post/{slug} => _controller
- * Make homepage button. Add button to make endpoint a home page. Show this endpoint first in the list of homepages
+ * [done] Make homepage button. Add button to make endpoint a home page. Show this endpoint first in the list of homepages
    like with Templates.
- * Validation (part I ?)
- * dantleech.com migration script
  * Menu create !
+ * Validation (part I ?)
  * Default (CoreBunde\Document\Endpoint) controller.
+ * HTACCESS
+ * dantleech.com migration script
 
 Issues
 ------

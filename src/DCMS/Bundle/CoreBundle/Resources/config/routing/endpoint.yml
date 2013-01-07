@@ -1,0 +1,3 @@
+index:
+    pattern: /
+    defaults: { _controller: DCMSCoreBundle:Endpoint:default }

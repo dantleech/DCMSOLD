@@ -1,0 +1,25 @@
+{% macro fancyForm (options) %}
+    {% set options = {
+        'wrapper_id': 'fancy_form_wrapper',
+        'activate_anchor': null,
+        'get_url': null,
+        'post_url': null,
+        'submit_button_id': 'fancy_submit_button',
+        'cancel_button_id': 'fancy_cancel_button'
+    }|merge(options) %}
+
+    <div id="{{ options.wrapper_id }}" class="reveal-modal"></div>
+
+    <script type="text/javascript">
+        $('#{{ options.activate_anchor }}').dcmsFancyForm({
+            'activate_anchor': '{{ options.activate_anchor }}',
+            'get_url': '{{ options.get_url }}',
+            'post_url': '{{ options.post_url }}',
+            'submit_button_id': '{{ options.submit_button_id }}',
+            'cancel_button_id': '{{ options.cancel_button_id }}',
+            'updating_message': '{% trans %}Updating{% endtrans %}',
+            'wrapper_id': '{{ options.wrapper_id }}'
+        });
+    </script>
+
+{% endmacro %}

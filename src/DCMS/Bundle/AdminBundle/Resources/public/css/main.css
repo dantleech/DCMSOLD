@@ -9,9 +9,10 @@ ul.endpoint-tree a {
     position: relative;
     display: inline-block;
     border-collapse: collapse;
-    width: 150px;
+    width: 100%;
     white-space: nowrap;
-    overflow: clip;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 ul.endpoint-tree a:hover {
@@ -75,3 +76,6 @@ input[type="text"].large {
     visibility: hidden !important;
 }
 
+.placeholder {
+    outline: 1px dashed #4183C4;
+}

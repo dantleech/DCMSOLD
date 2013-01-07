@@ -82,7 +82,7 @@ class Menu
         return $this->rootItem;
     }
 
-    public function setRootItem(MenuItem $menuItem)
+    public function setRootItem($menuItem)
     {
         $this->rootItem = $menuItem;
     }

@@ -5,6 +5,7 @@ namespace DCMS\Bundle\CoreBundle\Tests\Routing;
 use DCMS\Bundle\CoreBundle\Routing\EndpointMapper;
 use DCMS\Bundle\CoreBundle\Document\Endpoint;
 
+// @todo: Delete this class - not used now. .. (i don't think so anyway)
 class EndpointMapperTest extends \PHPUnit_Framework_Testcase
 {
     public function setUp()

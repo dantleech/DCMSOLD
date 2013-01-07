@@ -32,6 +32,12 @@ class LoadEndpointData implements FixtureInterface, DependentFixtureInterface
         $manager->persist($contact);
 
         $manager->flush();
+
+        // set home
+        $site = $manager->find(null, '/sites/dantleech.com');
+        $site->setHomeEndpoint($home);
+        $manager->persist($home);
+        $manager->flush();
     }
 }
 

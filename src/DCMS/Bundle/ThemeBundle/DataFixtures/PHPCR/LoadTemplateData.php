@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use DCMS\Bundle\ThemeBundle\Document\Template;
 
-class LoadMenuEndpointData implements FixtureInterface, DependentFixtureInterface
+class LoadTemplateData implements FixtureInterface, DependentFixtureInterface
 {
     public function getDependencies()
     {
@@ -20,13 +20,13 @@ class LoadMenuEndpointData implements FixtureInterface, DependentFixtureInterfac
     {
         $rt = $manager->find(null, '/sites/dantleech.com/templates');
 
-        $e = new Template;
-        $e->setParent($rt);
-        $e->setTitle('Bar Template');
-        $e->setResource('homepage.html.twig');
-        $e->setSource(file_get_contents(__DIR__.'/data/layout.html.twig'));
-        $e->setType('layout');
-        $manager->persist($e);
+        $l = new Template;
+        $l->setParent($rt);
+        $l->setTitle('Bar Template');
+        $l->setResource('homepage.html.twig');
+        $l->setSource(file_get_contents(__DIR__.'/data/layout.html.twig'));
+        $l->setType('layout');
+        $manager->persist($l);
 
         $e = new Template;
         $e->setParent($rt);
@@ -37,6 +37,10 @@ class LoadMenuEndpointData implements FixtureInterface, DependentFixtureInterfac
         $manager->persist($e);
 
         $manager->flush();
+
+        $site = $manager->find(null, '/sites/dantleech.com');
+        $site->setPreference('dcms_theme.default_layout_uuid', $l->getUuid());
+        $manager->persist($site);
+        $manager->flush();
     }
 }
-

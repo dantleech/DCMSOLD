@@ -6,12 +6,14 @@ Part I - dantleech.com
 Tasks
 -----
 
- * Blog to not use endpoints for posts, to manage all as routes /blog/post/{slug} => _controller
+ * [NO] Blog to not use endpoints for posts, to manage all as routes /blog/post/{slug} => _controller
  * Make homepage button. Add button to make endpoint a home page. Show this endpoint first in the list of homepages
    like with Templates.
  * Validation (part I ?)
  * dantleech.com migration script
- 
+ * Menu create !
+ * Default (CoreBunde\Document\Endpoint) controller.
+
 Issues
 ------
 

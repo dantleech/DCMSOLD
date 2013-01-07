@@ -22,13 +22,6 @@ class EndpointMapper implements RouteEnhancerInterface
 
     public function enhance(array $defaults, Request $request)
     {
-        if ($endpoint = $defaults['endpoint']) {
-            if ($epDef = $this->mm->getEndpointDefinition($endpoint)) {
-                $this->epContext->setOnEndpoint(true);
-                $defaults['_controller'] = $epDef->getRenderController();
-            }
-        }
-
         return $defaults;
     }
 }

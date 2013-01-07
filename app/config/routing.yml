@@ -28,6 +28,9 @@ dcms_theme:
     type:     annotation
     prefix:   /admin/theme
 
+#_proxy:
+#    resource: "@FrameworkBundle/Resources/config/routing/proxy.xml"
+#    prefix:   /_proxy
 # Internal routing configuration to handle ESI
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

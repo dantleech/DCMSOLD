@@ -9,11 +9,16 @@
         <parameter key="dcms_core.response_helper.class">DCMS\Bundle\CoreBundle\Helper\ResponseHelper</parameter>
         <parameter key="dcms_core.notification_helper.class">DCMS\Bundle\CoreBundle\Helper\NotificationHelper</parameter>
         <parameter key="dcms_core.ep_context.class">DCMS\Bundle\CoreBundle\Helper\EpContext</parameter>
+        <parameter key="dcms_core.ep_controller_factory.class">DCMS\Bundle\CoreBundle\Helper\EndpointControllerFactory</parameter>
         <parameter key="dcms_core.twig_extension.class">DCMS\Bundle\CoreBundle\Twig\Extension\DCMSCoreExtension</parameter>
     </parameters>
 
     <services>
         <service id="dcms_core.ep_context" class="%dcms_core.ep_context.class%"/>
+        <service id="dcms_core.ep_controller_factory" class="%dcms_core.ep_controller_factory.class%">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="controller_name_converter"/>
+        </service>
         <service id="dcms_core.module_manager" class="%dcms_core.module_manager.class%"/>
         <service id="dcms_core.response_helper" class="%dcms_core.response_helper.class%"/>
         <service id="dcms_core.notification_helper" class="%dcms_core.notification_helper.class%">

@@ -24,7 +24,7 @@ class DCMSCoreExtension extends \Twig_Extension
         return array(
             'dcms_notification_helper' => $this->nh,
             'ep' => $this->epContext,
-            'site.context' => $this->sc,
+            'site_context' => $this->sc,
         );
     }
 

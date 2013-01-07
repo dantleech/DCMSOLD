@@ -15,6 +15,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * TODO: Rename to RouteProvider
+ */
 class EndpointRepository implements RouteProviderInterface, ContainerAwareInterface
 {
     protected $dm;
@@ -36,7 +39,49 @@ class EndpointRepository implements RouteProviderInterface, ContainerAwareInterf
 
     public function getRouteCollectionForRequest(Request $request)
     {
-        $url = $request->getUri();
+        $url = $request->getPathinfo();
+        $isHomeRoute = false;
+
+        if (!$url || $url == '/') {
+            $ep = $this->sc->getSite()->getHomeEndpoint();
+            $isHomeRoute = true;
+        } else {
+            $ep = $this->getEndpoint($url);
+        }
+
+        if (!$ep) {
+            return null;
+        }
+
+        $epDef = $this->mm->getEndpointDefinition($ep);
+
+        if (!$epDef) {
+            throw new \Exception(sprintf('No endpoint definition for endpoint "%s" (url: %s)', get_class($ep), $url));
+        }
+
+        if (!$routingResource = $epDef->getRoutingResource()) {
+            throw new \Exception('Endpoint has no routing resource set.');
+        }
+
+        $loader = $this->container->get('routing.loader');
+        $collection = $loader->load($routingResource);
+
+        foreach ($collection as $route) {
+            $route->setDefault('_endpoint', $ep);
+        }
+
+        // strip off PHPCR path
+        $prefix = substr($ep->getId(), strlen($this->sc->getEndpointPath()));
+
+        if (false === $isHomeRoute) {
+            $collection->addPrefix($prefix);
+        }
+
+        return $collection;
+    }
+
+    protected function getEndpoint($url)
+    {
         if (substr($url, 0, 1) == '/') {
             $url = substr($url, 1);
         }
@@ -71,20 +116,8 @@ class EndpointRepository implements RouteProviderInterface, ContainerAwareInterf
         }
 
         $ep = $this->dm->getUnitOfWork()->createDocument('DCMS\Bundle\CoreBundle\Document\Endpoint', $currentNode);
-        $epDef = $this->mm->getEndpointDefinition($ep);
-        $routingResource = $epDef->getRoutingResource();
-        $loader = $this->container->get('routing.loader');
-        $collection = $loader->load($routingResource);
 
-        foreach ($collection as $route) {
-            $route->setDefault('_endpoint', $ep);
-        }
-
-        // strip off PHPCR path
-        $prefix = substr($ep->getId(), strlen($this->sc->getEndpointPath()));
-        $collection->addPrefix($prefix);
-
-        return $collection;
+        return $ep;
     }
 
     public function getRouteByName($name, $params = array())

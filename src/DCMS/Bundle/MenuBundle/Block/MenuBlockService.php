@@ -1,13 +1,13 @@
 <?php
 
 namespace DCMS\Bundle\MenuBundle\Block;
-use Symfony\Component\HttpFoundation\Response;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class MenuBlockService extends BaseBlockService
 {
@@ -21,7 +21,7 @@ class MenuBlockService extends BaseBlockService
 
     protected function getMenuRepo()
     {
-        return $this->dm->getRepository('DCMS\Bundle\MenuBundle\Document\MenuEndpoint');
+        return $this->dm->getRepository('DCMS\Bundle\MenuBundle\Document\Menu');
     }
 
     public function buildEditForm(FormMapper $fm, BlockInterface $block)
@@ -43,6 +43,11 @@ class MenuBlockService extends BaseBlockService
     public function execute(BlockInterface $block, Response $response = null)
     {
         $menuEp = $this->getMenuRepo()->findOneBy(array());
+
+        if (!$menuEp) {
+            return new Response(200);
+        }
+
         return $this->renderResponse('DCMSMenuBundle:Block:menu.html.twig', array(
             'block' => $block,
             'menu' => $menuEp

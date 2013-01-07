@@ -14,12 +14,13 @@
 {% block endpoint_edit %}
     <form action="{{ path('dcms_admin_endpoint_edit', {'endpoint_uuid': ep.uuid }) }}" method="POST">
         <div class="row">
-            <div class="six columns">
+            <div class="four columns">
                 <h3 class="subheader">{{ epDef.title }} </h3>
             </div>
-            <div class="six columns text-right">
+            <div class="eight columns text-right">
                 <input type="submit" value="Update" class="button"/>
                 <a id="delete_endpoint_button" href="{{ path('dcms_admin_endpoint_delete', {'endpoint_uuid': ep.uuid}) }}" class="button alert">Delete</a>
+                <a class="button secondary {% if site_context.site.homeEndpoint.uuid == ep.uuid %}disabled{% endif %}"href="{{ path('dcms_admin_endpoint_makehome', {'endpoint_uuid': ep.uuid}) }}">Make Home</a>
             </div>
         </div>
 
@@ -39,9 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel">
-            <h1>Temporarily disabled until symfony PR is merged.</h1>
-        </div>
+        {{ epResp.content|raw }}
         {{ form_rest(form) }}
     </form>
 {% endblock %}

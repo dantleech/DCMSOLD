@@ -38,6 +38,11 @@ class Site
      */
     protected $preferences;
 
+    /**
+     * @PHPCR\ReferenceOne()
+     */
+    protected $homeEndpoint;
+
     public function getId()
     {
         return $this->id;
@@ -95,5 +100,19 @@ class Site
     public function setPreference($key, $value)
     {
         $this->preferences[$key] = $value;
+    }
+
+    public function getHomeEndpoint()
+    {
+        if (!$ep = $this->homeEndpoint) { 
+            return new Endpoint;
+        }
+
+        return $ep;
+    }
+    
+    public function setHomeEndpoint($homeEndpoint)
+    {
+        $this->homeEndpoint = $homeEndpoint;
     }
 }

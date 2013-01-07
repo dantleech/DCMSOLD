@@ -15,11 +15,11 @@ class EndpointController extends Controller
         ));
     }
 
-    public function renderAction($endpoint)
+    public function renderAction($_endpoint)
     {
         $mdParser = new MarkdownParser;
         return $this->render('DCMSMarkdownBundle:Endpoint:render.html.twig', array(
-            'endpoint' => $endpoint,
+            'endpoint' => $_endpoint,
             'markdown_parser' => $mdParser,
         ));
     }

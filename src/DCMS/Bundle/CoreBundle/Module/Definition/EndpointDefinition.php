@@ -7,6 +7,7 @@ class EndpointDefinition
     protected $endpointFQN;
     protected $icon;
     protected $title;
+    protected $routingResource;
 
     protected $validTypes = array(
         'edit', // edit page for endpoint editor

@@ -5,6 +5,9 @@
         <a href="{{ path('dcms_admin_endpoint_edit', {
             'endpoint_uuid': node.uuid
         }) }}">
+            {% if site_context.site.homeEndpoint.uuid == node.uuid %}
+            <img src="{{ asset('bundles/dcmsadmin/images/32/home.png') }}"/>
+            {% endif %}
             <img src="{{ asset(mm.endpointDefinition(node).icon) }}"/>
             {{ node.title }}
         </a>

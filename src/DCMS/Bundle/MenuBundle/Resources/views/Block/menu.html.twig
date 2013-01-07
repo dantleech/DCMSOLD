@@ -2,7 +2,7 @@
 
 {% block block %}
 <ul>
-{% for node in menu.children %}
+{% for node in menu.rootItem.children %}
 {% include "DCMSMenuBundle:Block:_menuNode.html.twig" with {
   'node': node
 } %}

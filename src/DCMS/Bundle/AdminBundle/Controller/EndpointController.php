@@ -105,10 +105,17 @@ class EndpointController extends DCMSController
             }
         }
 
+        $epResp = $this->get('dcms_core.ep_controller_factory')->getResponse(
+            $epDef->getEditController(), 
+            $ep, 
+            $formView = $form->createView()
+        );
+
         return array(
             'epDef' => $epDef,
             'ep' => $ep,
-            'form' => $form->createView(),
+            'form' => $formView,
+            'epResp' => $epResp,
         );
     }
 
@@ -214,5 +221,25 @@ class EndpointController extends DCMSController
                 'endpoint_uuid' => $ep->getUuid(),
             )));
         }
+    }
+
+    /**
+     * @Route("/endpoint/{endpoint_uuid}/make_home")
+     */
+    public function makeHome()
+    {
+        $ep = $this->getEndpoint();
+        $site = $this->getSite();
+        $site->setHomeEndpoint($ep);
+        $this->getDm()->persist($site);
+        $this->getDm()->flush();
+
+        $this->getNotifier()->info('Endpoint "%s" is now home', array(
+            $ep->getTitle(),
+        )); 
+
+        return $this->redirect($this->generateUrl('dcms_admin_endpoint_edit', array(
+            'endpoint_uuid' => $ep->getUuid()
+        )));
     }
 }

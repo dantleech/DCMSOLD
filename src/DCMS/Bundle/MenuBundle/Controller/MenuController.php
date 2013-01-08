@@ -123,6 +123,7 @@ class MenuController extends DCMSController
     {
         $menu = $this->getMenu();
         $tree = $request->get('menu');
+        $title = $request->get('title');
 
         if ($menu->getRootItem()->getId()) {
             $this->getDm()->remove($menu->getRootItem());
@@ -132,6 +133,7 @@ class MenuController extends DCMSController
         }
 
         $rootItem = $this->getNormalizer()->denormalize($tree, 'Symfony\Cmf\Bundle\MenuBundle\Document\MenuItem');
+        $menu->setTitle($title);
         $menu->setRootItem($rootItem);
         $this->getDm()->persist($menu);
         $this->getDm()->flush();

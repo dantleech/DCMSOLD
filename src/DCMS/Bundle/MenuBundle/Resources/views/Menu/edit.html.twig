@@ -42,6 +42,9 @@
                 <a id="delete_menu_button" href="{{ path('dcms_menu_menu_delete', {'menu_uuid': menu.uuid}) }}" class="button alert">Delete</a>
             </div>
         </div>
+        <div class="row">
+            <input id="title_input" type="text" class="large" name="menu[title]" placeholder="Title" value="{{ menu.title }}"/>
+        </div>
 
         <div class="row">
             <div class="large two columns">
@@ -88,6 +91,7 @@
                     return false;
                 }
 
+                var title= $('#title_input').val();
                 var node = {
                     children: []
                 };
@@ -101,7 +105,7 @@
                 $.ajax({
                     type: "post",
                     url: "{{ path('dcms_menu_menu_update', {'menu_uuid': menu.uuid}) }}",
-                    data: {'menu': node},
+                    data: {'menu': node, 'title': title},
                     success: function () {
                         $('#tree').unmask();
                         set_dirty(false);

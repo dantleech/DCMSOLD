@@ -5,17 +5,21 @@ Part I - dantleech.com
 Tasks
 -----
 
- * [done] regression with integer passed to CacascadeMode
- * Routing system - full path doesn't work. e.g. /about/me does not get found.
+ * [DONE] regression with integer passed to CacascadeMode
  * [NO] Blog to not use endpoints for posts, to manage all as routes /blog/post/{slug} => _controller
- * [done] Make homepage button. Add button to make endpoint a home page. Show this endpoint first in the list of homepages
-   like with Templates.
+ * [DONE] Make homepage button. Add button to make endpoint a home page. Show this endpoint first in the list of homepages
+
  * Menu create !
+   * [DONE] Refactored duplicated menu logic into macro and jquery plugin
+   * Menu reference in block ( e.g. specify which menu )
+ * Routing system - full path doesn't work. e.g. /about/me does not get found.
+   like with Templates.
  * Validation (part I ?)
  * Default (CoreBunde\Document\Endpoint) controller.
  * HTACCESS
  * dantleech.com migration script
 
+ * Abstract "Create OK template"
 Issues
 ------
 

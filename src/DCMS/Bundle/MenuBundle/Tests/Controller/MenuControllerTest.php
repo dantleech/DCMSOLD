@@ -30,5 +30,30 @@ class MenuControllerTest extends WebTestCase
         $resp = $this->client->getResponse();
         $this->assertEquals(200, $resp->getStatusCode());
     }
+
+    public function testCreate()
+    {
+        $this->client->request('get', $this->getUrl('dcms_menu_menu_create', array(
+        )));
+        $resp = $this->client->getResponse();
+        $this->assertEquals(200, $resp->getStatusCode());
+    }
+
+    public function testCreate_post()
+    {
+        $this->client->request(
+            'post', 
+            $this->getUrl('dcms_menu_menu_create', array(
+            )), array(
+                'menu' => array(
+                    'title' => 'Hello',
+                )
+            )
+        );
+
+        $resp = $this->client->getResponse();
+
+        $this->assertEquals(200, $resp->getStatusCode());
+    }
 }
 

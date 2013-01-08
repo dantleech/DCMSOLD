@@ -88,6 +88,7 @@ class TemplateController extends DCMSController
                 ));
             }
         }
+
         return array(
             'form' => $form->createView(),
         );

@@ -3,6 +3,8 @@
 namespace DCMS\Bundle\MenuBundle\Controller;
 
 use DCMS\Bundle\CoreBundle\Controller\DCMSController;
+use DCMS\Bundle\MenuBundle\Form\MenuCreateType;
+use DCMS\Bundle\MenuBundle\Document\Menu;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +35,12 @@ class MenuController extends DCMSController
         return $normalizer;
     }
 
+    protected function getRootDocument()
+    {
+        // @todo: Manage the document schema.
+        return $this->getDm()->find(null, $this->getSite()->getId().'/menus');
+    }
+
     /**
      * @Route("/menu")
      * @Template()
@@ -54,6 +62,39 @@ class MenuController extends DCMSController
         $menus = $this->getMenurepo()->findAll();
         return array(
             'menus' => $menus
+        );
+    }
+
+    /**
+     * @Route("/menu/_create")
+     * @Template()
+     */
+    public function createAction(Request $request)
+    {
+        $menu = new Menu;
+        $form = $this->createForm(new MenuCreateType, $menu);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $parent = $this->getRootDocument();
+                $menu->setParent($parent);
+                $this->getDm()->persist($menu);
+                $this->getDm()->flush();
+
+                $this->getNotifier()->info('Menu "%s" created', array(
+                    $menu->getTitle()
+                ));
+
+                return $this->render('DCMSMenuBundle:Menu:createOK.html.twig', array(
+                    'menu' => $menu,
+                ));
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
         );
     }
 

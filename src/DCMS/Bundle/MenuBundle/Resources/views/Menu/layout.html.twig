@@ -6,7 +6,7 @@
     <div class="row">
         <div class="three columns">
             <div class="action-bar">
-                <a href="{{ path('dcms_blog_post_create') }}" class="button">Create</a>
+                <a id="create_menu_button" class="button">Create</a>
             </div>
             {% render url('dcms_menu_menu_menulist') %}
         </div>
@@ -15,6 +15,11 @@
         {% endblock %}
         </div>
     </div>
+    {{ forms.fancyForm({
+        'activate_anchor': 'create_menu_button',
+        'get_url': path('dcms_menu_menu_create'),
+        'post_url': path('dcms_menu_menu_create'),
+    }) }}
 {% endblock %}
 
 

@@ -76,6 +76,6 @@ input[type="text"].large {
     visibility: hidden !important;
 }
 
-.placeholder {
+div.placeholder {
     outline: 1px dashed #4183C4;
 }

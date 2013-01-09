@@ -1,7 +1,7 @@
 <ul class="tagCloud">
 {% for name, tag in wTags %}
     <li style="font-size: {{ 24 * tag.weight }}px">
-        <a href="{{ ep.onEndpoint ? ep_path(tag.blog) : path('dcms_blog_post_index') }}?tag={{ name}}">{{ name }}</a>
+        <a href="{{ site_context.onEndpoint ? ep_path(tag.blog) : path('dcms_blog_post_index') }}?tag={{ name}}">{{ name }}</a>
     </li>
 {% endfor %}
 </ul>

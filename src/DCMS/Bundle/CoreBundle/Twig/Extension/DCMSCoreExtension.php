@@ -9,21 +9,18 @@ use DCMS\Bundle\CoreBundle\Site\SiteContext;
 class DCMSCoreExtension extends \Twig_Extension
 {
     protected $nh;
-    protected $sm;
-    protected $epContext;
+    protected $sc;
 
-    public function __construct(NotificationHelper $nh, EpContext $epContext, SiteContext $sm)
+    public function __construct(NotificationHelper $nh, SiteContext $sc)
     {
         $this->nh = $nh;
-        $this->epContext = $epContext;
-        $this->sc = $sm;
+        $this->sc = $sc;
     }
 
     public function getGlobals()
     {
         return array(
             'dcms_notification_helper' => $this->nh,
-            'ep' => $this->epContext,
             'site_context' => $this->sc,
         );
     }

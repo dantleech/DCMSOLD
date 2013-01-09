@@ -8,6 +8,8 @@ class SiteContext
     protected $site;
     protected $sr;
 
+    protected $onEndpoint = false;
+
     public function __construct(SiteRepository $sr)
     {
         $this->sr = $sr;
@@ -39,5 +41,21 @@ class SiteContext
     {
         $this->init();
         return $this->site->getId().'/endpoints';
+    }
+
+    /**
+     * Return true if we are on an endpoint
+     * (i.e. we are on the frontend)
+     *
+     * @return boolean
+     */
+    public function getOnEndpoint()
+    {
+        return $this->onEndpoint;
+    }
+
+    public function setOnEndpoint($boolean)
+    {
+        $this->onEndpoint = $boolean;
     }
 }

@@ -63,6 +63,8 @@ class EndpointRepository implements RouteProviderInterface, ContainerAwareInterf
             throw new \Exception('Endpoint has no routing resource set.');
         }
 
+        $this->sc->setOnEndpoint(true);
+
         $loader = $this->container->get('routing.loader');
         $collection = $loader->load($routingResource);
 

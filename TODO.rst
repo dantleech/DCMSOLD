@@ -9,7 +9,7 @@ Tasks
  * [NO] Blog to not use endpoints for posts, to manage all as routes /blog/post/{slug} => _controller
  * [DONE] Make homepage button. Add button to make endpoint a home page. Show this endpoint first in the list of homepages
 
- * Menu create !
+ * [DONE] Menu create !
    * [DONE] Refactored duplicated menu logic into macro and jquery plugin
    * Menu reference in block ( e.g. specify which menu )
  * Routing system - full path doesn't work. e.g. /about/me does not get found.
@@ -20,6 +20,8 @@ Tasks
  * dantleech.com migration script
 
  * Abstract "Create OK template"
+ * Conrimation on delete -- abstract delete button? Abstract actions?
+
 Issues
 ------
 

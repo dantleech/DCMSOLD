@@ -12,12 +12,6 @@
             <call method="setContainer"><argument type="service" id="service_container"/></call>
         </service>
 
-        <service id="dcms_core.route_enhancer.endpoint" class="DCMS\Bundle\CoreBundle\Routing\EndpointMapper">
-            <argument type="service" id="dcms_core.module_manager"/>
-            <argument type="service" id="dcms_core.ep_context"/>
-            <tag name="dynamic_router_route_enhancer"/>
-        </service>
-
     </services>
 
 

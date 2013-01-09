@@ -13,7 +13,7 @@ class BlogController extends BaseController
      */
     public function renderAction(Request $request)
     {
-        $blog = $this->get('request')->get('endpoint');
+        $blog = $this->get('request')->get('_endpoint');
         $posts = $this->getPostRepo()->search(array(
             'tag' => $tag = $request->get('tag'),
             'blog_uuid' => $blog->getUuid(),

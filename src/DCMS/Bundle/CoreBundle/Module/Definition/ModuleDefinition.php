@@ -41,7 +41,7 @@ class ModuleDefinition
     {
         foreach ($this->epds as $epd) {
             $fqn = $epd->getEndpointFQN();
-            if ($document instanceof $fqn) {
+            if (get_class($document) == $fqn) {
                 return $epd;
             }
         }

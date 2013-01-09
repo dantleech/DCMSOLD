@@ -1,6 +1,6 @@
 {% extends template_manager.layoutForEndpoint(blog) %}
 {% block endpoint %}
-<h2>{{ blog.nodeName }}</h2>
+<h2>{{ blog.title }}</h2>
 {% include "DCMSBlogBundle:Post:_postList.html.twig" with {
     posts: posts, 
     tag: tag,

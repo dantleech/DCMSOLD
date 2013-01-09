@@ -143,7 +143,7 @@ class PostController extends BaseController
      */
     public function renderAction()
     {
-        $post = $this->get('request')->get('endpoint');
+        $post = $this->get('request')->get('_endpoint');
         $mdParser = new MarkdownParser;
         return array(
             'post' => $post,

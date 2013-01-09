@@ -20,6 +20,6 @@ class DCMSBlogBundle extends ModuleBundle
         $m->createEndpointDefinition('DCMS\Bundle\BlogBundle\Document\Post')
             ->setTitle('Post')
             ->setIcon('bundles/dcmsblog/images/blog-16.png')
-            ->setRoutingResource('@DCMSBlogBundle/Resources/config/routing/blog_post.yml');
+            ->setRoutingResource('@DCMSBlogBundle/Resources/config/routing/post_endpoint.yml');
     }
 }

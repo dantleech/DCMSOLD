@@ -1,0 +1,3 @@
+post_view:
+    pattern: /
+    defaults: { _controller: DCMSBlogBundle:Post:render }

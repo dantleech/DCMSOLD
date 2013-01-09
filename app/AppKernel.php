@@ -1,5 +1,11 @@
 <?php
 
+function prd($val)
+{
+    var_dump($val);
+    die();
+}
+
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 

@@ -6,7 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use DCMS\Bundle\CoreBundle\Document\Site;
-use DCMS\Bundle\CoreBundle\Document\Endpoint;
+use DCMS\Bundle\CoreBundle\Document\TestEndpoint as Endpoint;
 
 class LoadEndpointData implements FixtureInterface, DependentFixtureInterface
 {
@@ -31,6 +31,11 @@ class LoadEndpointData implements FixtureInterface, DependentFixtureInterface
         $contact->setTitle('Contact');
         $manager->persist($contact);
 
+        $cv = new Endpoint;
+        $cv->setParent($contact);
+        $cv->setTitle('Cv');
+        $manager->persist($cv);
+
         $manager->flush();
 
         // set home
@@ -40,5 +45,3 @@ class LoadEndpointData implements FixtureInterface, DependentFixtureInterface
         $manager->flush();
     }
 }
-
-

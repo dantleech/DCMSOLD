@@ -11,11 +11,12 @@ Tasks
 
  * [DONE] Menu create !
    * [DONE] Refactored duplicated menu logic into macro and jquery plugin
-   * Menu reference in block ( e.g. specify which menu )
+   * [DONE] Menu reference in block ( e.g. specify which menu )
+ * [DONE] Default (CoreBunde\Document\Endpoint) controller.
+
  * Routing system - full path doesn't work. e.g. /about/me does not get found.
    like with Templates.
  * Validation (part I ?)
- * Default (CoreBunde\Document\Endpoint) controller.
  * HTACCESS
  * dantleech.com migration script
 

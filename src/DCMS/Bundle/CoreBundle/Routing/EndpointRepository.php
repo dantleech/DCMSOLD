@@ -87,8 +87,10 @@ class EndpointRepository implements RouteProviderInterface, ContainerAwareInterf
         if (substr($url, 0, 1) == '/') {
             $url = substr($url, 1);
         }
+
         $parts = explode('/', $url);
         $first = array_shift($parts);
+
         $firstPath = $this->sc->getEndpointPath().'/'.$first;
 
         $ep = $this->dm->find(
@@ -101,8 +103,8 @@ class EndpointRepository implements RouteProviderInterface, ContainerAwareInterf
         }
 
         $currentNode = $ep->getNode();
+        $currentNode = $ep->getNode();
         foreach ($parts as $part) {
-            $currentNode = $ep->getNode();
             $children = $currentNode->getNodes();
             $match = false;
             foreach ($children as $child) {

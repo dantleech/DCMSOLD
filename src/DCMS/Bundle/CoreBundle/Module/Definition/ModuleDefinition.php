@@ -4,6 +4,7 @@ namespace DCMS\Bundle\CoreBundle\Module\Definition;
 
 use DCMS\Bundle\CoreBundle\Module\Definition\EndpointDefinition;
 use DCMS\Bundle\CoreBundle\Module\Exception\EndpointAlreadyDefined as EndpointAlreadyDefinedException;
+use Doctrine\Common\Util\ClassUtils;
 
 class ModuleDefinition
 {
@@ -41,7 +42,8 @@ class ModuleDefinition
     {
         foreach ($this->epds as $epd) {
             $fqn = $epd->getEndpointFQN();
-            if (get_class($document) == $fqn) {
+
+            if (ClassUtils::getClass($document) == $fqn) {
                 return $epd;
             }
         }

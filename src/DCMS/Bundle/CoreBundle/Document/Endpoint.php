@@ -89,6 +89,16 @@ class Endpoint
      */
     protected $node;
 
+    /**
+     * @PHPCR\Date()
+     */
+    protected $createdAt;
+
+    /**
+     * @PHPCR\Date()
+     */
+    protected $updatedAt;
+
     public function __toString()
     {
         return $this->name;
@@ -263,6 +273,12 @@ class Endpoint
      */
     public function prePersist()
     {
+        $this->updatedAt = new \DateTime();
+
+        if (null === $this->createdAt) {
+            $this->createdAt = new \DateTime();
+        }
+
         $path = array();
         if (true === $this->autoName) {
             if (!$this->title) {
@@ -286,5 +302,25 @@ class Endpoint
         }
 
         return $clean;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 }

@@ -49,6 +49,7 @@ class PostSubscriber implements EventSubscriber
         $doc = $args->getDocument();
         $dm = $args->getDocumentManager();
         if ($doc instanceof Post) {
+            $tagEnts = array();
             $blog = $doc->getBlog();
             $this->purgePostTags($doc->getUuid());
             $tags = $doc->getTags();

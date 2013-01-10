@@ -105,11 +105,16 @@ class EndpointController extends DCMSController
             }
         }
 
-        $epResp = $this->get('dcms_core.ep_controller_factory')->getResponse(
-            $epDef->getEditController(), 
-            $ep, 
-            $formView = $form->createView()
-        );
+        $epResp = null;
+        $formView = $form->createView();
+
+        if ($editController = $epDef->getEditController()) {
+            $epResp = $this->get('dcms_core.ep_controller_factory')->getResponse(
+                $epController,
+                $ep, 
+                $formView
+            );
+        }
 
         return array(
             'epDef' => $epDef,

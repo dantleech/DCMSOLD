@@ -40,7 +40,9 @@
                 </div>
             </div>
         </div>
-        {{ epResp.content|raw }}
+        {% if epResp is not null %}
+            {{ epResp.content|raw }}
+        {% endif %}
         {{ form_rest(form) }}
     </form>
 {% endblock %}

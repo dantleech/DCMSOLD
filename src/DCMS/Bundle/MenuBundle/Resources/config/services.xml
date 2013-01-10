@@ -13,6 +13,7 @@
             <argument>dcms.block.service.menu</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="doctrine_phpcr.odm.default_document_manager"/>
+            <argument type="service" id="dcms_core.site.context"/>
             <tag name="sonata.block" />
         </service>
     </services>

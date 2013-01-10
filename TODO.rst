@@ -13,15 +13,18 @@ Tasks
    * [DONE] Refactored duplicated menu logic into macro and jquery plugin
    * [DONE] Menu reference in block ( e.g. specify which menu )
  * [DONE] Default (CoreBunde\Document\Endpoint) controller.
-
- * Routing system - full path doesn't work. e.g. /about/me does not get found.
+ * [DONE] Routing system - full path doesn't work. e.g. /about/me does not get found.
    like with Templates.
+
+ * Multivalue tags not being evaluated (matches only first value)
  * Validation (part I ?)
  * HTACCESS
  * dantleech.com migration script
 
  * Abstract "Create OK template"
- * Conrimation on delete -- abstract delete button? Abstract actions?
+ * Confirmation on delete -- abstract delete button? Abstract actions?
+
+ * System for managing site preferences (not just free form "put whatever you want")
 
 Issues
 ------

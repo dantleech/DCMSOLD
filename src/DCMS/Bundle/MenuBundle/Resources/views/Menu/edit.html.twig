@@ -39,7 +39,7 @@
             </div>
             <div class="six columns text-right">
                 <input id="update_button" type="submit" value="Update" class="button disabled"/>
-                <a id="delete_menu_button" href="{{ path('dcms_menu_menu_delete', {'menu_uuid': menu.uuid}) }}" class="button alert">Delete</a>
+                <a onclick="return $.confirm('Are you sure?')" id="delete_menu_button" href="{{ path('dcms_menu_menu_delete', {'menu_uuid': menu.uuid}) }}" class="button alert">Delete</a>
             </div>
         </div>
         <div class="row">

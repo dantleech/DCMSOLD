@@ -35,7 +35,7 @@
             </div>
             <div class="six columns text-right">
                 <input id="update_template_button" type="submit" value="Update" class="button"/>
-                <a id="delete_template_button" href="{{ path('dcms_theme_template_delete', {'template_uuid': template.uuid}) }}" class="button alert">Delete</a>
+                <a onclick="return $.confirm('Are you sure?')" id="delete_template_button" href="{{ path('dcms_theme_template_delete', {'template_uuid': template.uuid}) }}" class="button alert">Delete</a>
             </div>
         </div>
         <div class="row">

@@ -19,7 +19,9 @@
   <div id="navigation">
       {{ sonata_block_render({
         type: 'dcms.block.service.menu',
-        settings: {}
+        settings: {
+            'menu_name': 'Main Menu'
+        }
       }) }}
   </div>
 </div>
@@ -40,10 +42,12 @@
   </div>
   <div id="footer">
     Site by Daniel Leech 2010
-    <ul>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">CV</a></li>
-      <li><a href="#">About this site</a></li>
+  {{ sonata_block_render({
+    type: 'dcms.block.service.menu',
+    settings: {
+        'menu_name': 'Footer Menu'
+    }
+  }) }}
       <!--      <li><a title="RSS2 Feed" href="#"><?php echo image_tag('icn_rss2.png') ?></a></li>!-->
   </div>
 </body>

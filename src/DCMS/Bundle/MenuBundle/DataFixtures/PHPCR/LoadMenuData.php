@@ -36,10 +36,10 @@ class LoadMenuData implements FixtureInterface, DependentFixtureInterface
         $rootItem = $this->createEpItem('__root__');
         $menu->setRootItem($rootItem);
         $rootItem->setParent($menu);
-        $rootItem->addChild($this->createEpItem('content', $docs['home']));
-        $rootItem->addChild($this->createEpItem('cv', $docs['cv']));
-        $rootItem->addChild($this->createEpItem('finding-stray-commits', $docs['finding-stray-commits']));
-        $about = $this->createEpItem('About', $docs['about']);
+        $about = $rootItem->addChild($this->createEpItem('About', $docs['home']));
+        $rootItem->addChild($this->createEpItem('Blog', $docs['home']));
+        $rootItem->addChild($this->createEpItem('Archive', $docs['finding-stray-commits']));
+        $rootItem->addChild($this->createEpItem('CV', $docs['cv']));
         $rootItem->addChild($about);
         $about->addChild($me = $this->createEpItem('Me', $docs['me']));
         $about->addChild($them = $this->createEpItem('Them', $docs['them']));
@@ -48,16 +48,15 @@ class LoadMenuData implements FixtureInterface, DependentFixtureInterface
         $manager->flush();
 
         $menu = new Menu;
-        $menu->setTitle('Secondary Menu');
+        $menu->setTitle('Footer Menu');
         $menu->setParent($rt);
         $rootItem = $this->createEpItem('__root__');
         $rootItem->setParent($menu);
         $menu->setRootItem($rootItem);
-        $about = $this->createEpItem('About', $docs['about']);
         $rootItem
-            ->addChild($this->createEpItem('Testing', $docs['about']))
-            ->addChild($this->createEpItem('Foo', $docs['me']))
-            ->addChild($this->createEpItem('Bar', $docs['them']));
+            ->addChild($this->createEpItem('Contact', $docs['about']))
+            ->addChild($this->createEpItem('CV', $docs['me']))
+            ->addChild($this->createEpItem('About this site', $docs['them']));
 
         $manager->persist($menu);
         $manager->flush();

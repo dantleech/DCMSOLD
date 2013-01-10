@@ -11,6 +11,7 @@ use DCMS\Bundle\CoreBundle\Controller\DCMSController;
 use DCMS\Bundle\ThemeBundle\Document\Template as TemplateDocument;
 use DCMS\Bundle\ThemeBundle\Form\TemplateEditType;
 use DCMS\Bundle\ThemeBundle\Form\TemplateCreateType;
+use PHPCR\ItemNotFoundException;
 
 class TemplateController extends DCMSController
 {
@@ -43,7 +44,11 @@ class TemplateController extends DCMSController
         $site = $this->getSite();
         $defaultLayout = null;
         if ($uuid = $site->getPreference('dcms_theme.default_layout_uuid')) {
-            $defaultLayout = $this->getRepo()->find($uuid);
+            try {
+                $defaultLayout = $this->getRepo()->find($uuid);
+            } catch (ItemNotFoundException $e) {
+                // oh well ...
+            }
         }
 
         $type = $request->get('type');
@@ -138,7 +143,7 @@ class TemplateController extends DCMSController
             )); 
             return $this->redirect($this->generateUrl('dcms_theme_template_index', array(
             )));
-        } catch (\Exctemplatetion $e) {
+        } catch (\Exception $e) {
             $this->getNotifier()->error($e->getMessage());
             return $this->redirect($this->generateUrl('dcms_theme_template_edit', array(
                 'template_uuid' => $template->getUuid(),

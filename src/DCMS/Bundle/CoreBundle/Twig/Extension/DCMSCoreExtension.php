@@ -29,7 +29,7 @@ class DCMSCoreExtension extends \Twig_Extension
     {
         return array(
             'ep_path' => new \Twig_Function_Method($this, 'epPath'),
-            'ep_abs_path' => new \Twig_Function_Method($this, 'epAbsPath')
+            'ep_abs_path' => new \Twig_Function_Method($this, 'epAbsPath'),
         );
     }
 

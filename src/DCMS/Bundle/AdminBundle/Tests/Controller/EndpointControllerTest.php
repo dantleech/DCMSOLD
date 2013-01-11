@@ -7,6 +7,9 @@ class EndpointControllerTest extends WebTestCase
 {
     public function setUp()
     {
+        $this->loadDocumentFixtures(array(
+            'DCMS\Bundle\AdminBundle\Tests\Fixtures\ODM\LoadEndpointData',
+        ));
         $this->client = $this->createClient();
     }
 

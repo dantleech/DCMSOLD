@@ -19,18 +19,18 @@ class EndpointControllerTreeTest extends WebTestCase
         $this->ep1 = $this->repo->find('/ep1');
         $this->ep2 = $this->repo->find('/ep2');
         $this->ep3 = $this->repo->find('/ep3');
+        $this->client = $this->createClient();
     }
 
     public function testUpdateTreeChangeParent()
     {
-        $client = $this->createClient();
-        $client->request('post', $this->getUrl('dcms_admin_endpoint_updatetree'), array(
+        $this->client->request('post', $this->getUrl('dcms_admin_endpoint_updatetree'), array(
             'command' => array(
                 'source' => $this->ep1->getUuid(),
                 'parent' => $this->ep2->getUuid(),
             ),
         ));
-        $resp = $client->getResponse();
+        $resp = $this->client->getResponse();
         $this->assertEquals(200, $resp->getStatusCode());
 
         $this->getDm()->clear();
@@ -42,14 +42,14 @@ class EndpointControllerTreeTest extends WebTestCase
 
     public function testUpdateTreeChangeParentNull()
     {
-        $client = $this->createClient();
-        $client->request('post', $this->getUrl('dcms_admin_endpoint_updatetree'), array(
+        $this->client = $this->createClient();
+        $this->client->request('post', $this->getUrl('dcms_admin_endpoint_updatetree'), array(
             'command' => array(
                 'source' => $this->ep1->getUuid(),
                 'parent' => '',
             ),
         ));
-        $resp = $client->getResponse();
+        $resp = $this->client->getResponse();
         $this->assertEquals(200, $resp->getStatusCode());
 
         $this->getDm()->clear();
@@ -60,14 +60,14 @@ class EndpointControllerTreeTest extends WebTestCase
 
     public function testUpdateTreeReorderAfter()
     {
-        $client = $this->createClient();
-        $client->request('post', $this->getUrl('dcms_admin_endpoint_updatetree'), array(
+        $this->client = $this->createClient();
+        $this->client->request('post', $this->getUrl('dcms_admin_endpoint_updatetree'), array(
             'command' => array(
                 'source' => $this->ep3->getUuid(),
                 'next' => $this->ep1->getUuid(),
             ),
         ));
-        $resp = $client->getResponse();
+        $resp = $this->client->getResponse();
         $this->assertEquals(200, $resp->getStatusCode());
 
         $this->getDm()->clear();
@@ -78,14 +78,14 @@ class EndpointControllerTreeTest extends WebTestCase
 
     public function testUpdateTreeReorderPrev()
     {
-        $client = $this->createClient();
-        $client->request('post', $this->getUrl('dcms_admin_endpoint_updatetree'), array(
+        $this->client = $this->createClient();
+        $this->client->request('post', $this->getUrl('dcms_admin_endpoint_updatetree'), array(
             'command' => array(
                 'source' => $this->ep3->getUuid(),
                 'prev' => $this->ep1->getUuid(),
             ),
         ));
-        $resp = $client->getResponse();
+        $resp = $this->client->getResponse();
         $this->assertEquals(200, $resp->getStatusCode());
 
         $this->getDm()->clear();
@@ -95,24 +95,16 @@ class EndpointControllerTreeTest extends WebTestCase
         $this->assertEquals('ep3', $keys[1]);
     }
 
-    public function testCreate_get()
-    {
-        $client = $this->createClient();
-        $client->request('get', $this->getUrl('dcms_admin_endpoint_create'));
-        $resp = $client->getResponse();
-        $this->assertResponseOK($resp);
-    }
-
     public function testCreate_post()
     {
-        $client = $this->createClient();
-        $client->request('post', $this->getUrl('dcms_admin_endpoint_create'), array(
+        $this->client = $this->createClient();
+        $this->client->request('post', $this->getUrl('dcms_admin_endpoint_create'), array(
             'endpoint' => array(
                 'type' => 'DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint',
                 'title' => 'Hello',
             ),
         ));
-        $resp = $client->getResponse();
+        $resp = $this->client->getResponse();
         $this->assertEquals('200', $resp->getStatusCode());
     }
 

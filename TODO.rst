@@ -18,6 +18,8 @@ Tasks
  * [DONE (added confirmations)] Confirmation on delete -- abstract delete button? Abstract actions?
  * [DONE] dantleech.com migration script
 
+ * [DONE - twig was not going via ::getChildren() with node.children, has to change to node.getChildren]  Method "showInMenu" for object "DCMS\Bundle\CoreBundle\Document\Folder" does not exist in /home/daniel/www/DCMS/src/DCMS/Bundle/AdminBundle/Resources/views/Endpoint/_treeNode.html.twig at line 1
+
 
  * Multivalue tags not being evaluated (matches only first value)
  * Support for blog comments (and import from dantleech2 [or not])
@@ -27,8 +29,6 @@ Tasks
  * Abstract "Create OK template"
 
  * System for managing site preferences (not just free form "put whatever you want")
-
-   Method "showInMenu" for object "DCMS\Bundle\CoreBundle\Document\Folder" does not exist in /home/daniel/www/DCMS/src/DCMS/Bundle/AdminBundle/Resources/views/Endpoint/_treeNode.html.twig at line 1
 
 Issues
 ------

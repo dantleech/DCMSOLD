@@ -21,16 +21,19 @@ use Doctrine\Bundle\DoctrineBundle\Command\Proxy\UpdateSchemaDoctrineCommand;
 
 class WebTestCase extends BaseWebTestCase
 {
-    protected $kernelInstance;
+    static $kernelInstance;
+    static $container;
 
     protected function getContainer()
     {
-        if (!$this->kernelInstance) {
-            $this->kernelInstance = self::createKernel();
-            $this->kernelInstance->boot();
+        if (!self::$kernelInstance) {
+            self::$kernelInstance = self::createKernel();
+            self::$kernelInstance->boot();
         }
 
-        return $this->kernelInstance->getContainer();
+        self::$container = self::$kernelInstance->getContainer();
+        return self::$kernelInstance->getContainer();
+        return self::$container;
     }
 
     protected function getUrl($routeName, $params = array())

@@ -2,6 +2,7 @@
 
 namespace DCMS\Bundle\CoreBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
+use Doctrine\Common\Util\ClassUtils;
 
 /**
  * @PHPCR\Document
@@ -68,9 +69,24 @@ class Folder
         $this->nodeName = $nodeName;
     }
 
-    public function getChildren()
+    public function getChildren($filterClass = null)
     {
-        return $this->children;
+        $children = $this->children;
+        if ($filterClass) {
+            $ret = array();
+            foreach ($children as $child) {
+                if ($child instanceOf $filterClass) {
+                    $ret[] = $child;
+                }
+            }
+            $children = $ret;
+        }
+        return $children;
+    }
+
+    public function addChild($child)
+    {
+        $this->children[] = $child;
     }
     
     public function setChildren($children)

@@ -73,6 +73,7 @@ class EndpointController extends DCMSController
     public function indexAction()
     {
         $root = $this->getEPRoot();
+
         return array(
             'rootNode' => $root,
             'mm' => $this->getMm(),
@@ -110,7 +111,7 @@ class EndpointController extends DCMSController
 
         if ($editController = $epDef->getEditController()) {
             $epResp = $this->get('dcms_core.ep_controller_factory')->getResponse(
-                $epController,
+                $editController,
                 $ep, 
                 $formView
             );

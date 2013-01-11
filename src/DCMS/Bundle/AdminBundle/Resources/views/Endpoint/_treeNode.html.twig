@@ -15,7 +15,7 @@
         {{ node|yaml_dump }}
     {% endif %}
     <ul style="clear: both" class="tree">
-        {% for child in node.children %}
+        {% for child in node.getChildren %}
             {% include "DCMSAdminBundle:Endpoint:_treeNode.html.twig" with {'node': child} %}
         {% endfor %}
     </ul>

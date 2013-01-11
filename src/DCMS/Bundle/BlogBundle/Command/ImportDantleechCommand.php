@@ -65,11 +65,13 @@ class ImportDantleechCommand extends ContainerAwareCommand
         $sql = "SELECT * FROM blog";
         $res = $this->db->query($sql);
 
-        foreach ($this->blog->getChildren() as $child) {
-            $this->dm->remove($child);
-        }
+        if ($kids = $this->blog->getChildren()) {
+            foreach ($kids as $child) {
+                $this->dm->remove($child);
+            }
 
-        $this->dm->flush();
+            $this->dm->flush();
+        }
 
         while ($row = $res->fetch(\PDO::FETCH_ASSOC)) {
             $this->output->writeln('<info>Importing : '.$row['title'].'</info>');

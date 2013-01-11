@@ -15,16 +15,20 @@ Tasks
  * [DONE] Default (CoreBunde\Document\Endpoint) controller.
  * [DONE] Routing system - full path doesn't work. e.g. /about/me does not get found.
    like with Templates.
+ * [DONE (added confirmations)] Confirmation on delete -- abstract delete button? Abstract actions?
+ * [DONE] dantleech.com migration script
+
 
  * Multivalue tags not being evaluated (matches only first value)
+ * Support for blog comments (and import from dantleech2 [or not])
  * Validation (part I ?)
  * HTACCESS
- * dantleech.com migration script
 
  * Abstract "Create OK template"
- * Confirmation on delete -- abstract delete button? Abstract actions?
 
  * System for managing site preferences (not just free form "put whatever you want")
+
+   Method "showInMenu" for object "DCMS\Bundle\CoreBundle\Document\Folder" does not exist in /home/daniel/www/DCMS/src/DCMS/Bundle/AdminBundle/Resources/views/Endpoint/_treeNode.html.twig at line 1
 
 Issues
 ------

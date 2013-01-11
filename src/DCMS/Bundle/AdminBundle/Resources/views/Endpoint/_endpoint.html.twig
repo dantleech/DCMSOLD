@@ -11,7 +11,7 @@
             {{ ep_path(child) }}
         </h5>
     </div>
-    {% if child.children %}
+    {% if child.getChildren %}
     {% include "DCMSAdminBundle:Endpoint:_endpoint.html.twig" with {'node': child} %}
     {% endif %}
 {% endfor %}

@@ -62,7 +62,8 @@ class MenuBlockService extends BaseBlockService
 
         return $this->renderResponse('DCMSMenuBundle:Block:menu.html.twig', array(
             'block' => $block,
-            'menu' => $menu
+            'menu' => $menu,
+            'settings' => $settings,
         ));
     }
 
@@ -70,6 +71,9 @@ class MenuBlockService extends BaseBlockService
     {
         return array(
             'menu_name' => null,
+            'class' => 'nav-bar',
+            'class_has_children' => 'has-flyout',
+            'class_children' => 'flyout',
         );
     }
 }

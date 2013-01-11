@@ -1,25 +1,24 @@
-{% extends "DCMSAdminBundle::layout.html.twig" %}
+{% extends "DCMSAdminBundle::layoutTwoCol.html.twig" %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/dcmsblog/css/blog.css') }}" />
 {% endblock %}
-{% block main %}
-    <div class="row">
-        <div class="three columns">
-            <div class="action-bar">
-                <a href="{{ path('dcms_blog_post_create') }}" class="button">Create</a>
-            </div>
-            {% render(path('dcms_blog_post_bloglist')) %}
-            {{ sonata_block_render({
-              type: 'dcms.block.service.tag_cloud', 
-              settings: {
-              }
-              }) }}
-        </div>
-        <div class="nine columns">
-        {% block content %}
-        {% endblock %}
-        </div>
+
+{% block column_1 %}
+    <div class="action-bar">
+        <a href="{{ path('dcms_blog_post_create') }}" class="button">Create</a>
     </div>
+    {% render(path('dcms_blog_post_bloglist')) %}
+    {{ sonata_block_render({
+      type: 'dcms.block.service.tag_cloud', 
+      settings: {
+      }
+      }) }}
+{% endblock %}
+
+{% block column_2 %}
+    {% block content %}
+    {% endblock %}
 {% endblock %}
 
 

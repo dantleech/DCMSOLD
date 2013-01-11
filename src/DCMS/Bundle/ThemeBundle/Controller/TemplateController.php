@@ -126,6 +126,7 @@ class TemplateController extends DCMSController
         return array(
             'template' => $template,
             'form' => $form->createView(),
+            'layoutName' => 'DCMSThemeBundle:Template:layout.html.twig'
         );
     }
 

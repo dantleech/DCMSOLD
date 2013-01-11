@@ -20,6 +20,7 @@ Tasks
 
  * [DONE - twig was not going via ::getChildren() with node.children, has to change to node.getChildren]  Method "showInMenu" for object "DCMS\Bundle\CoreBundle\Document\Folder" does not exist in /home/daniel/www/DCMS/src/DCMS/Bundle/AdminBundle/Resources/views/Endpoint/_treeNode.html.twig at line 1
 
+ * HowTo manage assets
 
  * Multivalue tags not being evaluated (matches only first value)
  * Support for blog comments (and import from dantleech2 [or not])

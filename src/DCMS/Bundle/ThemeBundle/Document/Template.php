@@ -32,7 +32,7 @@ class Template
     protected $parent;
 
     /**
-     * @PHPCR\NodeName
+     * @PHPCR\String
      */
     protected $title;
 
@@ -45,6 +45,11 @@ class Template
      * @PHPCR\String()
      */
     protected $type;
+
+    /**
+     * @PHPCR\NodeName
+     */
+    protected $name;
 
     /**
      * @PHPCR\String
@@ -122,6 +127,7 @@ class Template
     public function setResource($resource)
     {
         $this->resource = $resource;
+        $this->name = $resource;
     }
 
     public function getParent()

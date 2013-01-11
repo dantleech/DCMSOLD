@@ -1,4 +1,4 @@
-{% extends "DCMSAdminBundle::layout.html.twig" %}
+{% extends "DCMSAdminBundle::layoutTwoCol.html.twig" %}
 {% block title %}
     P*
 {% endblock %}
@@ -69,19 +69,16 @@
     </script>
 {% endblock %}
 
-{% block main %}
-    <div class="row">
-        <div class="three columns">
-            <div class="action-bar">
-                <button id="create_endpoint_button" class="button">Create</button>
-            </div>
-            {% render url('dcms_admin_endpoint_tree') %}
+{% block column_1 %}
+        <div class="action-bar">
+            <button id="create_endpoint_button" class="button">Create</button>
         </div>
-        <div class="nine columns">
-        {% block endpoint_edit %}
-        {% endblock %}
-        </div>
-    </div>
+        {% render url('dcms_admin_endpoint_tree') %}
+{% endblock %}
+
+{% block column_2 %}
+    {% block endpoint_edit %}
+    {% endblock %}
 
     {{ forms.fancyForm({
         'activate_anchor': 'create_endpoint_button',

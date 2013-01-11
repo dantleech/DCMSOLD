@@ -1,20 +1,20 @@
-{% extends "DCMSAdminBundle::layout.html.twig" %}
+{% extends "DCMSAdminBundle::layoutTwoCol.html.twig" %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/dcmsblog/css/blog.css') }}" />
 {% endblock %}
-{% block main %}
-    <div class="row">
-        <div class="three columns">
-            <div class="action-bar">
-                <a id="create_menu_button" class="button">Create</a>
-            </div>
-            {% render url('dcms_menu_menu_menulist') %}
-        </div>
-        <div class="nine columns">
-        {% block content %}
-        {% endblock %}
-        </div>
+
+{% block column_1 %}
+    <div class="action-bar">
+        <a id="create_menu_button" class="button">Create</a>
     </div>
+    {% render url('dcms_menu_menu_menulist') %}
+{% endblock %}
+
+{% block column_2 %}
+    {% block content %}
+    {% endblock %}
+
     {{ forms.fancyForm({
         'activate_anchor': 'create_menu_button',
         'get_url': path('dcms_menu_menu_create'),

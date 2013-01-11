@@ -1,21 +1,19 @@
-{% extends "DCMSAdminBundle::layout.html.twig" %}
-{% block main %}
-    <div class="row">
-        <div class="three columns">
-            <div class="action-bar">
-                <button id="create_template_button" class="button">Create</button>
-            </div>
-            <ul class="nav-bar vertical">
-                <li><a href="{{ path('dcms_theme_template_index', {'type': 'layout'}) }}">Layouts</a></li>
-                <li><a href="{{ path('dcms_theme_template_index', {'type': 'partial'}) }}">Partials</a></li>
-                <li><a href="{{ path('dcms_theme_template_index', {'type': 'stylesheet'}) }}">Stylesheets</a></li>
-            </ul>
-        </div>
-        <div class="nine columns">
-        {% block content %}
-        {% endblock %}
-        </div>
+{% extends "DCMSAdminBundle::layoutTwoCol.html.twig" %}
+
+{% block column_1 %}
+    <div class="action-bar">
+        <button id="create_template_button" class="button">Create</button>
     </div>
+    <ul class="nav-bar vertical">
+        <li><a href="{{ path('dcms_theme_template_index', {'type': 'layout'}) }}">Layouts</a></li>
+        <li><a href="{{ path('dcms_theme_template_index', {'type': 'partial'}) }}">Partials</a></li>
+        <li><a href="{{ path('dcms_theme_template_index', {'type': 'stylesheet'}) }}">Stylesheets</a></li>
+    </ul>
+{% endblock %}
+
+{% block column_2 %}
+    {% block content %}
+    {% endblock %}
 
     {{ forms.fancyForm({
         'activate_anchor': 'create_template_button',
@@ -23,6 +21,5 @@
         'post_url': path('dcms_theme_template_create'),
         'submit_button_id': 'create_template_submit_button'
     }) }}
-
 {% endblock %}
 

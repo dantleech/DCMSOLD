@@ -1,7 +1,7 @@
-<li>
+<li class="{{ node.children|length > 0 ? settings.class_has_children }}">
     <a href="{{ node.content ? ep_path(node.content) : node.uri }}">{{ node.label }}</a>
     {% if node.children|length > 0 %}
-        <ul>
+    <ul class="{{ settings.class_children }}">
         {% for child in node.children %}
             {% include "DCMSMenuBundle:Block:_menuNode.html.twig" with {'node': child} %}
         {% endfor %}

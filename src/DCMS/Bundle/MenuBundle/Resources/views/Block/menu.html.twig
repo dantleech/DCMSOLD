@@ -1,7 +1,7 @@
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
-<ul>
+<ul class="{{ settings.class }}">
 {% for node in menu.rootItem.children %}
 {% include "DCMSMenuBundle:Block:_menuNode.html.twig" with {
   'node': node

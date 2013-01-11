@@ -43,6 +43,12 @@ class SiteContext
         return $this->site->getId().'/endpoints';
     }
 
+    public function getAssetsUrl()
+    {
+        $this->init();
+        return '/media'.$this->site->getId();
+    }
+
     /**
      * Return true if we are on an endpoint
      * (i.e. we are on the frontend)

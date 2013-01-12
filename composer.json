@@ -35,10 +35,9 @@
         "symfony-cmf/routing-extra-bundle": "dev-master",
         "symfony-cmf/menu-bundle": "dev-menu_as_knp",
         "symfony/assetic-bundle": "2.1.*",
-        "symfony/monolog-bundle": "2.1.*",
+        "symfony/monolog-bundle": "dev-master",
         "symfony/swiftmailer-bundle": "2.1.*",
         "symfony/symfony": "2.2.*",
-        "monolog/monolog": "dev-master",
         "twig/extensions": "1.0.*"
     },
 

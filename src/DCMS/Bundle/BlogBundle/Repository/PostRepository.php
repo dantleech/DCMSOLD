@@ -12,36 +12,26 @@ class PostRepository extends DocumentRepository
             'tag' => null,
             'blog_uuid' => null,
         ), $options);
-        $qb = $this->createQueryBuilder('p');
-        $qf = $qb->getQOMFactory();
+        $qb = $this->createQueryBuilder();
 
         $criterias = array();
+
         if ($options['tag']) {
-            $criterias[] = $qf->comparison(
-                $qf->propertyValue('tags'), 
-                Constants::JCR_OPERATOR_EQUAL_TO,
-                $qf->literal($options['tag'])
-            );
+            $criterias[] = $qb->expr()->eq('tags', $options['tag']);
         }
 
         if ($options['blog_uuid']) {
-            $qf->comparison(
-                $qf->propertyValue('blog'),
-                Constants::JCR_OPERATOR_EQUAL_TO,
-                $qf->literal($options['blog_uuid'])
-            );
+            $criterias[] = $qb->expr()->eq('blog', $options['blog_uuid']);
         }
 
         if (count($criterias) == 2) {
-            $qb->where($qf->and($criterias[0], $criterias[1]));
+            $qb->where($qb->expr()->andX($criterias[0], $criterias[1]));
         } elseif (count($criterias) == 1) {
             $qb->where(current($criterias));
         }
 
-        $qb->orderBy($qf->propertyValue('date'), 'DESC');
+        $qb->orderBy('date', 'DESC');
         $q = $qb->getQuery();
-        // @todo: Should be handled by QB
-        $q->setDocumentClass('DCMS\Bundle\BlogBundle\Document\Post');
 
         return $q;
     }

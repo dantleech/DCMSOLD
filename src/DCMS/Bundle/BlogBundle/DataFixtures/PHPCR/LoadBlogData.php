@@ -44,6 +44,11 @@ class LoadBlogData implements FixtureInterface, DependentFixtureInterface
             $manager->persist($p);
         }
 
+
+        // add a test tag for the functional tests
+        $p->setTags(array('test'));
+        $manager->persist($p);
+
         $manager->flush();
 
         $ep = new BlogEndpoint;

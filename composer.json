@@ -33,7 +33,7 @@
         "simonjodet/markdown": "1.0.x-dev",
         "symfony-cmf/routing": "dev-master",
         "symfony-cmf/routing-extra-bundle": "dev-master",
-        "symfony-cmf/menu-bundle": "dev-sf2.2",
+        "symfony-cmf/menu-bundle": "dev-menu_as_knp",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.*",

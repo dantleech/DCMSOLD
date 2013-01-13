@@ -8,10 +8,14 @@
         {
             "type": "vcs",
             "url": "http://github.com/dantleech/MenuBundle"
+        },
+        {
+            "type": "vcs",
+            "url": "http://github.com/dantleech/RoutingExtraBundle"
         }
     ],
     "require": {
-        "doctrine/doctrine-bundle": "1.0.*",
+        "doctrine/doctrine-bundle": "1.2.x-dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/phpcr-bundle": "1.0.*",
@@ -32,7 +36,7 @@
         "sonata-project/block-bundle": "dev-master",
         "simonjodet/markdown": "1.0.x-dev",
         "symfony-cmf/routing": "dev-master",
-        "symfony-cmf/routing-extra-bundle": "dev-master",
+        "symfony-cmf/routing-extra-bundle": "dev-sf2.2",
         "symfony-cmf/menu-bundle": "dev-menu_as_knp",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/monolog-bundle": "dev-master",

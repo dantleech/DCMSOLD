@@ -1,21 +1,25 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "name": "dantleech/dcms",
+    "description": "Dans Content Management System",
     "autoload": {
         "psr-0": { "": "src/" }
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "http://github.com/dantleech/MenuBundle"
+            "url": "git@github.com:dantleech/MenuBundle"
         },
         {
             "type": "vcs",
-            "url": "http://github.com/dantleech/RoutingExtraBundle"
+            "url": "git@github.com:dantleech/SonataDoctrinePhpcrAdminBundle"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:dantleech/RoutingExtraBundle"
         }
     ],
     "require": {
-        "doctrine/doctrine-bundle": "1.2.x-dev",
+        "doctrine/doctrine-bundle": "dev-master as 1.0.x-dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/phpcr-bundle": "1.0.*",
@@ -32,8 +36,7 @@
         "sensio/distribution-bundle": "2.2.*",
         "sensio/framework-extra-bundle": "2.2.*",
         "sensio/generator-bundle": "2.2.*",
-        "sonata-project/jquery-bundle": "1.8.x-dev",
-        "sonata-project/block-bundle": "dev-master",
+        "sonata-project/doctrine-phpcr-admin-bundle": "dev-master",
         "simonjodet/markdown": "1.0.x-dev",
         "symfony-cmf/routing": "dev-master",
         "symfony-cmf/routing-extra-bundle": "dev-sf2.2",
@@ -41,7 +44,7 @@
         "symfony/assetic-bundle": "2.1.*",
         "symfony/monolog-bundle": "dev-master",
         "symfony/swiftmailer-bundle": "2.1.*",
-        "symfony/symfony": "2.2.*",
+        "symfony/symfony": "2.2.x-dev",
         "twig/extensions": "1.0.*"
     },
 
@@ -67,6 +70,7 @@
     "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "web"
+        "symfony-web-dir": "web",
+        "symfony-assets-install": "symlink"
     }
     }

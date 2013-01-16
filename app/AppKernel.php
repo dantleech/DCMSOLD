@@ -36,10 +36,15 @@ class AppKernel extends Kernel
             new DCMS\Bundle\MenuBundle\DCMSMenuBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
             new ManyMules\FoundationBundle\ManyMulesFoundationBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
+
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),
             new Symfony\Cmf\Bundle\MenuBundle\SymfonyCmfMenuBundle(),
+            new Symfony\Cmf\Bundle\TreeBrowserBundle\SymfonyCmfTreeBrowserBundle(),
+
             new DCMS\Bundle\ThemeBundle\DCMSThemeBundle(),
             new DCMS\Bundle\BlogBundle\DCMSBlogBundle(),
         );

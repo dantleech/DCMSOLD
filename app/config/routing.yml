@@ -28,6 +28,23 @@ dcms_theme:
     type:     annotation
     prefix:   /admin/theme
 
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /sonata
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /sonata
+
+phpcrbrowser:
+    resource: @SymfonyCmfTreeBrowserBundle/Resources/config/routing/phpcrbrowser.xml
+    prefix: /admin/browser
+
+phpcrodmbrowser:
+    resource: @SonataDoctrinePHPCRAdminBundle/Resources/config/routing/phpcrodmbrowser.xml
+    prefix: /admin/browser
+
 #_proxy:
 #    resource: "@FrameworkBundle/Resources/config/routing/proxy.xml"
 #    prefix:   /_proxy

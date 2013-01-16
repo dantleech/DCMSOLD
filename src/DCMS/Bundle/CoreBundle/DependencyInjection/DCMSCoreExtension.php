@@ -25,5 +25,7 @@ class DCMSCoreExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
         $loader->load('routing.xml');
+        $loader->load('form.xml');
+        $loader->load('admin.xml');
     }
 }

@@ -5,6 +5,7 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use DCMS\Bundle\CoreBundle\Validation\Constraints as RoutingValidation;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Route;
+use DCMS\Bundle\CoreBundle\Util\DocumentUtils;
 
 /**
  * @PHPCR\Document(
@@ -290,18 +291,7 @@ class Endpoint
 
     protected function slugify($name)
     {
-        setlocale(LC_CTYPE, 'fr_FR.UTF8');
-        $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $name);
-        $clean = strip_tags($clean);
-        $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
-        $clean = strtolower(trim($clean, '-'));
-        $clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
-
-        if (substr($clean, -1) == '-') {
-            $clean = substr($clean, 0, -1);
-        }
-
-        return $clean;
+        return DocumentUtils::slugify($name);
     }
 
     public function getCreatedAt()

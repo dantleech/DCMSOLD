@@ -21,8 +21,8 @@ class EndpointRepository extends DocumentRepository
     public function getEndpoints($epPath)
     {
         $qb = $this->createQueryBuilder();
-        $endpoints = $qb->where($qb->qomf()->descendantNode($epPath))
-            ->execute();
+        $endpoints = $qb->where($qb->expr()->descendant($epPath))
+            ->getQuery()->execute();
 
         return $endpoints;
     }

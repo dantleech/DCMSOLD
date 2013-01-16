@@ -10,6 +10,7 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
  */
 class BlogEndpoint extends Endpoint
 {
+
     /**
      * @PHPCR\Referrers()
      */
@@ -29,9 +30,10 @@ class BlogEndpoint extends Endpoint
     {
         return $this->postsFolder;
     }
-    
+
     public function setPostsFolder($postsFolder)
     {
         $this->postsFolderName = $postsFolder;
     }
+
 }

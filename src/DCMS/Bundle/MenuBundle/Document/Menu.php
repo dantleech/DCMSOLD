@@ -6,6 +6,7 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use DCMS\Bundle\CoreBundle\Util\DocumentUtils;
 
 /**
  * @PHPCR\Document(referenceable=true)
@@ -28,9 +29,14 @@ class Menu
     protected $parent;
 
     /**
-     * @PHPCR\NodeName()
+     * @PHPCR\String()
      */
     protected $title;
+
+    /**
+     * @PHPCR\NodeName()
+     */
+    protected $name;
 
     /**
      * @PHPCR\Child()
@@ -70,6 +76,7 @@ class Menu
     public function setTitle($title)
     {
         $this->title = $title;
+        $this->name = DocumentUtils::slugify($title);
     }
 
     public function getRootItem()

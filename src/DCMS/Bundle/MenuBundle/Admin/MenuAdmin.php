@@ -1,24 +1,18 @@
 <?php
 
-namespace DCMS\Bundle\CoreBundle\Admin;
+namespace DCMS\Bundle\MenuBundle\Admin;
 
+use DCMS\Bundle\CoreBundle\Admin\DCMSAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
-use DCMS\Bundle\CoreBundle\Model\CreateEndpoint;
 
-class EndpointAdmin extends DCMSAdmin
+class MenuAdmin extends DCMSAdmin
 {
-    public function getNewInstance()
-    {
-        return new CreateEndpoint;
-    }
-
     protected function configureFormFields(FormMapper $fm)
     {
         $fm->add('title', 'text');
-        $fm->add('type', 'dcms_endpoint_definition_choice');
     }
 
     protected function configureDatagridFilters(DatagridMapper $dm)
@@ -28,12 +22,8 @@ class EndpointAdmin extends DCMSAdmin
 
     protected function configureListFields(ListMapper $dm)
     {
-        $dm->addIdentifier('id');
+        $dm->addIdentifier('id', 'text');
         $dm->add('title');
-        $dm->add('type');
-        $dm->add('status');
-        $dm->add('template');
-        $dm->add('updatedAt');
     }
 
     public function validate(ErrorElement $ee, $obj)

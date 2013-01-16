@@ -30,7 +30,7 @@ class MenuController extends DCMSController
 
     protected function getNormalizer()
     {
-        $normalizer = new \Symfony\Cmf\Bundle\MenuBundle\Serializer\MenuItemNormalizer($this->getDm());
+        $normalizer = new \DCMS\Bundle\MenuBundle\Serializer\MenuItemNormalizer($this->getDm());
 
         return $normalizer;
     }

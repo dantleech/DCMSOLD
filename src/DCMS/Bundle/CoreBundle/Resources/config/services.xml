@@ -10,6 +10,7 @@
         <parameter key="dcms_core.notification_helper.class">DCMS\Bundle\CoreBundle\Helper\NotificationHelper</parameter>
         <parameter key="dcms_core.ep_controller_factory.class">DCMS\Bundle\CoreBundle\Helper\EndpointControllerFactory</parameter>
         <parameter key="dcms_core.twig_extension.class">DCMS\Bundle\CoreBundle\Twig\Extension\DCMSCoreExtension</parameter>
+        <parameter key="dcms_core.document_organizer.class">DCMS\Bundle\CoreBundle\Site\DocumentOrganizer</parameter>
     </parameters>
 
     <services>
@@ -17,11 +18,15 @@
             <argument type="service" id="service_container"/>
             <argument type="service" id="controller_name_converter"/>
         </service>
+
         <service id="dcms_core.module_manager" class="%dcms_core.module_manager.class%"/>
+
         <service id="dcms_core.response_helper" class="%dcms_core.response_helper.class%"/>
+
         <service id="dcms_core.notification_helper" class="%dcms_core.notification_helper.class%">
             <argument type="service" id="session"/>
         </service>
+
         <service id="dcms_core.twig_extension" class="%dcms_core.twig_extension.class%">
             <argument type="service" id="dcms_core.notification_helper"/>
             <argument type="service" id="dcms_core.site.context"/>
@@ -37,6 +42,11 @@
 
         <service id="dcms_core.site.context" class="DCMS\Bundle\CoreBundle\Site\SiteContext">
             <argument type="service" id="dcms_core.repository.site"/>
+        </service>
+
+        <service id="dcms_core.document_organizer" class="DCMS\Bundle\CoreBundle\Site\DocumentOrganizer">
+            <argument type="service" id="dcms_core.site.context"/>
+            <argument type="service" id="doctrine_phpcr.odm.document_manager"/>
         </service>
 
     </services>

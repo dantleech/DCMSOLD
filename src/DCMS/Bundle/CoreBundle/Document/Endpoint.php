@@ -312,5 +312,6 @@ class Endpoint
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+ 
     }
 }

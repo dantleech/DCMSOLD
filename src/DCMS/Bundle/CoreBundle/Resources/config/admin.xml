@@ -3,6 +3,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
        <service id="dcms.admin.endpoint" class="DCMS\Bundle\CoreBundle\Admin\EndpointAdmin">
+           <tag name="dcms.admin"/>
            <tag 
                name="sonata.admin" 
                manager_type="doctrine_phpcr" 

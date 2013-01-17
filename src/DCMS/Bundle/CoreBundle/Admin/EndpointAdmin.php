@@ -18,7 +18,11 @@ class EndpointAdmin extends DCMSAdmin
     protected function configureFormFields(FormMapper $fm)
     {
         $fm->add('title', 'text');
-        $fm->add('type', 'dcms_endpoint_definition_choice');
+        $fm->add('layout', 'phpcr_document', array(
+            'class' => 'DCMS\Bundle\ThemeBundle\Document\Template',
+            'empty_value' => '<default template>',
+            'empty_data' => '',
+        ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $dm)
@@ -32,7 +36,7 @@ class EndpointAdmin extends DCMSAdmin
         $dm->add('title');
         $dm->add('type');
         $dm->add('status');
-        $dm->add('template');
+        $dm->add('layout');
         $dm->add('updatedAt');
     }
 

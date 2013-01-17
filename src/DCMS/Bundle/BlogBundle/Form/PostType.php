@@ -30,6 +30,11 @@ class PostType extends AbstractType
     {
         return 'post';
     }
+
+    public function getDefaultOptions(array $options)
+    {
+        $options = parent::getDefaultOptions($options);
+        $options['data_class'] = 'DCMS\Bundle\BlogBundle\Document\Post';
+        return $options;
+    }
 }
-
-

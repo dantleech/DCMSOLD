@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -110,7 +110,7 @@ sonata_block:
 
 sonata_admin:
     title: DCMS
-    title_logo: /bundles/sonataadmin/logo_title.png
+    title_logo: /bundles/dcmscore/images/logo_small.png
     templates:
         # default global templates
         layout:  SonataAdminBundle::standard_layout.html.twig

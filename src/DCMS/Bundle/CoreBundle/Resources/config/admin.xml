@@ -14,9 +14,6 @@
           <argument />
           <argument>DCMS\Bundle\CoreBundle\Document\Endpoint</argument>
           <argument>SonataAdminBundle:CRUD</argument>
-          <call method="setTranslationDomain">
-              <argument>DCMSCoreBundle</argument>
-          </call>
       </service>
 
       <service id="sonata.admin.manager.dcms_doctrine_phpcr" class="Sonata\DoctrinePHPCRAdminBundle\Model\ModelManager">

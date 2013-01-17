@@ -5,16 +5,19 @@ use DCMS\Bundle\CoreBundle\Helper\NotificationHelper;
 use DCMS\Bundle\CoreBundle\Helper\EpContext;
 use DCMS\Bundle\CoreBundle\Document\Endpoint;
 use DCMS\Bundle\CoreBundle\Site\SiteContext;
+use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 
 class DCMSCoreExtension extends \Twig_Extension
 {
     protected $nh;
     protected $sc;
+    protected $mm;
 
-    public function __construct(NotificationHelper $nh, SiteContext $sc)
+    public function __construct(NotificationHelper $nh, SiteContext $sc, ModuleManager $mm)
     {
         $this->nh = $nh;
         $this->sc = $sc;
+        $this->mm = $mm;
     }
 
     public function getGlobals()
@@ -30,6 +33,7 @@ class DCMSCoreExtension extends \Twig_Extension
         return array(
             'ep_path' => new \Twig_Function_Method($this, 'epPath'),
             'ep_abs_path' => new \Twig_Function_Method($this, 'epAbsPath'),
+            'ep_definition' => new \Twig_Function_Method($this, 'epDefinition'),
         );
     }
 
@@ -45,6 +49,11 @@ class DCMSCoreExtension extends \Twig_Extension
             $this->sc->getSite()->getName(),
             $this->epPath($endpoint)
         );
+    }
+
+    public function epDefinition(Endpoint $endpoint)
+    {
+        return $this->mm->getEndpointDefinition($endpoint);
     }
 
     public function getName()

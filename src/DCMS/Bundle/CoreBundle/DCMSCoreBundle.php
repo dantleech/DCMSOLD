@@ -7,6 +7,7 @@ use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 use DCMS\Bundle\CoreBundle\Module\ModuleBundle;
 use DCMS\Bundle\CoreBundle\DependencyInjection\Compiler\AdminPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use DCMS\Bundle\CoreBundle\Site\DocumentOrganizer;
 
 class DCMSCoreBundle extends ModuleBundle
 {
@@ -23,5 +24,11 @@ class DCMSCoreBundle extends ModuleBundle
         $m->createEndpointDefinition('DCMS\Bundle\CoreBundle\Document\Endpoint')
             ->setTitle('Default')
             ->setRoutingResource('@DCMSCoreBundle/Resources/config/routing/endpoint.yml');
+    }
+
+    protected function organizeDocuments(DocumentOrganizer $do)
+    {
+        $do->documentsOfClass('DCMS\Bundle\CoreBundle\Document\Endpoint')
+            ->belongInFolder('endpoints');
     }
 }

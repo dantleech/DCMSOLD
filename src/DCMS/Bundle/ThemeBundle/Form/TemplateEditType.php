@@ -19,4 +19,11 @@ class TemplateEditType extends AbstractType
     {
         return 'template_edit';
     }
+
+    public function getDefaultOptions(array $options)
+    {
+        $options = parent::getDefaultOptions($options);
+        $options['data_class'] = 'DCMS\Bundle\ThemeBundle\Document\Template';
+        return $options;
+    }
 }

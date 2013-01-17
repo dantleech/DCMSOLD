@@ -1,0 +1,8 @@
+<td>
+    {% set icon = ep_definition(object).icon %}
+    {% if icon %}
+        <img src="{{ asset(icon) }}"/>
+    {% endif %}
+         
+    <a href="{{ admin.generateObjectUrl('edit', object) }}" class="btn edit_link" title="{{ 'action_edit'|trans({}, 'SonataAdminBundle') }}">{{ ep_path(object) }}</a>
+</td>

@@ -20,6 +20,8 @@ class AdminPass implements CompilerPassInterface
         foreach ($defIds as $defId => $config) {
 		    $def = $container->getDefinition($defId);
             $def->addMethodCall('setDocumentOrganizer', array(new Reference('dcms_core.document_organizer')));
+            $def->addMethodCall('setModuleManager', array(new Reference('dcms_core.module_manager')));
+
             $def->addMethodCall('setRouteBuilder', array(new Reference('sonata.admin.route.path_info_slashes')));
             
         }

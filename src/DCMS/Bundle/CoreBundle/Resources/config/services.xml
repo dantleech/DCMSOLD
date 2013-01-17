@@ -30,6 +30,7 @@
         <service id="dcms_core.twig_extension" class="%dcms_core.twig_extension.class%">
             <argument type="service" id="dcms_core.notification_helper"/>
             <argument type="service" id="dcms_core.site.context"/>
+            <argument type="service" id="dcms_core.module_manager"/>
             <tag name="twig.extension"/>
         </service>
 

@@ -40,7 +40,6 @@ class AppKernel extends Kernel
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
             new ManyMules\FoundationBundle\ManyMulesFoundationBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
-
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),
             new Symfony\Cmf\Bundle\MenuBundle\SymfonyCmfMenuBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\SymfonyCmfTreeBrowserBundle(),

@@ -26,6 +26,12 @@ class DocumentOrganizer
     public function getDocumentFolder($documentClass, $createIfNotExist = true)
     {
         if (!isset($this->items[$documentClass])) {
+            $refl = new \ReflectionClass($documentClass);
+            foreach ($this->items as $registeredDocumentClass => $item) {
+                if ($refl->isSubclassOf($registeredDocumentClass)) {
+                    return $this->getDocumentFolder($registeredDocumentClass, $createIfNotExist);
+                }
+            }
             throw new \InvalidArgumentException(sprintf(
                 'Document of class "%s" has not been registered with the document organizer.',
                 $documentClass

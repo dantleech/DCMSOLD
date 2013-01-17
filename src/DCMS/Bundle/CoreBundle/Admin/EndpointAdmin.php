@@ -6,23 +6,26 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
-use DCMS\Bundle\CoreBundle\Model\CreateEndpoint;
 
 class EndpointAdmin extends DCMSAdmin
 {
-    public function getNewInstance()
+    public function configure()
     {
-        return new CreateEndpoint;
+        $epsForSelect = $this->moduleManager->getEndpointsForSelect();
+        $epsForSelect = array_flip($epsForSelect);
+        $this->setSubClasses($epsForSelect);
+
+        $this->setTemplate('edit', 'DCMSCoreBundle:Admin:endpoint_layout.html.twig');
     }
 
-    protected function configureFormFields(FormMapper $fm)
+    public function getForm()
     {
-        $fm->add('title', 'text');
-        $fm->add('layout', 'phpcr_document', array(
-            'class' => 'DCMS\Bundle\ThemeBundle\Document\Template',
-            'empty_value' => '<default template>',
-            'empty_data' => '',
-        ));
+        $epDef = $this->moduleManager->getEndpointDefinition($this->getSubject());
+        $formType = $epDef->getFormType('edit');
+        $form = $this->getFormContractor()->getFormFactory()->create(
+            new $formType, $this->getSubject()
+        );
+        return $form;
     }
 
     protected function configureDatagridFilters(DatagridMapper $dm)
@@ -32,7 +35,7 @@ class EndpointAdmin extends DCMSAdmin
 
     protected function configureListFields(ListMapper $dm)
     {
-        $dm->addIdentifier('id');
+        $dm->addIdentifier('id', 'string', array('template' => 'DCMSCoreBundle:Admin:endpoint_path.html.twig'));
         $dm->add('title');
         $dm->add('type');
         $dm->add('status');

@@ -1,0 +1,19 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+       <service id="dcms.admin.markdown" class="DCMS\Bundle\MarkdownBundle\Admin\MarkdownAdmin">
+           <tag name="dcms.admin"/>
+           <tag 
+               name="sonata.admin" 
+               manager_type="doctrine_phpcr" 
+               model_manager="sonata.admin.manager.dcms_doctrine_phpcr"
+               group="Website" 
+               label="Markdown Pages"
+            />
+          <argument />
+          <argument>DCMS\Bundle\MarkdownBundle\Document\MarkdownEndpoint</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+      </service>
+  </services>
+</container>

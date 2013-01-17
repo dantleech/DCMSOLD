@@ -1,25 +1,20 @@
 <?php
 
-namespace DCMS\Bundle\MarkdownBundle\Admin;
-use DCMS\Bundle\CoreBundle\Admin\DCMSAdmin;
+namespace DCMS\Bundle\ThemeBundle\Admin;
+
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
-use DCMS\Bundle\MarkdownBundle\Form\EndpointType;
+use DCMS\Bundle\CoreBundle\Admin\DCMSAdmin;
+use DCMS\Bundle\ThemeBundle\Form\TemplateEditType;
 
-
-/**
- * Description of MarkdownAdmin
- *
- * @author Daniel Leech <daniel@dantleech.com>
- */
-class MarkdownAdmin extends DCMSAdmin
+class TemplateAdmin extends DCMSAdmin
 {
     public function getForm()
     {
         return $this->getFormContractor()->getFormFactory()->create(
-            new EndpointType()
+            new TemplateEditType()
         );
     }
 
@@ -30,8 +25,9 @@ class MarkdownAdmin extends DCMSAdmin
 
     protected function configureListFields(ListMapper $dm)
     {
-        $dm->addIdentifier('id', 'string', array('template' => 'DCMSCoreBundle:Admin:endpoint_path.html.twig'));
+        $dm->addIdentifier('resource', 'string', array('template' => 'DCMSThemeBundle:Admin:endpoint_path.html.twig'));
         $dm->add('title');
+        $dm->add('updatedAt');
     }
 
     public function validate(ErrorElement $ee, $obj)
@@ -39,5 +35,3 @@ class MarkdownAdmin extends DCMSAdmin
         $ee->with('title')->assertNotBlank()->end();
     }
 }
-
-?>

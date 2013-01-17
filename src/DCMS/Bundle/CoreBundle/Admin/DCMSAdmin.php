@@ -5,14 +5,21 @@ namespace DCMS\Bundle\CoreBundle\Admin;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use DCMS\Bundle\CoreBundle\Site\DocumentOrganizer;
 use Doctrine\Common\Util\ClassUtils;
+use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 
 class DCMSAdmin extends Admin
 {
     protected $documentOrganizer;
+    protected $moduleManager;
 
     public function setDocumentOrganizer(DocumentOrganizer $documentOrganizer)
     {
         $this->documentOrganizer = $documentOrganizer;
+    }
+
+    public function setModuleManager(ModuleManager $moduleManager)
+    {
+        $this->moduleManager = $moduleManager;
     }
 
     public function prePersist($object)

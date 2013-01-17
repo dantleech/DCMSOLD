@@ -10,6 +10,6 @@ class EndpointType extends BaseEndpointType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        $builder->add('content', 'textarea');
+        $builder->add('content', 'dcms_markdown_textarea');
     }
 }

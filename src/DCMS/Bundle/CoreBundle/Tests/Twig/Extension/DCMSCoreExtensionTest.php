@@ -12,11 +12,12 @@ class DCMSCoreExtensionTest extends \PHPUnit_Framework_Testcase
             ->disableOriginalConstructor()
             ->getMock();
         $epContext = $this->getMock('DCMS\Bundle\CoreBundle\Helper\EpContext');
+        $this->mm = $this->getMock('DCMS\Bundle\CoreBundle\Module\ModuleManager');
         $this->sc = $this->getMockBuilder('DCMS\Bundle\CoreBundle\Site\SiteContext')
           ->disableOriginalConstructor()
           ->getMock();
         
-        $this->extension = new DCMSCoreExtension($nh, $epContext, $this->sc);
+        $this->extension = new DCMSCoreExtension($nh, $epContext, $this->sc, $this->m);
     }
 
     public function testEpPath()

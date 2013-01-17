@@ -1,0 +1,15 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% set epDef = ep_definition(object) %}
+{% block javascripts %}
+    {{ parent() }}
+    {% for javascript in epDef.javascriptDependencies('edit') %}
+        <script type="text/javascript" src="{{ asset(javascript) }}"></script>
+    {% endfor %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% for stylesheet in epDef.stylesheetDependencies('edit') %}
+        <link rel="stylesheet" href="{{ asset(stylesheet) }}" />
+    {% endfor %}
+{% endblock %}

@@ -19,7 +19,9 @@ class PostType extends AbstractType
                 'published' => 'Published',
             ),
         ));
-        $builder->add('body', 'textarea');
+        $builder->add('body', 'dcms_markdown_textarea', array(
+            'preview' => false,
+        ));
         $builder->add('blog', 'phpcr_document', array(
             'class' => 'DCMS\Bundle\BlogBundle\Document\BlogEndpoint',
         ));

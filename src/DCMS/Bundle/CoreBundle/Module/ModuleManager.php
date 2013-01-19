@@ -1,5 +1,6 @@
 <?php
 
+
 namespace DCMS\Bundle\CoreBundle\Module;
 
 use DCMS\Bundle\CoreBundle\Module\Definition\ModuleDefinition;
@@ -10,8 +11,10 @@ class ModuleManager
 
     public function createModule($name)
     {
+        $this->
         $module = new ModuleDefinition($name);
         $this->registerModule($module);
+        $this->:Pr
 
         return $module;
     }

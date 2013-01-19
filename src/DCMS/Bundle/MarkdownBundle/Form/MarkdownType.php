@@ -5,6 +5,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Form field for markdown with preview
@@ -20,6 +22,11 @@ class MarkdownType extends AbstractType
     /**
      * {@inheritDoc}
      */
+    public function finishView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['preview'] = $options['preview'];
+    }
+
     public function getParent()
     {
         return 'textarea';
@@ -43,5 +50,3 @@ class MarkdownType extends AbstractType
         return 'dcms_markdown_textarea';
     }
 }
-
-?>

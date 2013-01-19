@@ -17,6 +17,7 @@ class EndpointController extends DCMSController
     protected function getRepo()
     {
         $repo = $this->getDm()->getRepository('DCMS\Bundle\CoreBundle\Document\Endpoint');
+
         return $repo;
     }
 

@@ -3,6 +3,7 @@
 <div id="wmd-panel">
     <div id="wmd-button-bar"></div>
 <textarea id="wmd-input" name="{{ full_name }}" style="font-family: fixed; width: 780px; height: 200px; background-color: black; color: white;">{{ value }}</textarea>
+{% if preview %}
 <h4>Preview</h4>
 <div id="wmd-preview" style="border-style: solid; border-width: 1px; width: 800px; height: 200px; overflow: auto"></div>
 </div>
@@ -14,5 +15,5 @@
         editor1.run();
     });
 </script>
-
+{% endif %}
 {% endblock %}

@@ -1,5 +1,4 @@
 <?php
-
 namespace DCMS\Bundle\CoreBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;

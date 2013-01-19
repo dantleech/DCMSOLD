@@ -2,10 +2,9 @@
 
 namespace DCMS\Bundle\CoreBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 use DCMS\Bundle\CoreBundle\Module\ModuleBundle;
-use DCMS\Bundle\CoreBundle\DependencyInjection\Compiler\AdminPass;
+use DCMS\Bundle\CoreBundle\DependencyInjection\Compiler\AddDependencyCallsCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use DCMS\Bundle\CoreBundle\Site\DocumentOrganizer;
 
@@ -15,7 +14,7 @@ class DCMSCoreBundle extends ModuleBundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new AdminPass());
+        $container->addCompilerPass(new AddDependencyCallsCompilerPass());
     }
 
     protected function setupModule(ModuleManager $mm)

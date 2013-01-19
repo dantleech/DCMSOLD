@@ -4,12 +4,13 @@
     <services>
         <service id="dcms.admin.menu" class="DCMS\Bundle\MenuBundle\Admin\MenuAdmin">
             <tag name="dcms.admin"/>
+            <!--
             <tag 
                 name="sonata.admin" 
                 manager_type="doctrine_phpcr" 
                 group="Website" 
                 label="Menus"
-                />
+                />!-->
             <argument />
             <argument>DCMS\Bundle\MenuBundle\Document\Menu</argument>
             <argument>SonataAdminBundle:CRUD</argument>

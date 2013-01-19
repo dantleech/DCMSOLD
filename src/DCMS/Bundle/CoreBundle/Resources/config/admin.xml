@@ -3,9 +3,8 @@
         xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="dcms.admin.endpoint" class="DCMS\Bundle\CoreBundle\Admin\EndpointAdmin">
-            <tag name="dcms.admin"/>
             <tag 
-                    name="sonata.admin" 
+                    name="dcms.site_admin" 
                     manager_type="doctrine_phpcr" 
                     model_manager="sonata.admin.manager.dcms_doctrine_phpcr"
                     group="Website" 
@@ -14,6 +13,15 @@
             <argument />
             <argument>DCMS\Bundle\CoreBundle\Document\Endpoint</argument>
             <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
+        <service id="dcms.admin.pool" class="Sonata\AdminBundle\Admin\Pool">
+            <argument type="service" id="service_container" />
+            <argument />
+            <argument />
+            <call method="setTemplates">
+                <argument>%sonata.admin.configuration.templates%</argument>
+            </call>
         </service>
 
         <service id="dcms.admin.site" class="DCMS\Bundle\CoreBundle\Admin\SiteAdmin">

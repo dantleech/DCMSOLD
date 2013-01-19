@@ -12,6 +12,15 @@
             <call method="setContainer"><argument type="service" id="service_container"/></call>
         </service>
 
+        <service id="dcms.admin.site_route_loader" class="DCMS\Bundle\CoreBundle\Routing\SiteAdminPoolLoader">
+            <argument type="service" id="sonata.admin.pool" />
+            <argument />
+            <argument type="service" id="service_container" />
+            <tag name="routing.loader" />
+            <call method="setSiteContext">
+                <argument type="service" id="dcms_core.site.context"/>
+            </call>
+        </service>
     </services>
 
 

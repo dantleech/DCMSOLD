@@ -2,11 +2,13 @@
 
 namespace DCMS\Bundle\CoreBundle\Site;
 use DCMS\Bundle\CoreBundle\Repository\SiteRepository;
+use Symfony\Component\Routing\RequestContext;
 
 class SiteContext
 {
     protected $site;
     protected $sr;
+    protected $siteName;
 
     protected $onEndpoint = false;
 
@@ -15,13 +17,23 @@ class SiteContext
         $this->sr = $sr;
     }
 
+    public function setName($name)
+    {
+        $this->siteName = $name;
+    }
+
     protected function init()
     {
         if ($this->site) {
             return;
         }
 
-        $sitePath = '/sites/dantleech.com';
+        if (!$this->siteName) {
+            throw new \Exception('Cannot initialize site, don\'t know its name.');
+        }
+
+        $sitePath = '/sites/'.$this->siteName;
+
         $site = $this->sr->find($sitePath);
 
         if (!$site) {
@@ -35,6 +47,11 @@ class SiteContext
     {
         $this->init();
         return $this->site;
+    }
+
+    public function hasSite()
+    {
+        return (boolean) $this->siteName;
     }
 
     public function getEndpointPath()

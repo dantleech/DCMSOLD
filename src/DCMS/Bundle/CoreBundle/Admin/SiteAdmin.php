@@ -23,6 +23,21 @@ class SiteAdmin extends DCMSAdmin
     {
         $dm->addIdentifier('name', 'string');
         $dm->add('homeEndpoint');
+        $dm->add('_action', 'actions', array(
+            'actions' => array(
+                'dashboard' => array(
+                    'template' => 'DCMSCoreBundle:Admin:site_dash_action.html.twig',
+                )
+            )
+            
+        ));
+    }
+
+    public function prePersist($object)
+    {
+        $parent = $this->getModelManager()->find(null, '/sites');
+        $object->setParent($parent);
+        parent::prePersist($object);
     }
 
     public function validate(ErrorElement $ee, $obj)

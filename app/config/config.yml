@@ -90,8 +90,8 @@ symfony_cmf_routing_extra:
         route_provider_service_id: dcms_core.repository.endpoint
     chain:
         routers_by_id: 
-            router.default: 0
-            symfony_cmf_routing_extra.dynamic_router: 100
+            dcms_core.wrapping_router: 100
+            symfony_cmf_routing_extra.dynamic_router: 0
 
 sonata_block:
     default_contexts: [cms]
@@ -125,6 +125,7 @@ sonata_admin:
         show:    SonataAdminBundle:CRUD:show.html.twig
         edit:    SonataAdminBundle:CRUD:edit.html.twig
     dashboard:
+        
         blocks:
             # display a dashboard block
             - { position: left, type: sonata.admin.block.admin_list }

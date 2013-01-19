@@ -15,7 +15,7 @@
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
-        <service id="dcms.admin.pool" class="Sonata\AdminBundle\Admin\Pool">
+        <service id="dcms.admin.pool" class="DCMS\Bundle\CoreBundle\Admin\Pool">
             <argument type="service" id="service_container" />
             <argument />
             <argument />

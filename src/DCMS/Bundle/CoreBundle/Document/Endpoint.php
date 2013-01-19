@@ -102,7 +102,7 @@ class Endpoint
 
     public function __toString()
     {
-        return $this->name;
+        return $this->name ? $this->name : 'Empty';
     }
 
     public function getId()

@@ -115,4 +115,19 @@ class Site
     {
         $this->homeEndpoint = $homeEndpoint;
     }
+
+    public function getPreferences()
+    {
+        return $this->preferences;
+    }
+
+    public function setPreferences($preferences)
+    {
+        $this->preferences = $preferences;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

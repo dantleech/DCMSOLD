@@ -1,23 +1,39 @@
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-       <service id="dcms.admin.endpoint" class="DCMS\Bundle\CoreBundle\Admin\EndpointAdmin">
-           <tag name="dcms.admin"/>
-           <tag 
-               name="sonata.admin" 
-               manager_type="doctrine_phpcr" 
-               model_manager="sonata.admin.manager.dcms_doctrine_phpcr"
-               group="Website" 
-               label="Endpoints"
-            />
-          <argument />
-          <argument>DCMS\Bundle\CoreBundle\Document\Endpoint</argument>
-          <argument>SonataAdminBundle:CRUD</argument>
-      </service>
+        <service id="dcms.admin.endpoint" class="DCMS\Bundle\CoreBundle\Admin\EndpointAdmin">
+            <tag name="dcms.admin"/>
+            <tag 
+                    name="sonata.admin" 
+                    manager_type="doctrine_phpcr" 
+                    model_manager="sonata.admin.manager.dcms_doctrine_phpcr"
+                    group="Website" 
+                    label="Endpoints"
+                />
+            <argument />
+            <argument>DCMS\Bundle\CoreBundle\Document\Endpoint</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
 
-      <service id="sonata.admin.manager.dcms_doctrine_phpcr" class="Sonata\DoctrinePHPCRAdminBundle\Model\ModelManager">
-          <argument type="service" id="doctrine_phpcr.odm.default_document_manager" />
-      </service>
-  </services>
+        <service id="dcms.admin.site" class="DCMS\Bundle\CoreBundle\Admin\SiteAdmin">
+            <tag 
+                    name="sonata.admin" 
+                    manager_type="doctrine_phpcr" 
+                    model_manager="sonata.admin.manager.dcms_doctrine_phpcr"
+                    group="Global" 
+                    label="Sites"
+                />
+            <argument />
+            <argument>DCMS\Bundle\CoreBundle\Document\Site</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setRouteBuilder">
+                <argument type="service" id="sonata.admin.route.path_info_slashes"/>
+            </call>
+        </service>
+
+        <service id="sonata.admin.manager.dcms_doctrine_phpcr" class="Sonata\DoctrinePHPCRAdminBundle\Model\ModelManager">
+            <argument type="service" id="doctrine_phpcr.odm.default_document_manager" />
+        </service>
+    </services>
 </container>

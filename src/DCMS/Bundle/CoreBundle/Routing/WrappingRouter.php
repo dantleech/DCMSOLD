@@ -20,6 +20,11 @@ class WrappingRouter implements RouterInterface
         $this->sc = $sc;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Injects site_name automatically.
+     */
     public function generate($name, $parameters = array(), $absolute = false)
     {
         if (!isset($parameters['site_name']) && $this->sc->hasSite()) {

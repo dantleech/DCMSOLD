@@ -9,12 +9,14 @@ class SiteContext
     protected $site;
     protected $sr;
     protected $siteName;
+    protected $siteSelector;
 
     protected $onEndpoint = false;
 
-    public function __construct(SiteRepository $sr)
+    public function __construct(SiteRepository $sr, SiteSelector $siteSelector)
     {
         $this->sr = $sr;
+        $this->siteSelector = $siteSelector;
     }
 
     public function setName($name)

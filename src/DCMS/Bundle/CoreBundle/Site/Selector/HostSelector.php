@@ -30,7 +30,7 @@ class HostSelector extends AbstractHostSelector
     public function select()
     {
         $siteName = $this->requestContext->getHost();
-        $site = $this->repo->findByHost($siteName);
+        $site = $this->repo->getByHost($siteName);
 
         if (null === $site) {
             throw new SiteNotFoundException('Cannot find site with host "'.$siteName.'"');

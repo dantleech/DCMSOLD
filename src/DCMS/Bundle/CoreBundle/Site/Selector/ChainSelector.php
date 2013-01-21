@@ -17,10 +17,15 @@ class ChainSelector implements SelectorInterface
     protected $selectors = array();
     protected $logger;
 
-    public function __construct($selectors, LoggerInterface $logger)
+    public function __construct($selectors = array(), LoggerInterface $logger)
     {
         $this->selectors = $selectors;
         $this->logger = $logger;
+    }
+
+    public function addSelector(SelectorInterface $selector)
+    {
+        $this->selectors[] = $selector;
     }
 
     /**
@@ -41,7 +46,9 @@ class ChainSelector implements SelectorInterface
                     ));
                 }
 
-                break;
+                if (null !== $site) {
+                    break;
+                }
 
             } catch (SiteNotFoundException $e) {
                 if (null !== $this->logger) {
@@ -50,9 +57,9 @@ class ChainSelector implements SelectorInterface
                         $e->getMessage()
                     ));
                 }
-
-                continue;
             }
+
+            continue;
         }
 
         if (!$site) {

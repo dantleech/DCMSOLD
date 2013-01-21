@@ -3,25 +3,20 @@
 namespace DCMS\Bundle\CoreBundle\Site;
 use DCMS\Bundle\CoreBundle\Repository\SiteRepository;
 use Symfony\Component\Routing\RequestContext;
+use DCMS\Bundle\CoreBundle\Site\Selector\SelectorInterface;
+use DCMS\Bundle\CoreBundle\Site\Exception\SiteNotFoundException;
 
 class SiteContext
 {
     protected $site;
-    protected $sr;
     protected $siteName;
     protected $siteSelector;
 
     protected $onEndpoint = false;
 
-    public function __construct(SiteRepository $sr, SiteSelector $siteSelector)
+    public function __construct(SelectorInterface $siteSelector)
     {
-        $this->sr = $sr;
         $this->siteSelector = $siteSelector;
-    }
-
-    public function setName($name)
-    {
-        $this->siteName = $name;
     }
 
     protected function init()
@@ -30,19 +25,7 @@ class SiteContext
             return;
         }
 
-        if (!$this->siteName) {
-            throw new \Exception('Cannot initialize site, don\'t know its name.');
-        }
-
-        $sitePath = '/sites/'.$this->siteName;
-
-        $site = $this->sr->find($sitePath);
-
-        if (!$site) {
-            throw new Exception\SiteNotFoundException($sitePath);
-        }
-
-        $this->site = $site;
+        $this->site = $this->siteSelector->select();
     }
 
     public function getSite()
@@ -53,7 +36,12 @@ class SiteContext
 
     public function hasSite()
     {
-        return (boolean) $this->siteName;
+        try {
+            $this->init();
+        } catch (SiteNotFoundException $e) {
+        }
+
+        return (boolean) $this->site;
     }
 
     public function getEndpointPath()

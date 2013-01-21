@@ -26,5 +26,6 @@ class DCMSCoreExtension extends Extension
         $loader->load('routing.xml');
         $loader->load('form.xml');
         $loader->load('admin.xml');
+        $loader->load('site.xml');
     }
 }

@@ -26,7 +26,7 @@ class HostSelectorTest extends \PHPUnit_Framework_Testcase
             ->method('getHost')
             ->will($this->returnValue('example.com'));
         $this->repo->expects($this->once())
-            ->method('findByHost')
+            ->method('getByHost')
             ->with('example.com')
             ->will($this->returnValue(null));
         $this->hostSelect->select();
@@ -38,7 +38,7 @@ class HostSelectorTest extends \PHPUnit_Framework_Testcase
             ->method('getHost')
             ->will($this->returnValue('example.com'));
         $this->repo->expects($this->once())
-            ->method('findByHost')
+            ->method('getByHost')
             ->with('example.com')
             ->will($this->returnValue('ok'));
         $res = $this->hostSelect->select();

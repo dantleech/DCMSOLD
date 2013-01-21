@@ -5,13 +5,9 @@ use Doctrine\ODM\PHPCR\DocumentRepository;
 
 class SiteRepository extends DocumentRepository
 {
-    public function findByHost($host)
+    public function getByHost($host)
     {
-        $qb = $this->createQueryBuilder();
-        $qb->where($qb->expr()->eq('name', $name));
-        $qb->setMaxResults(1);
-        $q = $qb->getQuery();
-        $site = $q->getOneOrNullResult();
+        $site = $this->dm->find('DCMS\Bundle\CoreBundle\Document\Site', 'sites/'.$host);
 
         return $site;
     }

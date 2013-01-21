@@ -5,6 +5,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router as SymfonyRouter;
 use DCMS\Bundle\CoreBundle\Site\SiteContext;
 use Symfony\Component\Routing\RequestContext;
+use DCMS\Bundle\CoreBundle\Site\Selector\AdminSelector;
 
 /**
  * This class wraps the symfony router
@@ -13,11 +14,17 @@ class WrappingRouter implements RouterInterface
 {
     protected $sfRouter;
     protected $sc;
+    protected $adminSelector;
 
-    public function __construct(SiteContext $sc, SymfonyRouter $sfRouter)
+    public function __construct(
+        SiteContext $sc, 
+        SymfonyRouter $sfRouter,
+        AdminSelector $adminSelector = null
+    )
     {
         $this->sfRouter = $sfRouter;
         $this->sc = $sc;
+        $this->adminSelector = $adminSelector;
     }
 
     /**
@@ -30,6 +37,7 @@ class WrappingRouter implements RouterInterface
         if (!isset($parameters['site_name']) && $this->sc->hasSite()) {
             $parameters['site_name'] = $this->sc->getSite()->getName();
         }
+
         return $this->sfRouter->generate($name, $parameters, $absolute);
     }
 
@@ -47,9 +55,10 @@ class WrappingRouter implements RouterInterface
     {
         $res = $this->sfRouter->match($pathinfo);
 
-        if (isset($res['site_name'])) {
-            $this->sc->setName($res['site_name']);
+        if (isset($res['site_name']) && $this->adminSelector) {
+            $this->adminSelector->setName($res['site_name']);
         }
+
         return $res;
     }
 

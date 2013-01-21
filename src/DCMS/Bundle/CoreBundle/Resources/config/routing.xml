@@ -25,6 +25,7 @@
         <service id="dcms_core.wrapping_router" class="DCMS\Bundle\CoreBundle\Routing\WrappingRouter">
             <argument type="service" id="dcms_core.site.context"/>
             <argument type="service" id="router.default"/>
+            <argument type="service" id="dcms_core.site_selector.admin"/>
         </service>
 
     </services>

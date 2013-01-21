@@ -17,8 +17,8 @@ class ChainSelectorTest extends \PHPUnit_Framework_Testcase
             ->method('getName');
         $this->chainSelect = new ChainSelector(array(
             $this->selector1,
-            $this->selector2
         ), $this->logger);
+        $this->chainSelect->addSelector($this->selector2); // test add selector
     }
 
     /**

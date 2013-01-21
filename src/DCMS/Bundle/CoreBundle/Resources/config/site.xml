@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+        <service id="dcms_core.repository.site"
+                factory-service="doctrine_phpcr.odm.document_manager"
+                factory-method="getRepository"
+                class="DCMS\Bundle\CoreBundle\Repository\SiteRepository" >
+            <argument>DCMS\Bundle\CoreBundle\Document\Site</argument>
+        </service>
+
+        <service id="dcms_core.site.context" class="DCMS\Bundle\CoreBundle\Site\SiteContext">
+            <argument type="service" id="dcms_core.site_selector"/>
+        </service>
+
+        <!-- Chain Selector !-->
+        <service id="dcms_core.site_selector" class="DCMS\Bundle\CoreBundle\Site\Selector\ChainSelector">
+            <argument></argument>
+            <argument type="service" id="logger"/>
+
+            <!-- @TODO: Put these in configuration !-->
+            <call method="addSelector">
+                <argument type="service" id="dcms_core.site_selector.admin"/>"
+            </call>
+            <call method="addSelector">
+                <argument type="service" id="dcms_core.site_selector.dev"/>"
+            </call>
+            <call method="addSelector">
+                <argument type="service" id="dcms_core.site_selector.host"/>"
+            </call>
+        </service>
+
+        <service id="dcms_core.site_selector.admin" class="DCMS\Bundle\CoreBundle\Site\Selector\AdminSelector">
+            <argument type="service" id="dcms_core.repository.site"/>
+        </service>
+
+        <service id="dcms_core.site_selector.dev" class="DCMS\Bundle\CoreBundle\Site\Selector\DevSelector">
+            <argument type="service" id="dcms_core.repository.site"/>
+        </service>
+
+        <service id="dcms_core.site_selector.host" class="DCMS\Bundle\CoreBundle\Site\Selector\HostSelector">
+            <argument type="service" id="dcms_core.repository.site"/>
+            <argument type="service" id="router.request_context"/>
+        </service>
+
+    </services>
+
+</container>

@@ -22,7 +22,7 @@ class DevSelector extends AbstractHostSelector
             throw new SiteNotFoundException('[DEV SELECTOR] Could not find _site parameter in $_GET, bailing out.');
         }
 
-        $site = $this->repo->findByHost($siteName);
+        $site = $this->repo->getByHost($siteName);
 
         if (null === $site) {
             throw new SiteNotFoundException('Cannot find site with host "'.$siteName.'"');

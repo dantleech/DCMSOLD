@@ -10,7 +10,7 @@ use DCMS\Bundle\CoreBundle\Repository\SiteRepository;
  * @author Daniel Leech <daniel@dantleech.com>
  * @date 13/01/21
  */
-class AbstractHostSelector
+abstract class AbstractHostSelector implements SelectorInterface
 {
     protected $repo;
 

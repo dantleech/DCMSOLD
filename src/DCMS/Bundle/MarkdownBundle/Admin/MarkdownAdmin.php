@@ -1,7 +1,7 @@
 <?php
 
 namespace DCMS\Bundle\MarkdownBundle\Admin;
-use DCMS\Bundle\CoreBundle\Admin\DCMSAdmin;
+use DCMS\Bundle\CoreBundle\Admin\DCMSSiteAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
@@ -14,7 +14,7 @@ use DCMS\Bundle\MarkdownBundle\Form\EndpointType;
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class MarkdownAdmin extends DCMSAdmin
+class MarkdownAdmin extends DCMSSiteAdmin
 {
     public function getForm()
     {

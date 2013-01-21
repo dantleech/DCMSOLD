@@ -1,0 +1,7 @@
+{% extends "SonataAdminBundle::standard_layout.html.twig" %}
+{% block logo %}
+    <a href="{{ url('sonata_admin_dashboard')}}" class="brand">&lt;&lt;</a>
+    <a href="{{ url('dcms_site_admin_dashboard') }}" class="brand">
+        {{ site_context.site.name }}
+    </a>
+{% endblock %}

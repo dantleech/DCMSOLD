@@ -6,7 +6,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
-use DCMS\Bundle\CoreBundle\Admin\DCMSAdmin;
+use DCMS\Bundle\CoreBundle\Admin\DCMSSiteAdmin;
 use DCMS\Bundle\BlogBundle\Form\PostType;
 
 /**
@@ -14,7 +14,7 @@ use DCMS\Bundle\BlogBundle\Form\PostType;
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class PostAdmin extends DCMSAdmin
+class PostAdmin extends DCMSSiteAdmin
 {
     public function getForm()
     {

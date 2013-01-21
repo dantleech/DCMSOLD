@@ -2,13 +2,13 @@
 
 namespace DCMS\Bundle\MenuBundle\Admin;
 
-use DCMS\Bundle\CoreBundle\Admin\DCMSAdmin;
+use DCMS\Bundle\CoreBundle\Admin\DCMSSiteAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class MenuAdmin extends DCMSAdmin
+class MenuAdmin extends DCMSSiteAdmin
 {
     protected function configureFormFields(FormMapper $fm)
     {

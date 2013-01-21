@@ -6,10 +6,10 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
-use DCMS\Bundle\CoreBundle\Admin\DCMSAdmin;
+use DCMS\Bundle\CoreBundle\Admin\DCMSSiteAdmin;
 use DCMS\Bundle\ThemeBundle\Form\TemplateEditType;
 
-class TemplateAdmin extends DCMSAdmin
+class TemplateAdmin extends DCMSSiteAdmin
 {
     public function getForm()
     {

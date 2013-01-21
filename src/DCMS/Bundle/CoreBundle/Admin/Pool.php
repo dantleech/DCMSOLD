@@ -11,6 +11,10 @@ class Pool extends BasePool
             return 'DCMSCoreBundle:Admin:site_dashboard.html.twig';
         }
 
+        if ($name == 'layout') {
+            return 'DCMSCoreBundle:Admin:layout.html.twig';
+        }
+
         return parent::getTemplate($name);
     }
 }

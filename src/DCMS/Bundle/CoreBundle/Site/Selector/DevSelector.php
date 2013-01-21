@@ -10,15 +10,9 @@ use DCMS\Bundle\CoreBundle\Repository\SiteRepository;
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class DevSelector implements SelectorInterface
+class DevSelector extends AbstractHostSelector
 {
     protected $repo;
-    protected $requestContext;
-
-    public function __construct(SiteRepository $repo)
-    {
-        $this->repo = $repo;
-    }
 
     public function select()
     {

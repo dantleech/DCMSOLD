@@ -21,7 +21,7 @@ dcms_markdown:
 dcms_admin:
     resource: "@DCMSAdminBundle/Controller/"
     type:     annotation
-    prefix:   /admin/
+    prefix:   /old-admin/
 
 dcms_theme:
     resource: "@DCMSThemeBundle/Controller/"
@@ -30,21 +30,21 @@ dcms_theme:
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /sonata
+    prefix: /admin/global
 
 site_admin:
     resource: '@DCMSCoreBundle/Resources/config/routing/site_admin.xml'
-    prefix: /site
+    prefix: /admin/site
 
 _sonata_admin:
     resource: .
     type: sonata_admin
-    prefix: /sonata
+    prefix: /admin/global
 
 _dcms_site_admin:
     resource: .
     type: dcms_site_admin
-    prefix: /site
+    prefix: /admin/site
 
 #_proxy:
 #    resource: "@FrameworkBundle/Resources/config/routing/proxy.xml"

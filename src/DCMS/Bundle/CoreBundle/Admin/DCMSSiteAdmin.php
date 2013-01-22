@@ -3,12 +3,17 @@
 namespace DCMS\Bundle\CoreBundle\Admin;
 
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
-use DCMS\Bundle\CoreBundle\Site\DocumentOrganizer;
 use Doctrine\Common\Util\ClassUtils;
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 
 class DCMSSiteAdmin extends DCMSAdmin
 {
+    public function getBaseRoutePattern()
+    {
+        $parts = explode('\\', $this->getClass());
+        return strtolower(array_pop($parts));
+    }
+
     public function __construct($code, $class, $baseControllerName = null)
     {
         $baseControllerName = 'DCMSCoreBundle:CRUD';

@@ -22,6 +22,14 @@
         "doctrine/doctrine-bundle": "dev-master as 1.0.x-dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
+
+        "behat/behat": "dev-master as v2.4.4",
+        "behat/gherkin": "dev-develop as v2.2.5",
+        "behat/symfony2-extension": "dev-master",
+        "behat/mink": "dev-develop",
+        "behat/mink-extension": "dev-master",
+        "behat/mink-browserkit-driver": "*",
+
         "doctrine/phpcr-bundle": "1.0.*",
         "doctrine/phpcr-odm": "dev-master",
         "jackalope/jackalope-doctrine-dbal": "dev-master",
@@ -67,10 +75,11 @@
     "config": {
         "bin-dir": "bin"
     },
+
     "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "symfony-assets-install": "symlink"
     }
-    }
+}

@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class EndpointAdmin extends DCMSAdmin
+class EndpointAdmin extends DCMSSiteAdmin
 {
     public function configure()
     {

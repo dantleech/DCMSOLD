@@ -30,6 +30,7 @@ class AddDependencyCallsCompilerPass extends BaseAddDependencyCallsCompilerPass
                 // START: DCMS Specific
                 $definition->addMethodCall('setDocumentOrganizer', array(new Reference('dcms_core.document_organizer')));
                 $definition->addMethodCall('setModuleManager', array(new Reference('dcms_core.module_manager')));
+                $definition->addMethodCall('setSiteContext', array(new Reference('dcms_core.site.context')));
                 $definition->addMethodCall('setRouteBuilder', array(new Reference('sonata.admin.route.path_info_slashes')));
                 // END: DCMS Specific
 

@@ -6,11 +6,13 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use DCMS\Bundle\CoreBundle\Site\DocumentOrganizer;
 use Doctrine\Common\Util\ClassUtils;
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
+use DCMS\Bundle\CoreBundle\Site\SiteContext;
 
 class DCMSAdmin extends Admin
 {
     protected $documentOrganizer;
     protected $moduleManager;
+    protected $siteContext;
 
     public function setDocumentOrganizer(DocumentOrganizer $documentOrganizer)
     {
@@ -20,6 +22,11 @@ class DCMSAdmin extends Admin
     public function setModuleManager(ModuleManager $moduleManager)
     {
         $this->moduleManager = $moduleManager;
+    }
+
+    public function setSiteContext(SiteContext $siteContext)
+    {
+        $this->siteContext = $siteContext;
     }
 
     public function prePersist($object)

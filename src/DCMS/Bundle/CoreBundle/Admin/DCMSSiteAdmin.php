@@ -15,6 +15,15 @@ class DCMSSiteAdmin extends DCMSAdmin
         parent::__construct($code, $class, $baseControllerName);
     }
 
+
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->andWhere($query->expr()->descendant($this->siteContext->getSite()->getId()));
+
+        return $query;
+    }
+
     public function getTemplate($name)
     {
         if ($name == 'layout') {

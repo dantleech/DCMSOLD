@@ -22,8 +22,4 @@ class CRUDController extends BaseController
 
         return $this->container->get('templating')->renderResponse($view, $parameters, $response);
     }
-
-    public function createAction()
-    {
-    }
 }

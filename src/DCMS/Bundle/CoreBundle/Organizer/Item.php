@@ -4,7 +4,7 @@ namespace DCMS\Bundle\CoreBundle\Site;
 
 use DCMS\Bundle\CoreBundle\Site\SiteContext;
 
-class DocumentOrganizerItem
+class Rule
 {
     protected $sc;
     protected $folderName;
@@ -34,7 +34,7 @@ class DocumentOrganizerItem
         return $this->folderName;
     }
 
-    public function belongInFolder($folderName)
+    public function belongsIn($folderName)
     {
         $this->folderName = $folderName;
     }

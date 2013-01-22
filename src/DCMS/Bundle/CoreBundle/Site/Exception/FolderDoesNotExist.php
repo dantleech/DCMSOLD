@@ -1,6 +1,6 @@
 <?php
 
-namespace DCMS\Bundle\CoreBundle\Site\Exception;
+namespace DCMS\Bundle\CoreBundle\Organizer;
 
 class FolderDoesNotExist extends \Exception
 {

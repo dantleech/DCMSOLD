@@ -4,7 +4,7 @@ namespace DCMS\Bundle\MenuBundle;
 
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 use DCMS\Bundle\CoreBundle\Module\ModuleBundle;
-use DCMS\Bundle\CoreBundle\Site\DocumentOrganizer;
+use DCMS\Bundle\CoreBundle\Organizer\DocumentOrganizer;
 
 class DCMSMenuBundle extends ModuleBundle
 {
@@ -15,7 +15,6 @@ class DCMSMenuBundle extends ModuleBundle
 
     protected function organizeDocuments(DocumentOrganizer $do)
     {
-        $do->documentsOfClass('DCMS\Bundle\MenuBundle\Document\Menu')
-            ->belongInFolder('menus');
+        $do->register('DCMS\Bundle\MenuBundle\Document\Menu', '@site:/menus');
     }
 }

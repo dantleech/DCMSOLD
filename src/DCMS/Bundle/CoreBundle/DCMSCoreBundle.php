@@ -6,7 +6,7 @@ use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 use DCMS\Bundle\CoreBundle\Module\ModuleBundle;
 use DCMS\Bundle\CoreBundle\DependencyInjection\Compiler\AddDependencyCallsCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use DCMS\Bundle\CoreBundle\Site\DocumentOrganizer;
+use DCMS\Bundle\CoreBundle\Organizer\DocumentOrganizer;
 
 class DCMSCoreBundle extends ModuleBundle
 {
@@ -27,7 +27,7 @@ class DCMSCoreBundle extends ModuleBundle
 
     protected function organizeDocuments(DocumentOrganizer $do)
     {
-        $do->documentsOfClass('DCMS\Bundle\CoreBundle\Document\Endpoint')
-            ->belongInFolder('endpoints');
+        $do->register('DCMS\Bundle\CoreBundle\Document\Site', '/sites');
+        $do->register('DCMS\Bundle\CoreBundle\Document\Endpoint', '@site:/endpoints');
     }
 }

@@ -10,7 +10,6 @@
         <parameter key="dcms_core.notification_helper.class">DCMS\Bundle\CoreBundle\Helper\NotificationHelper</parameter>
         <parameter key="dcms_core.ep_controller_factory.class">DCMS\Bundle\CoreBundle\Helper\EndpointControllerFactory</parameter>
         <parameter key="dcms_core.twig_extension.class">DCMS\Bundle\CoreBundle\Twig\Extension\DCMSCoreExtension</parameter>
-        <parameter key="dcms_core.document_organizer.class">DCMS\Bundle\CoreBundle\Site\DocumentOrganizer</parameter>
     </parameters>
 
     <services>
@@ -34,7 +33,7 @@
             <tag name="twig.extension"/>
         </service>
 
-        <service id="dcms_core.document_organizer" class="DCMS\Bundle\CoreBundle\Site\DocumentOrganizer">
+        <service id="dcms_core.document_organizer" class="DCMS\Bundle\CoreBundle\Organizer\DocumentOrganizer">
             <argument type="service" id="dcms_core.site.context"/>
             <argument type="service" id="doctrine_phpcr.odm.document_manager"/>
         </service>

@@ -4,7 +4,7 @@ namespace DCMS\Bundle\CoreBundle\Module;
 
 use DCMS\Bundle\CoreBundle\Module\ModuleManager;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use DCMS\Bundle\CoreBundle\Site\DocumentOrganizer;
+use DCMS\Bundle\CoreBundle\Organizer\DocumentOrganizer;
 
 abstract class ModuleBundle extends Bundle
 {

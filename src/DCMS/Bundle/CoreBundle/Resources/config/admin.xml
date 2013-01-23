@@ -44,12 +44,5 @@
             <argument type="service" id="doctrine_phpcr.odm.default_document_manager" />
         </service>
 
-        <service id="dcms.admin.block.admin_list" class="Sonata\AdminBundle\Block\AdminListBlockService">
-            <tag name="sonata.block"/>
-
-            <argument>sonata.admin.block.admin_list</argument>
-            <argument type="service" id="templating" />
-            <argument type="service" id="dcms.admin.pool" />
-        </service>
     </services>
 </container>

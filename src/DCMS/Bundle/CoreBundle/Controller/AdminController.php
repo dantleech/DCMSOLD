@@ -28,7 +28,7 @@ class AdminController extends Controller
         return $this->render($this->container->get('dcms.admin.pool')->getTemplate('dashboard'), array(
             'base_template'   => $this->getBaseTemplate(),
             'admin_pool'      => $this->container->get('dcms.admin.pool'),
-            'blocks'          => array(),
+            'blocks'          => array()
         ));
     }
 }

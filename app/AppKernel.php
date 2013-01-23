@@ -46,6 +46,7 @@ class AppKernel extends Kernel
 
             new DCMS\Bundle\ThemeBundle\DCMSThemeBundle(),
             new DCMS\Bundle\BlogBundle\DCMSBlogBundle(),
+            new DCMS\Bundle\PhpcrBrowserBundle\DCMSPhpcrBrowserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

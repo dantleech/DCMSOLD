@@ -1,3 +1,8 @@
+dcms_phpcr_browser:
+    resource: "@DCMSPhpcrBrowserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 dcms_blog:
     resource: "@DCMSBlogBundle/Controller/"
     type:     annotation

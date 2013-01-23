@@ -63,14 +63,11 @@ class WebTestCase extends BaseWebTestCase
         }
         $params = $connection->getParams();
 
-        $hash = md5(serialize($fixtureClasses));
-
         $dbFile = sprintf('%s/test.db', 
             $this->getContainer()->getParameter('kernel.cache_dir')
         );
-        $backupDbFile = sprintf('%s/test.db.%s', 
-            $this->getContainer()->getParameter('kernel.cache_dir'),
-            $hash
+        $backupDbFile = sprintf('%s/test.db.back', 
+            $this->getContainer()->getParameter('kernel.cache_dir')
         );
 
         if (!file_exists($backupDbFile)) {
@@ -109,14 +106,13 @@ class WebTestCase extends BaseWebTestCase
             $registerNodesCmd->run(new ArrayInput(array()), new NullOutput);
             copy($dbFile, $backupDbFile);
         } else {
-            unlink($dbFile);
             copy($backupDbFile, $dbFile);
         }
 
         $loader = $this->getFixtureLoader($fixtureClasses);
         $purger = new PHPCRPurger($this->getDm());
-        $executor = new PHPCRExecutor($this->getDm(), $purger);
-        $executor->execute($loader->getFixtures(), false);
+        $executor = new PHPCRExecutor($this->getDm(), null);
+        $executor->execute($loader->getFixtures(), true);
     }
 
     protected function getFixtureLoader(array $classNames)

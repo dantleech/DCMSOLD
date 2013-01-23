@@ -16,19 +16,20 @@ class TreeController extends Controller
     }
 
     /**
-     * @Route("/hello/{name}")
+     * @Route("/tree")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return array();
     }
 
     /**
-     * @Route(pattern="/tree/children/{path}", requirements={"path"=".*"})
+     * @Route(pattern="/tree/_children")
      */
-    public function getChildrenAction($path)
+    public function getChildrenAction(Request $request)
     {
+        $path = $request->get('path');
         if ($path == '/') {
             $node = $this->getPhpcrSession()->getRootNode();
         } else {
@@ -39,6 +40,7 @@ class TreeController extends Controller
 
         foreach ($node->getNodes() as $childName => $childNode) {
             $child = array(
+                'id' => str_replace('//', '/', $path.'/'.$childName),
                 'name' => $childName,
                 'properties' => array(),
             );

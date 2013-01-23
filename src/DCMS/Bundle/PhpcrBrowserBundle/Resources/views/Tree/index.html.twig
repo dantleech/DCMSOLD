@@ -1,0 +1,25 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/dcmsphpcrbrowser/js/phpcrBrowser.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/dcmsphpcrbrowser/css/phpcrBrowser.css') }}" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block sonata_admin_content %}
+    <h1>Browser Test Page</h1>
+    <div class="header">
+        <div class="phpcrName"></div>
+        <div class="phpcrValue">Value</div>
+        <div class="phpcrType">Type</div>
+    </div>
+    <ul id="browser"></ul>
+    <script type="text/javascript">
+        $('#browser').phpcrBrowser({
+            path_get_children: '{{ path('dcms_phpcrbrowser_tree_getchildren') }}'
+        });
+    </script>
+{% endblock %}

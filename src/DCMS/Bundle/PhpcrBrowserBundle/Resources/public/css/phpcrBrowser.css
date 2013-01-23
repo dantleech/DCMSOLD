@@ -1,0 +1,36 @@
+.phpcrType, .phpcrName, .phpcrValue {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 25px;
+
+}
+
+.phpcrType, .phpcrValue {
+    position: absolute;
+    top: auto;
+    margin-top: -25px;
+    border-style: solid;
+    border-width: 0px 0px 0px 1px;
+    border-color: #ddd;
+    padding-left: 10px;
+    padding-top: 3px;
+}
+
+.children {
+    display: none;
+}
+
+.phpcrValue {
+    left: 500px;
+    width: 300px;
+}
+
+.phpcrType {
+    left: 800px;
+}
+
+.header {
+    background-color: #444;
+    color: white;
+}

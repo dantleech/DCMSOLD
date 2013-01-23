@@ -1,7 +1,7 @@
 dcms_phpcr_browser:
     resource: "@DCMSPhpcrBrowserBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /admin
 
 dcms_blog:
     resource: "@DCMSBlogBundle/Controller/"

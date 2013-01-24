@@ -21,7 +21,9 @@ class TreeController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        return array(
+            'admin_pool' => $this->get('sonata.admin.pool')
+        );
     }
 
     /**
@@ -36,6 +38,8 @@ class TreeController extends Controller
             $node = $this->getPhpcrSession()->getNodeByIdentifier($path);
         }
 
+        $typeRefl = new \ReflectionClass('PHPCR\PropertyType');
+        $types = array_flip($typeRefl->getConstants());
         $children = array();
 
         foreach ($node->getNodes() as $childName => $childNode) {
@@ -47,7 +51,7 @@ class TreeController extends Controller
             foreach ($childNode->getProperties() as $name => $prop) {
                 $child['properties'][$name] = array(
                     'value' => $prop->getValue(),
-                    'type' => $prop->getType(),
+                    'type' => ucfirst(strtolower($types[$prop->getType()])),
                 );
             }
             $children[$childName] = $child;

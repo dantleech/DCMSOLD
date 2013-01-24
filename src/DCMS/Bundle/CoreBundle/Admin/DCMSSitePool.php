@@ -3,7 +3,7 @@
 namespace DCMS\Bundle\CoreBundle\Admin;
 use Sonata\AdminBundle\Admin\Pool as BasePool;
 
-class Pool extends BasePool
+class DCMSSitePool extends BasePool
 {
     public function getTemplate($name)
     {
@@ -12,7 +12,7 @@ class Pool extends BasePool
         }
 
         if ($name == 'layout') {
-            return 'DCMSCoreBundle:Admin:layout.html.twig';
+            return 'DCMSCoreBundle:Admin:site_admin_layout.html.twig';
         }
 
         return parent::getTemplate($name);

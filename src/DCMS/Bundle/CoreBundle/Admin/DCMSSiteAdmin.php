@@ -32,7 +32,7 @@ class DCMSSiteAdmin extends DCMSAdmin
     public function getTemplate($name)
     {
         if ($name == 'layout') {
-            return 'DCMSCoreBundle:Admin:layout.html.twig';
+            return 'DCMSCoreBundle:Admin:site_admin_layout.html.twig';
         }
 
         return parent::getTemplate($name);
